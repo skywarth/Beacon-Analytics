@@ -1,0 +1,707 @@
+﻿@model IEnumerable<Beamity.Application.DTOs.ArtifactDTOs.ReadArtifactDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 mt-2">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                <i class="far fa-list-alt"></i> Artifact List Page
+            </h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <button id="btnShowModal" type="button" class="btn btn-success m-1">
+                Create <i class="far fa-plus-square"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" name="createForm" onsubmit="return false" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input class="form-control input" type="text"
+                               placeholder="Artifact Name" id="inputName"
+                               required  minlength="5" maxlength="50"/>
+                    </div>
+
+                    <input type="file" id="file" name="files"
+                           required  />
+
+                    <div class="form-group input">
+                        <label class="control-label">Rooms</label>
+                        <select id="rooms" class="form-control input" required></select>
+                    </div>
+                    <button type="submit" id="create" class="btn btn-primary button button4">Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="deleteRelationModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Delete Relation</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this?</h4>
+                <p id="deleteRelationModalText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteRelation" class="btn btn-primary button button4">Delete</button>
+                <button type="button" id="deleteRelationModalHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="deleteArtifactModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Delete Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this?</h4>
+                <p id="deleteArtifactModalText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteArtifact" class="btn btn-primary button button4">Delete</button>
+                <button type="button" id="deleteArtifactHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="detailModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Artifact Details</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="put" name="editForm" enctype="multipart/form-data">
+                    <p id="detailModalText"></p>
+                    <div class="form-group">
+                        <input class="form-control" type="text"
+                               placeholder="Name" id="editName"
+                               required minlength="5" maxlength="50" />
+                    </div>
+                    <input type="file" id="editfiles" name="files"
+                           required />
+
+                    <select class="form-control" id="EditRoom"></select>
+                    <button type="submit" id="update" class="btn btn-primary button button4">Update</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="detailHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="createRelationModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Artifact</label>
+                        <input type="hidden" class="artifactId" />
+                        <input disabled class="form-control artifact" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Contents</label>
+
+                        <select id="contents" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Beacons</label>
+                        <select id="beacons" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Proximity</label>
+                        <select id="proximity" class="form-control"></select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="connect" class="btn btn-primary button button4">Create</button>
+                <button type="button" id="createRelationHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="relationModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <input disabled class="artifact" />
+                <input type="button" class="btn btn-primary" id="addRelation" value="Add Connection" />
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ContentName
+                            </th>
+                            <th>
+                                Beacon
+                            </th>
+                            <th>
+                                Proximity
+                            </th>
+                            <th>
+                                Operations
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="relationsBody">
+                        @* list relationss *@
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="relationHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-hover text-center">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RoomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FloorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedTime)
+            </th>
+
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FloorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning detailShowModal m-1" data-id="@item.Id" data-name="@item.Name"
+                            data-ctime="@item.CreatedTime" value="Details">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                    <button type="button" class="btn btn-danger deleteShowModal m-1" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
+                    <button type="button" class="btn btn-primary relations m-1" data-name="@item.Name" data-id="@item.Id" value="Connections"><i class="fas fa-wifi"></i> Connections</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+</script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var locationId;
+
+    $(document).ready(function () {
+        debugger
+        $.ajax({
+
+            url: "/Session/GetVariable",
+            data: {
+                key: "LocationId"
+            },
+            cache: false,
+            type: "POST",
+            success: function (response) {
+                locationId = response.d;
+            },
+            error: function () {
+                alert("couldnt get Session! ");
+            }
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            var options = {};
+            options.url = "https://localhost:5001/api/Room/GetAllRooms";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                data.forEach(function (v) {
+                    $("#rooms").append('<option value="' + v.id + '">' + v.name + '</option>');
+                    $("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            $("#loginModal").modal('show');
+
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+    $('form[name=createForm]').submit(function () {
+        swalload();
+        var options = {};
+        options.url = '/Artifact/CreateArtifact';
+        options.type = "POST";
+        var obj = new FormData();
+        obj.append('Name', $("#inputName").val());
+        obj.append('RoomId', $("#rooms").val());
+        obj.append('LocationId', locationId);
+        obj.append('File', $("#file")[0].files[0]);
+        debugger
+        options.data = obj;
+        options.contentType = false;
+        options.processData = false;
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        options.error = function (error) {
+            alert("error");
+            alert(error.msg);
+        };
+        $.ajax(options);
+        $("#loginModal").modal('hide');
+    });
+
+
+    $(document).ready(function () {
+        $(".deleteShowModal").click(function () {
+            $("#deleteArtifactModal").modal('show');
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            $("#deleteArtifactModalText").empty();
+            $("#deleteArtifactModalText").append(name).append('<input type="hidden" id="deleteArtifactModalId"/>');
+            $('#deleteArtifactModalId').val(id);
+        });
+
+        $("#deleteArtifactHideModal").click(function () {
+            $("#deleteArtifactModal").modal('hide');
+        });
+    });
+    $("#deleteArtifact").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Artifact/DeleteArtifact";
+        options.type = "DELETE";
+        var obj = {};
+        obj.Id = $("#deleteArtifactModalId").val();
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function () {
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        options.error = function () {
+            Swal({
+                type: 'error',
+                title: 'Oppsss...',
+                text: 'Operation is not success. The item you want to delete have a relation.',
+            }).then(function () {
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        $("#deleteModal").modal('hide');
+        $.ajax(options);
+    });
+
+    $('form[name=editForm]').submit(function () {
+        swalload();
+        var options = {};
+        options.url = '/Artifact/UpdateArtifact';
+        options.type = "PUT";
+        var obj = new FormData();
+        obj.append('Name', $("#editName").val());
+        obj.append('RoomId', $("#EditRoom").val());
+        obj.append('LocationId', locationId);
+        obj.append('File', $("#editfiles")[0].files[0]);
+        obj.append('Id', $("#detailModalId").val());
+        debugger
+        options.data = obj;
+        options.contentType = false;
+        options.processData = false;
+        console.log($("#rooms").val());
+        options.success = function (msg) {
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        options.error = function () {
+            Swal({
+                type: 'error',
+                title: 'Oppsss...',
+                text: 'Operation is not success. The item you want to delete have a relation.',
+            }).then(function () {
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        $("#detailModal").modal('hide');
+        $.ajax(options);
+    });
+    $(document).ready(function () {
+        $('.detailShowModal').click(function () {
+            $("#detailModal").modal('show');
+            var options = {};
+            options.url = "https://localhost:5001/api/Room/GetAllRooms";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                data.forEach(function (v) {
+                    $("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var room = $(this).data('room');
+
+            $("#editName").val(name);
+            $("#EditRoom").val(room);
+
+            $("#detailModalText").append('<input type="hidden" id="detailModalId"/>');
+            $('#detailModalId').val(id);
+        });
+
+        $("#detailHideModal").click(function () {
+            $("#detailModal").modal('hide');
+        });
+        $('#addRelation').click(function () {
+            ////Get All Contents
+            $("#relationModal").modal('hide');
+            var options = {};
+            options.url = "https://localhost:5001/api/Content/GetAllContents";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                debugger
+                data.forEach(function (v) {
+                    $('[id = "contents"]').append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function () {
+                Swal({
+                    type: 'error',
+                    title: 'Oppsss...',
+                    text: 'Please add content.',
+                }).then(function () {
+
+                    window.location.href = "/";
+                })
+            };
+            $.ajax(options);
+            ////GetAllBeacons
+            var options = {};
+            options.url = "https://localhost:5001/api/Beacon/GetAllBeacons";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                debugger
+                data.forEach(function (v) {
+                    $('[id = "beacons"]').append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function () {
+                Swal({
+                    type: 'error',
+                    title: 'Oppsss...',
+                    text: 'Please add beacon.',
+                }).then(function () {
+
+                    window.location.href = "/";
+                })
+            };
+            $.ajax(options);
+            //// get artifact
+            var id = $(this).data("id");
+            $("#artifactId").val(id);
+
+            var name = $(this).data("name");
+            $("#artifact").val(name);
+
+            $("#createRelationModal").modal('show');
+        });
+
+        $("#createRelationHideModal").click(function () {
+            $("#createRelationModal").modal('hide');
+            $("#relationModal").modal('show');
+
+        });
+        $('.relations').on('click', SetRelations);
+        $("#relationHideModal").on("click", function () {
+            $("#relationModal").modal('hide');
+        });
+    });
+
+
+    ////Create Realation
+    $("#connect").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Relation/CreateRelation/";
+        options.type = "POST";
+        debugger
+        var obj = {};
+        obj.ArtifactId = $('.artifactId').val();
+        obj.ConTentId = $('#contents').val();
+        obj.BeaconId = $('#beacons').val();
+        obj.LocationId = locationId;
+        obj.Proximity = $('#proximity').val();
+        ////Add Data/////
+
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+        $("#loginModal").modal('hide');
+    });
+
+
+    ////Proximity
+    $(document).ready(function () {
+        var myobject = {
+            ValueA: 'All',
+            ValueB: 'Immediate',
+            ValueC: 'Near',
+            ValueD: 'Far',
+            ValueE: 'UnKnown'
+        };
+
+        var select = document.getElementById("proximity");
+        for (index in myobject) {
+            select.options[select.options.length] = new Option(myobject[index], myobject[index]);
+        }
+    });
+    function SetRelations() {
+        $("#relationsBody").empty();
+        var options = {};
+        options.url = "https://localhost:5001/api/Relation/GetRelationsWithArtifact";
+        var obj = {};
+        obj.Id = $(this).data("id");
+        debugger
+        options.type = "POST";
+        options.dataType = "json";
+        options.contentType = "application/json";
+        options.data = JSON.stringify(obj);
+        options.success = function (data) {
+            data.forEach(function (v) {
+                $('#relationsBody').append("<tr>"
+                    + "<td>" + v.contentName + "</td>"
+                    + "<td>" + v.beaconName + "</td>"
+                    + "<td>" + v.proximity + "</td>"
+                    + "<td> <input type='button' data-id='" + v.id + "' class='btn btn-primary showDeleteRelationModal' value='Delete'/></td></tr>");
+            });
+        }
+        options.error = function () {
+
+
+        };
+        $.ajax(options);
+        debugger;
+        var id = $(this).data("id");
+        $(".artifactId").val(id);
+
+        var name = $(this).data("name");
+        $('.artifact').val(name);
+
+        $("#relationModal").modal('show');
+    }
+
+    ////Delete Reletaion////
+
+    $(document).ready(function () {
+
+        $("body").on("click", ".showDeleteRelationModal", function () {
+            $("#deleteRelationModal").modal('show');
+            $("#relationModal").modal('hide');
+            var id = $(this).data('id');
+            $("#deleteRelationModalText").empty();
+            $("#deleteRelationModalText").append('<input type="hidden" id="deleteRelationModalId"/>');
+            $('#deleteRelationModalId').val(id);
+        });
+    });
+    $("#deleteRelationModalHideModal").click(function () {
+        $("#deleteRelationModal").modal('hide');
+    });
+
+    $("#deleteRelation").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Relation/DeleteRelation";
+        options.type = "DELETE";
+        var obj = {};
+        obj.Id = $("#deleteRelationModalId").val();
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        options.dataType = "html";
+        debugger
+        options.success = function () {
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Artifact/Index";
+            })
+        };
+        options.error = function () {
+            alert("error");
+        };
+        $("#deleteRelationModal").modal('hide');
+        $.ajax(options);
+    });
+</script>

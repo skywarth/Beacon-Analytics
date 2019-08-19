@@ -1,0 +1,359 @@
+﻿@model IEnumerable<Beamity.Application.DTOs.BeaconDTOs.ReadBeaconDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-md-12 mt-2">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                <i class="far fa-list-alt"></i> Beacon List Page
+            </h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <button id="btnShowModal" type="button" class="btn btn-success m-1">
+                Create <i class="far fa-plus-square"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Beacon</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="formcreate" onsubmit="return false">
+                    <div class="form-group">
+                        <input class="form-control input" type="text"
+                               placeholder="Beacon Name" id="inputName" required @*oninvalid="this.setCustomValidity('Pasdad')"*@ />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input" placeholder="Login UUID"
+                               id="inputUUID" required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input" type="number"
+                               placeholder="Major Id" id="inputMajor" required/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input" type="number"
+                               placeholder="Minor Id" id="inputMinor" required/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="create" class="btn btn-primary button button4">Create</button>
+                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                            Hide
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="deleteModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Beacon</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this?</h4>
+                <p id="deleteModalText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete" class="btn btn-primary button button4">Delete</button>
+                <button type="button" id="deleteHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="detailModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Beacon Details</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <p id="detailModalText"></p>
+                    <div class="form-group">
+                        <input class="form-control" type="text"
+                               placeholder="Beacon Name" id="editName" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Beacon UUID"
+                               id="editUUID" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number"
+                               placeholder="Major Id" id="editMajor" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number"
+                               placeholder="Minor Id" id="editMinor" />
+                    </div>
+                    <input id="editCTime" type="datetime" disabled />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="update" class="btn btn-primary button button4">Update</button>
+                <button type="button" id="detailHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-hover text-center">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UUID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Major)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Minor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedTime)
+            </th>
+
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UUID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Major)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+
+                <td>
+                    <button type="button" class="btn btn-warning" data-id="@item.Id" data-name="@item.Name"
+                            data-uuid="@item.UUID" data-major="@item.Major"
+                            data-minor="@item.Minor" data-ctime="@item.CreatedTime" value="Details" id="detailShowModal">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                    <button type="button" class="btn btn-danger" id="deleteShowModal" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+</script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    var locationId;
+
+    $(document).ready(function () {
+        debugger
+        $.ajax({
+
+            url: "/Session/GetVariable",
+            data: {
+                key: "LocationId"
+            },
+            cache: false,
+            type: "POST",
+            success: function (response) {
+                locationId = response.d;
+            },
+            error: function () {
+                alert("couldnt get Session! ");
+            }
+        });
+
+    });
+
+    
+
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            $("#loginModal").modal('show');
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+    $('form[name=formcreate]').submit(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Beacon/CreateBeacon";
+        options.type = "POST";
+        var obj = {};
+        obj.Name = $("#inputName").val();
+        obj.UUID = $("#inputUUID").val();
+        obj.LocationId = locationId;
+        obj.Major = $("#inputMajor").val();
+        obj.Minor = $("#inputMinor").val();
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Beacon/Index";
+            })
+        };
+        options.error = function () {
+
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+        
+    });
+    $(document).ready(function () {
+        $('[id="deleteShowModal"]').click(function () {
+            $("#deleteModal").modal('show');
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            $("#deleteModalText").empty();
+            $("#deleteModalText").append(name).append('<input type="hidden" id="deleteModalId"/>');
+            $('#deleteModalId').val(id);
+        });
+
+        $("#deleteHideModal").click(function () {
+            $("#deleteModal").modal('hide');
+        });
+    });
+    $("#delete").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Beacon/DeleteBeacon";
+        options.type = "DELETE";
+        var obj = {};
+        obj.Id = $("#deleteModalId").val();
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function () {
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Beacon/Index";
+            })
+        };
+        options.error = function () {
+            Swal({
+                type: 'error',
+                title: 'Oppsss...',
+                text: 'Operation is not success. The item you want to delete have a relation.',
+            }).then(function () {
+                window.location.href = "/Beacon/Index";
+            })
+        };
+        $("#deleteModal").modal('hide');
+        $.ajax(options);
+    });
+    $(document).ready(function () {
+        $('[id="detailShowModal"]').click(function () {
+            $("#detailModal").modal('show');
+            var id = $(this).data('id');
+            var cTime = $(this).data('ctime');
+            var name = $(this).data('name');
+            var minor = $(this).data('minor');
+            var major = $(this).data('major');
+            var uuid = $(this).data('uuid');
+            $("#editName").val(name);
+            $("#editCTime").val(cTime);
+            $("#editMinor").val(minor);
+            $("#editMajor").val(major);
+            $("#editUUID").val(uuid);
+            $("#detailModalText").append('<input type="hidden" id="detailModalId"/>');
+            $('#detailModalId').val(id);
+        });
+
+        $("#detailHideModal").click(function () {
+            $("#detailModal").modal('hide');
+        });
+    });
+    $("#update").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:5001/api/Beacon/UpdateBeacon";
+        options.type = "PUT";
+        var obj = {};
+        obj.Id = $("#detailModalId").val();
+        obj.Name = $("#editName").val();
+        obj.Minor = $("#editMinor").val();
+        obj.Major = $("#editMajor").val();
+        obj.UUID = $("#editUUID").val();
+        //obj.CreatedTime = $.now();
+        debugger
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function () {
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/Beacon/Index";
+            })
+        };
+        options.error = function () {
+            alert("error");
+        };
+        $("#detailModal").modal('hide');
+        $.ajax(options);
+    });
+</script>
+
+
