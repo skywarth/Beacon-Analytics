@@ -23,7 +23,6 @@
     </ol>
 
     <!-- Icon Cards-->
-
     <!-- Yapılacak Değişikliler: Buildings yerine odalar görünecek -->
     <div class="row">
         <div class="col-xl-3 col-sm-6  Link hvr-grow" style="margin-left:150px;">
@@ -81,7 +80,7 @@
         </div>
 
 
-        <!-- Yapılacak Değişiklikler: o an müzede olan müşteriler gösterilecek--> 
+        <!-- Yapılacak Değişiklikler: o an müzede olan müşteriler gösterilecek-->
         <div class="col-xl-3 col-sm-6  Link hvr-grow" style="margin-top:20px; margin-left:150px;">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -99,7 +98,7 @@
             </div>
         </div>
 
-        
+
         <div class="col-xl-3 col-sm-6  Link hvr-grow" style="margin-top:20px;">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -109,7 +108,7 @@
                     <div class="mr-5">FLOORS  </div>
                     <!-- <div class="mr-5">5</div> -->  <!-- burada floor sayısı yazacak ve her floor eklendiğinde o sayı değişecek-->
                 </div>
-                
+
                 <a class="card-footer text-white clearfix small z-1" href="/Floor/Index">
                     <span class="float-left">View Details</span>
                     <span class="float-right">
@@ -153,7 +152,7 @@
 
 <div id="chartdiv" class="mb-5"></div>
 
-<div id="stylediv" style="width:150px; height:100px; margin-right:20px;">
+<div id="stylediv" style="width:150px; height:100px;">
 
     <!-- Styles -->
     <style>
@@ -444,107 +443,65 @@
 
         }); // end am4core.ready()
     </script>
-</div>
-<!-- HTML -->
-<div id="chartdiv"></div>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- New Chart-->
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container" style="width:410px; height: 500px; margin:0px;"></div>
+    <table id="datatable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Yesterday</th>
+                <th>Today</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Eser1</th>
+                <td>30</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <th>Esser2</th>
+                <td>20</td>
+                <td>13</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <script>
 
-Highcharts.chart('container', {
-  data: {
-    table: 'datatable'
-  },
-  chart: {
-    type: 'column'
-  },
-  title: {
-    text: 'Data extracted from a HTML table in the page'
-  },
-  yAxis: {
-    allowDecimals: false,
-    title: {
-      text: 'Units'
-    }
-  },
-  tooltip: {
-    formatter: function () {
-      return '<b>' + this.series.name + '</b>
-<br />' +
-        this.point.y + ' ' + this.point.name.toLowerCase();
-    }
-  }
-});
-
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-<table id="datatable">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Jane</th>
-            <th>John</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Apples</th>
-            <td>3</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <th>Pears</th>
-            <td>2</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <th>Plums</th>
-            <td>5</td>
-            <td>11</td>
-        </tr>
-        <tr>
-            <th>Bananas</th>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <th>Oranges</th>
-            <td>2</td>
-            <td>4</td>
-        </tr>
-    </tbody>
-</table>
-<div>
-    <script>
-
-        Highcharts.chart('container', {
-            data: {
-                table: 'datatable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Data extracted from a HTML table in the page'
-            },
-            yAxis: {
-                allowDecimals: false,
+            Highcharts.chart('container', {
+                data: {
+                    table: 'datatable'
+                },
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Units'
+                    text: 'MOST / LEAST interested artifacts.'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'Units'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                            this.point.y + ' ' + this.point.name.toLowerCase();
+                    }
                 }
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        this.point.y + ' ' + this.point.name.toLowerCase();
-                }
-            }
-        });
+            });
 
-    </script>
+        </script>
+    </div>
+
+
 </div>
 
+
+<!-- HTML -->
+<!-- <div id="chartdiv"></div> -->
+<div style="margin-bottom:40px;"> </div>
