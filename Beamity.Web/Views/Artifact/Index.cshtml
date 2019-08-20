@@ -312,7 +312,7 @@
     $(document).ready(function () {
         $("#btnShowModal").click(function () {
             var options = {};
-            options.url = "https://localhost:5001/api/Room/GetAllRooms";
+            options.url = "https://localhost:44327/api/Room/GetAllRooms";
             var obj = {};
             obj.Id = locationId;
             debugger
@@ -389,7 +389,7 @@
     $("#deleteArtifact").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Artifact/DeleteArtifact";
+        options.url = "https://localhost:44327/api/Artifact/DeleteArtifact";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteArtifactModalId").val();
@@ -462,7 +462,7 @@
         $('.detailShowModal').click(function () {
             $("#detailModal").modal('show');
             var options = {};
-            options.url = "https://localhost:5001/api/Room/GetAllRooms";
+            options.url = "https://localhost:44327/api/Room/GetAllRooms";
             var obj = {};
             obj.Id = locationId;
             debugger
@@ -497,7 +497,7 @@
             ////Get All Contents
             $("#relationModal").modal('hide');
             var options = {};
-            options.url = "https://localhost:5001/api/Content/GetAllContents";
+            options.url = "https://localhost:44327/api/Content/GetAllContents";
             var obj = {};
             obj.Id = locationId;
             debugger
@@ -524,7 +524,7 @@
             $.ajax(options);
             ////GetAllBeacons
             var options = {};
-            options.url = "https://localhost:5001/api/Beacon/GetAllBeacons";
+            options.url = "https://localhost:44327/api/Beacon/GetAllBeacons";
             var obj = {};
             obj.Id = locationId;
             debugger
@@ -575,7 +575,7 @@
     $("#connect").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Relation/CreateRelation/";
+        options.url = "https://localhost:44327/api/Relation/CreateRelation/";
         options.type = "POST";
         debugger
         var obj = {};
@@ -627,7 +627,7 @@
     function SetRelations() {
         $("#relationsBody").empty();
         var options = {};
-        options.url = "https://localhost:5001/api/Relation/GetRelationsWithArtifact";
+        options.url = "https://localhost:44327/api/Relation/GetRelationsWithArtifact";
         var obj = {};
         obj.Id = $(this).data("id");
         debugger
@@ -679,7 +679,7 @@
     $("#deleteRelation").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Relation/DeleteRelation";
+        options.url = "https://localhost:44327/api/Relation/DeleteRelation";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteRelationModalId").val();

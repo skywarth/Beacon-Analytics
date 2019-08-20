@@ -345,7 +345,7 @@
     $("#delete").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Location/DeleteLocation/";
+        options.url = "https://localhost:44327/api/Location/DeleteLocation/";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -405,7 +405,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Location/UpdateLocation";
+        options.url = "https://localhost:44327/api/Location/UpdateLocation";
         options.type = "PUT";
 
         var obj = {};
@@ -445,7 +445,7 @@
     });
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Project/GetAllProject";
+        options.url = "https://localhost:44327/api/Project/GetAllProject";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
@@ -461,7 +461,7 @@
     });
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Project/GetAllProject";
+        options.url = "https://localhost:44327/api/Project/GetAllProject";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {

@@ -170,7 +170,7 @@
     $("#create").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Room/CreateRoom/";
+        options.url = "https://localhost:44327/api/Room/CreateRoom/";
         options.type = "POST";
         debugger
         var obj = {};
@@ -200,7 +200,7 @@
     });
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/GetAllFloors/";
+        options.url = "https://localhost:44327/api/Floor/GetAllFloors/";
         options.type = "GET";
         debugger
         options.dataType = "json";
@@ -218,7 +218,7 @@
     $("#delete").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Room/DeleteRoom";
+        options.url = "https://localhost:44327/api/Room/DeleteRoom";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -267,7 +267,7 @@
 
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/GetAllFloors";
+        options.url = "https://localhost:44327/api/Floor/GetAllFloors";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
@@ -283,7 +283,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Room/UpdateRoom";
+        options.url = "https://localhost:44327/api/Room/UpdateRoom";
         options.type = "PUT";
         var obj = {};
         obj.Id = $("#detailModalId").val();

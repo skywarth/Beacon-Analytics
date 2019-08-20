@@ -223,7 +223,7 @@
     $('form[name=formcreate]').submit(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Beacon/CreateBeacon";
+        options.url = "https://localhost:44327/api/Beacon/CreateBeacon";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#inputName").val();
@@ -269,7 +269,7 @@
     $("#delete").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Beacon/DeleteBeacon";
+        options.url = "https://localhost:44327/api/Beacon/DeleteBeacon";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -324,7 +324,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Beacon/UpdateBeacon";
+        options.url = "https://localhost:44327/api/Beacon/UpdateBeacon";
         options.type = "PUT";
         var obj = {};
         obj.Id = $("#detailModalId").val();

@@ -192,7 +192,7 @@
     $("#create").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Project/CreateProject";
+        options.url = "https://localhost:44327/api/Project/CreateProject";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#inputName").val();
@@ -232,7 +232,7 @@
     $("#delete").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Project/DeleteProject";
+        options.url = "https://localhost:44327/api/Project/DeleteProject";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -281,7 +281,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Project/UpdateProject";
+        options.url = "https://localhost:44327/api/Project/UpdateProject";
         options.type = "PUT";
         var obj = {};
         obj.Id = $("#detailModalId").val();

@@ -382,7 +382,7 @@
     $('[id="floorsShowModal"]').click(function () {
 
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/GetFloorsAtBuilding";
+        options.url = "https://localhost:44327/api/Floor/GetFloorsAtBuilding";
         var obj = {};
         obj.Id = $(this).data("id");
         selectedBuilding = $(this).data("name");
@@ -414,7 +414,7 @@
     /*List Room Modal*/
     $(document).on('click', '[id="selectFloor"]', function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Room/GetRoomsOnFloor";
+        options.url = "https://localhost:44327/api/Room/GetRoomsOnFloor";
         var obj = {};
         obj.Id = $(this).data("id");
         selectedFloor = $(this).data("name");
@@ -442,7 +442,7 @@
     /*List Artifact Modal*/
     $(document).on('click', '[id="selectRoom"]', function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Artifact/GetArtifactsInRoom";
+        options.url = "https://localhost:44327/api/Artifact/GetArtifactsInRoom";
         var obj = {};
         obj.Id = $(this).data("id");
         SelectedRoom = $(this).data("name");
@@ -522,7 +522,7 @@
     $('form[name=CreateBuildingForm]').submit(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Building/CreateBuilding/";
+        options.url = "https://localhost:44327/api/Building/CreateBuilding/";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#inputName").val();
@@ -566,7 +566,7 @@
     $("#deleteBuilding").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Building/DeleteBuilding";
+        options.url = "https://localhost:44327/api/Building/DeleteBuilding";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -600,7 +600,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Building/UpdateBuilding";
+        options.url = "https://localhost:44327/api/Building/UpdateBuilding";
         options.type = "PUT";
         var obj = {};
         obj.Id = $("#detailModalId").val();
@@ -658,7 +658,7 @@
     $('form[name=CreateFloorForm]').submit(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/CreateFloor";
+        options.url = "https://localhost:44327/api/Floor/CreateFloor";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#floorname").val();
@@ -705,7 +705,7 @@
         debugger
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/DeleteFloor";
+        options.url = "https://localhost:44327/api/Floor/DeleteFloor";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -756,7 +756,7 @@
     $('form[name=CreateRoomForm]').submit(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Room/CreateRoom/";
+        options.url = "https://localhost:44327/api/Room/CreateRoom/";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#RoomName").val();
@@ -805,7 +805,7 @@
         debugger
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Room/DeleteRoom";
+        options.url = "https://localhost:44327/api/Room/DeleteRoom";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();

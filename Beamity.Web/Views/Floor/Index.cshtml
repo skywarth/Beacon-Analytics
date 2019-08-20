@@ -174,7 +174,7 @@
     $("#create").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/CreateFloor";
+        options.url = "https://localhost:44327/api/Floor/CreateFloor";
         options.type = "POST";
         var obj = {};
         obj.Name = $("#floorname").val();
@@ -209,7 +209,7 @@
     });
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Building/GetAllBuildings";
+        options.url = "https://localhost:44327/api/Building/GetAllBuildings";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
@@ -240,7 +240,7 @@
     $("#delete").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/DeleteFloor";
+        options.url = "https://localhost:44327/api/Floor/DeleteFloor";
         options.type = "DELETE";
         var obj = {};
         obj.Id = $("#deleteModalId").val();
@@ -273,7 +273,7 @@
     });
     $(document).ready(function () {
         var options = {};
-        options.url = "https://localhost:5001/api/Building/GetAllBuildings";
+        options.url = "https://localhost:44327/api/Building/GetAllBuildings";
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
@@ -289,7 +289,7 @@
     $("#update").click(function () {
         swalload();
         var options = {};
-        options.url = "https://localhost:5001/api/Floor/UpdateFloor";
+        options.url = "https://localhost:44327/api/Floor/UpdateFloor";
         options.type = "PUT";
         var obj = {};
         obj.Id = $("#detailModalId").val();

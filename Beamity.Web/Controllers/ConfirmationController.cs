@@ -33,7 +33,7 @@ namespace Beamity.Web.Controllers
             _userService.ConfirmEmail(guidcode);
             //using (var client = new HttpClient())
             //{
-            //    client.BaseAddress = new Uri("https://localhost:5001/api/User/ConfirmEmail");
+            //    client.BaseAddress = new Uri("https://localhost:44327/api/User/ConfirmEmail");
             //    try
             //    {
             //        var jsonInString = JsonConvert.SerializeObject(guidcode);
