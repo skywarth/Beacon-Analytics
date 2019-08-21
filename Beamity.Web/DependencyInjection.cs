@@ -12,6 +12,7 @@ using Beamity.EntityFrameworkCore.EntityFrameworkCore.Repositories;
 using Beamity.Web.Blob;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +24,7 @@ namespace Beamity.Web
 {
     public class DependencyInjection
     {
-        public DependencyInjection(IServiceCollection services, IConfiguration Configuration)
+        public DependencyInjection(IServiceCollection services, IConfiguration Configuration, IHostingEnvironment hostingEnvironment)
         {
             services.AddTransient<IArtifactService, ArtifactService>();
             services.AddTransient<IBeaconService, BeaconService>();
