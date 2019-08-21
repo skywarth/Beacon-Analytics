@@ -267,7 +267,7 @@
                 @Html.DisplayFor(modelItem => item.CreatedTime)
             </td>
             <td>
-                <img style="max-height:6em" src="@Html.DisplayFor(modelItem => item.MainImageURL)" />
+                <img style="max-height:6em" src="@item.MainImageURL" />
             </td>
             <td>
                 <button type="button" class="btn btn-warning detailShowModal m-1" data-id="@item.Id" data-name="@item.Name"
