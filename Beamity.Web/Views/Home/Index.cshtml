@@ -18,6 +18,11 @@
 <script src="~/js/Dashboard.js"></script>
 <link href="~/css/DashboardStyle.css" rel="stylesheet" />
 
+<!--Behaviour Flow Resources-->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
 
 <script>
@@ -128,8 +133,12 @@
     </div>
 </div>
 
-<div id="chartdiv" class="col-12 col-md-6 "></div>
-<div id="container" class="col-12 col-md-6"></div>
+
+<div class="row pr-3">
+    <div id="container" class="col-12 col-md-4"></div>
+    <div id="chartdiv" class="col-12 col-md-8 "></div>
+
+</div>
 
 
 <!-- SeecondChart Styles-->
@@ -158,7 +167,7 @@
 </div>
 
 <div>
-    
+
 
     <!-- New Chart-->
     <div>
@@ -195,100 +204,236 @@
 </div>
 
 
-<div class="container" style="float:left;">
-    <div class="row">
-        <div class="col-6">
-            <div class="row">
+<!--Cards2-->
+<div>
 
-                <div class="col-md-6 col-sm-6" style="margin-top:10px;">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons"><b>Eselere Gelen Kişi Ortalaması</b></i>
-                            </div>
-                            <p class="card-category"></p>
-                            <h3 class="card-title">21 <i style="font-size:15px;">Average</i></h3>
-                        </div>
-                        <div class="card-footer" style="text-align:right;">
-                            <div class="stats">
-                                <i class="material-icons text-danger"></i>
-                                <a href="#pablo">Get More İnfo -></a>
-                            </div>
-                        </div>
+    <!--Row1-->
+    <div class="row" style="margin-top:10px;">
+
+        <!--Card1-->
+        <div class="col-md-3 col-sm-6 pl-3">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Eselere Gelen Kişi Ortalaması</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">21 <i style="font-size:15px;">Average</i></h3>
+                </div>
+                <div class="card-footer" style="text-align:right;">
+                    <div class="stats">
+                        <i class="material-icons text-danger"></i>
+                        <a href="#pablo">Get More İnfo -></a>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-sm-6" style="margin-top:10px;">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons"><b>Odalara Gelen Kişi Ortalaması</b></i>
-                            </div>
-                            <p class="card-category"></p>
-                            <h3 class="card-title">34 <i style="font-size:15px;">Average</i></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons"><small>Last 24 Hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </small><a href="#pablo">Get More İnfo -></a></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+        </div>
+
+        <!--Card2-->
+        <div class="col-md-3 col-sm-6 pl-0">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Odalara Gelen Kişi Ortalaması</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">59 <i style="font-size:15px;">Average</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Card3-->
+        <div class="col-md-3 col-sm-6 pl-0">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Eserlerin Ortalama İzlenme Süresi</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">16 <i style="font-size:15px;">Minute</i></h3>
+                </div>
+                <div class="card-footer" style="text-align:right;">
+                    <div class="stats">
+                        <i class="material-icons text-danger"></i>
+                        <a href="#pablo">Get More İnfo -></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Card4-->
+        <div class="col-md-3 col-sm-6 pl-0 pr-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Odaların Ortalama İzlenme Süresi</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">34 <i style="font-size:15px;">Average</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--Row1-->
+    <!--Row2-->
+    <div class="row" style="margin-top:10px;">
+        <!--Card1-->
+        <div class="col-md-3 col-sm-12 pl-3">
+
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Müze Bounce Rate</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">43 <i style="font-size:15px;">%</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Card2-->
+        <div class="col-md-3 col-sm-12 pl-0">
+
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Total Visitors</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">106<i style="font-size:15px;">&nbsp;&nbsp;Person</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Card3-->
+        <div class="col-md-3 col-sm-12 pl-0">
+
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Museum Total Time</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">7<i style="font-size:15px;">Hours</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Card4-->
+        <div class="col-md-3 col-sm-12 pl-0">
+
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons"><b>Artifacts/Museum Average</b></i>
+                    </div>
+                    <p class="card-category"></p>
+                    <h3 class="card-title">12 <i style="font-size:15px;">Average</i></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons"><small><small>Last 24 Hours </small></small>&nbsp;&nbsp;<a href="#pablo">Get More İnfo -></a></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--Row2-->
+
+
+    <div class="row pt-3 pr-3">
+
+        <!--Chart1-->
+        <div class="col-md-8">
+
+
+
+
+
+            <!-- Chart code -->
+            <script>
+                am4core.ready(function () {
+
+                    // Themes begin
+                    am4core.useTheme(am4themes_animated);
+                    // Themes end
+
+                    var chart = am4core.create("chartdiv2", am4charts.ChordDiagram);
+                    chart.hiddenState.properties.opacity = 0;
+
+                    chart.data = [
+                        { from: "A", to: "D", value: 10 },
+                        { from: "B", to: "D", value: 8 },
+                        { from: "B", to: "E", value: 4 },
+                        { from: "B", to: "C", value: 2 },
+                        { from: "C", to: "E", value: 14 },
+                        { from: "E", to: "D", value: 8 },
+                        { from: "C", to: "A", value: 4 },
+                        { from: "G", to: "A", value: 7 },
+                        { from: "D", to: "B", value: 1 }
+                    ];
+
+                    chart.dataFields.fromName = "from";
+                    chart.dataFields.toName = "to";
+                    chart.dataFields.value = "value";
+
+                    // make nodes draggable
+                    var nodeTemplate = chart.nodes.template;
+                    nodeTemplate.readerTitle = "Click to show/hide or drag to rearrange";
+                    nodeTemplate.showSystemTooltip = true;
+                    nodeTemplate.cursorOverStyle = am4core.MouseCursorStyle.pointer
+
+                }); // end am4core.ready()
+            </script>
+
+            <!-- HTML -->
+            <div id="chartdiv2"></div>
 
 
         </div>
 
-        <div class="col-6">
-            <div class="row">
 
-                <div class="col-md-6 col-sm-6" style="margin-top:10px;">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons"><b>........</b></i>
-                            </div>
-                            <p class="card-category"></p>
-                            <h3 class="card-title">21 <i style="font-size:15px;">Average</i></h3>
-                        </div>
-                        <div class="card-footer" style="text-align:right;">
-                            <div class="stats">
-                                <i class="material-icons text-danger"></i>
-                                <a href="#pablo">Get More İnfo -></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-sm-6" style="margin-top:10px;">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons"><b>........</b></i>
-                            </div>
-                            <p class="card-category"></p>
-                            <h3 class="card-title">34 <i style="font-size:15px;">Average</i></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons"><small>Last 24 Hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </small><a href="#pablo">Get More İnfo -></a></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
+        <div class="col-md-4" style="background-color:white;">
+            ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
+            ...Kimin kiminle ilişkisi var listelenecek...
         </div>
     </div>
 
-      
-
-    </div>
 
 </div>
+
 
 <!-- HTML -->
 <!--  -->
