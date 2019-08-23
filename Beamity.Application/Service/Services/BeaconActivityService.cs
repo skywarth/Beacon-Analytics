@@ -51,9 +51,27 @@ namespace Beamity.Application.Service.Services
 
         public async Task<List<ReadBeaconActivityDTO>> GetAllBeaconActivities(EntityDTO input)
         {
-            var beaconActivities = await _beaconActivityRepository.GetAll()
+            var beaconActivities = await _beaconActivityRepository
+                .GetAll()
+
+                .Include(a=>a.Beacon)
+                .ThenInclude(x=>x.Location)
+                .ThenInclude(x => x.Buildings)
+                .ThenInclude(x => x.Floors)
+                .ThenInclude(y=>y.Rooms)
                 .Where(z => z.IsActive == true).ToListAsync();
+
+
             var result = _mapper.Map<List<ReadBeaconActivityDTO>>(beaconActivities);
+            /*foreach (var item in beaconActivities)
+            {
+                ReadBeaconActivityDTO dto = new ReadBeaconActivityDTO();
+
+                dto = _mapper.Map<ReadBeaconActivityDTO>(item);
+                dto.BuildingName = item.Building.Name;
+
+                result.Add(dto);
+            }*/
             return result;
         }
 

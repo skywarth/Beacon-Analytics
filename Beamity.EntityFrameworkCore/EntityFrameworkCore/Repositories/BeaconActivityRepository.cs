@@ -16,6 +16,7 @@ namespace Beamity.EntityFrameworkCore.EntityFrameworkCore.Repositories
 
         public BeaconActivityRepository(BeamityDbContext context): base(context){
 
+
         }
 
 

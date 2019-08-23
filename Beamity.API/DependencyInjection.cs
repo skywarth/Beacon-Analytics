@@ -32,7 +32,7 @@ namespace Beamity.API
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IAnalyticService, AnalyticService>();
 
-            services.AddTransient<IBeaconService, BeaconActivityService>();
+            services.AddTransient<IBeaconActivityService, BeaconActivityService>();
 
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));

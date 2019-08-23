@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Beamity.Application.Service.IServices
 {
-    interface IBeaconActivityService
+    public interface IBeaconActivityService
     {
         Task<List<ReadBeaconActivityDTO>> GetAllBeaconActivities(EntityDTO input);
         Task CreateBeaconActivity(CreateBeaconActivityDTO input);
