@@ -14,7 +14,7 @@ namespace Beamity.EntityFrameworkCore.EntityFrameworkCore
           where TEntity : class, IEntityBase
     {
         private readonly BeamityDbContext _dbContext;
-
+        //Hepsi burada olayı varmis
         public GenericRepository(BeamityDbContext beamityDbContext)
         {
             _dbContext = beamityDbContext;

@@ -32,6 +32,8 @@ namespace Beamity.API
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IAnalyticService, AnalyticService>();
 
+            services.AddTransient<IBeaconService, BeaconActivityService>();
+
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IBaseGenericRepository<>), typeof(GenericRepository<>));
@@ -85,6 +87,7 @@ namespace Beamity.API
             services.AddScoped(typeof(IBaseGenericRepository<Relation>), typeof(GenericRepository<Relation>));
             services.AddScoped(typeof(IBaseGenericRepository<Statistics>), typeof(GenericRepository<Statistics>));
 
+            services.AddScoped(typeof(IBaseGenericRepository<BeaconActivity>), typeof(GenericRepository<BeaconActivity>));
         }
     }
 }
