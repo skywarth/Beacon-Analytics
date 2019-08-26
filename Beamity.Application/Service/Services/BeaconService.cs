@@ -26,20 +26,21 @@ namespace Beamity.Application.Service.Services
          *  5.UpdateBeacon methods
          */
         private readonly IBaseGenericRepository<Beacon> _beaconRepository;
-        private readonly IBaseGenericRepository<Location> _locationRepository;
+        private readonly IBaseGenericRepository<Artifact> _artifactRepository;
         private readonly IMapper _mapper;
 
-        public BeaconService(IBaseGenericRepository<Beacon> beaconRepository, IBaseGenericRepository<Location> locationRepository, IMapper mapper)
+        public BeaconService(IBaseGenericRepository<Beacon> beaconRepository, IBaseGenericRepository<Artifact> artifactRepository, IMapper mapper)
         {
             _beaconRepository = beaconRepository;
-            _locationRepository = locationRepository;
+            //_locationRepository = locationRepository;
+            _artifactRepository = artifactRepository;
             _mapper = mapper;
         }
 
         public async Task CreateBeacon(CreateBeaconDTO input)
         {
             var beacon = _mapper.Map<Beacon>(input);
-            beacon.Location = await _locationRepository.GetById(input.LocationId);
+            beacon.Artifact = await _artifactRepository.GetById(input.ArtifactId);
             await _beaconRepository.Create(beacon);
         }
 
@@ -52,8 +53,8 @@ namespace Beamity.Application.Service.Services
         {
             var beacons = await _beaconRepository
                             .GetAll()
-                            .Include(x => x.Location)
-                            .Where(x => x.IsActive && x.Location.Id == input.Id)
+                            .Include(x => x.Artifact)
+                            .Where(x => x.IsActive && x.Artifact.Id == input.Id)//FIXME not sure why there is x.artifact.id check ?
                             .ToListAsync();
             var result = _mapper.Map<List<ReadBeaconDTO>>(beacons);
             return result;
@@ -63,9 +64,10 @@ namespace Beamity.Application.Service.Services
         {
             var beacons = await _beaconRepository
                             .GetAll()
-                            .Include(x => x.Location)
-                            .ThenInclude( x => x.User)
-                            .Where(x => x.IsActive && x.Location.User.Id == input.Id)
+                            .Include(x => x.Artifact)
+                            .ThenInclude( x => x.Location)
+                            .ThenInclude(x => x.User)
+                            .Where(x => x.IsActive && x.Artifact.Location.User.Id == input.Id)
                             .ToListAsync();
             var result = _mapper.Map<List<ReadBeaconDTO>>(beacons);
             return result;
@@ -81,8 +83,8 @@ namespace Beamity.Application.Service.Services
         public async Task UpdateBeacon(UpdateBeaconDTO input)
         {
             var beacon = _mapper.Map<Beacon>(input);
-            if (Guid.Empty != input.LocationId)
-                beacon.Location = await _locationRepository.GetById(input.LocationId);
+            if (Guid.Empty != input.ArtifactId)
+                beacon.Artifact = await _artifactRepository.GetById(input.ArtifactId);
             await _beaconRepository.Update(input.Id, beacon);
         }
     }

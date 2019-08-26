@@ -55,10 +55,11 @@ namespace Beamity.Application.Service.Services
                 .GetAll()
 
                 .Include(a=>a.Beacon)
-                .ThenInclude(x=>x.Location)
-                .ThenInclude(x => x.Buildings)
-                .ThenInclude(x => x.Floors)
-                .ThenInclude(y=>y.Rooms)
+                .ThenInclude(x=>x.Artifact)
+                .ThenInclude(x => x.Room)
+                .ThenInclude(x => x.Floor)
+                .ThenInclude(x => x.Building)
+                .ThenInclude(x => x.Location)
                 .Where(z => z.IsActive == true).ToListAsync();
 
 

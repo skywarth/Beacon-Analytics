@@ -16,7 +16,7 @@ namespace Beamity.Core.Models
         public Beacon Beacon { get; set; }
         public Guid BeaconActivityId { get; set; }
         [ForeignKey("BeaconActivityId")]
-        public BeaconActivity BeaconActivity { get; set; }
+        //public BeaconActivity BeaconActivity { get; set; }
 
 
 
