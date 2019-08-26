@@ -28,7 +28,8 @@ namespace Beamity.Web.Controllers
             {
                 Id = Guid.Parse(location)
             };
-            List<ReadAnalyticDTO> analytics = await _analyticService.GetAllBeaconsWithHours(dto);
+            /*YKE
+             * List<ReadAnalyticDTO> analytics = await _analyticService.GetAllBeaconsWithHours(dto);
             IEnumerable<AnalyticViewModel> vm= analytics
                 .GroupBy(row => new
                 {
@@ -40,8 +41,8 @@ namespace Beamity.Web.Controllers
                     Name = grp.Key.Beacon,
                     Hour = grp.Key.Hour,
                     Count = grp.Count()
-                });
-                return View(vm);
+                });*/
+            return View();
         }
 
     }
