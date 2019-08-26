@@ -42,11 +42,15 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control input" type="number"
-                               placeholder="Major Id" id="inputMajor" required/>
+                               placeholder="Major Id" id="inputMajor" required />
                     </div>
                     <div class="form-group">
                         <input class="form-control input" type="number"
-                               placeholder="Minor Id" id="inputMinor" required/>
+                               placeholder="Minor Id" id="inputMinor" required />
+                    </div>
+                    <div class="form-group input">
+                        <label class="control-label">Beacon</label>
+                        <select id="artifacts" class="form-control input" required></select>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="create" class="btn btn-primary button button4">Create</button>
@@ -131,6 +135,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                Artifact Name
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.UUID)
             </th>
             <th>
@@ -149,32 +156,35 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UUID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Major)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Minor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedTime)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artifact.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UUID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Major)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Minor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
 
-                <td>
-                    <button type="button" class="btn btn-warning" data-id="@item.Id" data-name="@item.Name"
-                            data-uuid="@item.UUID" data-major="@item.Major"
-                            data-minor="@item.Minor" data-ctime="@item.CreatedTime" value="Details" id="detailShowModal">
-                        <i class="fas fa-info-circle"></i> Details
-                    </button>
-                    <button type="button" class="btn btn-danger" id="deleteShowModal" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
-                </td>
-            </tr>
+            <td>
+                <button type="button" class="btn btn-warning" data-id="@item.Id" data-name="@item.Name"
+                        data-uuid="@item.UUID" data-major="@item.Major"
+                        data-minor="@item.Minor" data-ctime="@item.CreatedTime" value="Details" id="detailShowModal">
+                    <i class="fas fa-info-circle"></i> Details
+                </button>
+                <button type="button" class="btn btn-danger" id="deleteShowModal" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -228,9 +238,10 @@
         var obj = {};
         obj.Name = $("#inputName").val();
         obj.UUID = $("#inputUUID").val();
-        obj.LocationId = locationId;
+        //obj.LocationId = locationId;
         obj.Major = $("#inputMajor").val();
         obj.Minor = $("#inputMinor").val();
+        obj.ArtifactId = $("#artifacts").val();
         options.data = JSON.stringify(obj);
         options.contentType = "application/json";
         options.dataType = "html";
@@ -354,6 +365,44 @@
         $("#detailModal").modal('hide');
         $.ajax(options);
     });
+
+    /* Get Artifacts for select */
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            var options = {};
+            options.url = "https://localhost:44327/api/Artifact/GetAllArtifacts";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                $("#artifacts").empty();
+
+                data.forEach(function (v) {
+                    
+                    $("#artifacts").append('<option value="' + v.id + '">' + v.name + '</option>');
+                    //$("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            
+            
+            $("#loginModal").modal('show');
+
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+    /* Get  Artifacts for select */
 </script>
 
 
