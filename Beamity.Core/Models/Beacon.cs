@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Beamity.Core.Models
@@ -16,6 +17,7 @@ namespace Beamity.Core.Models
         public int Major { get; set; }
         [Required(ErrorMessage = "Please enter Minor!")]
         public int Minor { get; set; }
-        public Location Location { get; set; }
+        //public Location Location { get; set; }
+        public Artifact Artifact { get; set; }
     }
 }

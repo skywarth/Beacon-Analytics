@@ -48,6 +48,7 @@ namespace Beamity.Application.Service.Services
        
         public async Task<List<ReadAnalyticDTO>> GetAllBeaconsWithHours(EntityDTO input)
         {
+            /*YKE
             var data = await _statisticRepository
                 .GetAll()
                 .Include(x => x.Beacon)
@@ -63,7 +64,8 @@ namespace Beamity.Application.Service.Services
                 dto.IsActive = item.IsActive;
                 result.Add(dto);
             }
-            return result;
+            return result;*/
+            return null;
         }
 
         
