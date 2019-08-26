@@ -35,17 +35,15 @@
             <div class="modal-body">
                 <form method="post" name="createForm" onsubmit="return false" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input class="form-control input" type="text"
-                               placeholder="Artifact Name" id="inputName"
-                               required minlength="5" maxlength="50" />
+                        
+
                     </div>
 
-                    <input type="file" id="file" name="files"
-                           required />
+                   
 
                     <div class="form-group input">
-                        <label class="control-label">Rooms</label>
-                        <select id="rooms" class="form-control input" required></select>
+                        <label class="control-label">Beacon</label>
+                        <select id="beacons" class="form-control input" required></select>
                     </div>
                     <button type="submit" id="create" class="btn btn-primary button button4">Create</button>
                 </form>
@@ -208,11 +206,144 @@
 </table>
 
 <script type="text/javascript">
+    function swalload() {
+        swal.fire({
+            title: 'Loading....',
+            html: 'Please wait during the processing time',
+            timer: 10000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            onClose: () => {
+
+            }
+        });
+    }
 
 
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            $("#loginModal").modal('show');
+
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+
+    /*Random Date*/
+    function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+    }
+    /*Random Date*/
+/*alert(randomDate(new Date(2012, 0, 1), new Date()));*/
 
 
-    $(document).ready(function ()
+    /* Random int */
+    function getRandomInt(min, max)
+    {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min; 
+    }
+    /* Random int */
+
+    /* Random Guid */
+
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1); 
+
+    }
+
+    function randomGuid() {
+        return ((S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase());
+    }
+    /* Random Guid */
+
+
+    /* Create */
+
+    $("#create").click(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:44327/api/BeaconActivity/CreateBeaconActivity/";
+        options.type = "POST";
+        var obj = {};
+        obj.BeaconId = $("#beacons").val();
+        obj.UserId = randomGuid();
+        rndDate = randomDate(new Date(2016, 0, 1), new Date());
+        obj.EnterTime = rndDate;
+        rndDate.setSeconds = (rndDate.getDate() + getRandomInt(10, 1000));
+        obj.ExitTime = rndDate;
+
+
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/BeaconActivity/Index";
+            })
+        };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+        $("#loginModal").modal('hide');
+    });
+
+
+    /* Create*/
+
+
+        /* Get Beacons for select */
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            var options = {};
+            options.url = "https://localhost:44327/api/Beacon/GetAllBeacons";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                data.forEach(function (v) {
+                    $("#beacons").append('<option value="' + v.id + '">' + v.name + '</option>');
+                    //$("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            $("#loginModal").modal('show');
+
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+    /* Get Beacons for select */
+
+    /* Listing */
+
+    /*$(document).ready(function ()
 
     {
         $('.detailShowModal').click(function () {
@@ -221,7 +352,6 @@
             options.url = "https://localhost:44327/api/BeaconActivity/GetAllBeaconActivities";
             var obj = {};
             obj.Id = locationId;
-            debugger
             options.type = "POST";
             options.dataType = "json";
             options.contentType = "application/json";
@@ -246,7 +376,22 @@
             $('#detailModalId').val(id);
         })
     }
+    
+    );*/
+    /* Listing */
 
-    );
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

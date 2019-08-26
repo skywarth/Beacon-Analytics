@@ -53,8 +53,8 @@ namespace Beamity.Application.Service.Services
         {
             var beacons = await _beaconRepository
                             .GetAll()
-                            .Include(x => x.Artifact)
-                            .Where(x => x.IsActive && x.Artifact.Id == input.Id)//FIXME not sure why there is x.artifact.id check ?
+                            .Include(x=>x.Artifact)
+                            .Where(x => x.IsActive && x.Artifact.Room.Floor.Building.Location.Id == input.Id)//FIXME not sure why there is x.artifact.id check ?
                             .ToListAsync();
             var result = _mapper.Map<List<ReadBeaconDTO>>(beacons);
             return result;

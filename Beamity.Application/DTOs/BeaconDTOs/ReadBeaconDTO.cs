@@ -12,5 +12,7 @@ namespace Beamity.Application.DTOs.BeaconDTOs
         public int Major { get; set; }
         public int Minor { get; set; }
         public Artifact Artifact { get; set; }
+
+        //public Location Location { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace Beamity.Core.Models
         [Required(ErrorMessage = "Please enter Minor!")]
         public int Minor { get; set; }
         //public Location Location { get; set; }
-
         public Artifact Artifact { get; set; }
     }
 }
