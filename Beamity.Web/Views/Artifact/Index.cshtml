@@ -241,38 +241,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreatedTime)
             </th>
-
+            <th>
+                Image
+            </th>
             <th>Operations</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RoomName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FloorName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BuildingName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedTime)
-                </td>
-                <td>
-                    <button type="button" class="btn btn-warning detailShowModal m-1" data-id="@item.Id" data-name="@item.Name"
-                            data-ctime="@item.CreatedTime" value="Details">
-                        <i class="fas fa-info-circle"></i> Details
-                    </button>
-                    <button type="button" class="btn btn-danger deleteShowModal m-1" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
-                    <button type="button" class="btn btn-primary relations m-1" data-name="@item.Name" data-id="@item.Id" value="Connections"><i class="fas fa-wifi"></i> Connections</button>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FloorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
+            <td>
+                <img style="max-height:6em" src="@item.MainImageURL" />
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning detailShowModal m-1" data-id="@item.Id" data-name="@item.Name"
+                        data-ctime="@item.CreatedTime" value="Details">
+                    <i class="fas fa-info-circle"></i> Details
+                </button>
+                <button type="button" class="btn btn-danger deleteShowModal m-1" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
+                <button type="button" class="btn btn-primary relations m-1" data-name="@item.Name" data-id="@item.Id" value="Connections"><i class="fas fa-wifi"></i> Connections</button>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

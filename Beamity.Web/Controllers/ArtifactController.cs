@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Web;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Beamity.Web.Controllers
 {
@@ -23,12 +26,13 @@ namespace Beamity.Web.Controllers
 
         private readonly IBlobManager _blobManager;
         private readonly IArtifactService _artifactService;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-
-        public ArtifactController(IBlobManager blobManager, IArtifactService artifactService)
+        public ArtifactController(IBlobManager blobManager, IArtifactService artifactService, IHostingEnvironment env)
         {
             _blobManager = blobManager;
             _artifactService = artifactService;
+            hostingEnvironment = env ?? throw new ArgumentNullException(nameof(env));
         }
         public async Task<IActionResult> Index()
         {
@@ -43,14 +47,32 @@ namespace Beamity.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateArtifact(CreateArtifactViewModel input)
         {
+            string imagesLocation = "/Images/";
+            string fileName ="" ;
             try
             {
-                string url = await _blobManager.UploadImageAsBlob(input.File);
+                var path = "";
+                if (input.File != null)
+                {
+                    fileName = Path.GetFileName(input.File.FileName);
+
+                    // this should yield something like:
+                    //     c:\inetpub\yourappname\wwwroot\images\image-file-name.png
+                    path = Path.Combine(hostingEnvironment.WebRootPath, "Images", fileName);
+
+                    using (var fs = System.IO.File.Open(path, FileMode.Create))
+                    {
+                        input.File.OpenReadStream().CopyTo(fs);
+
+                        fs.Flush();
+                    }
+                }
+                //string url =_blobManager.UploadImageAsBlob(input.File);
 
                 CreateArtifactDTO data = new CreateArtifactDTO()
                 {
                     Name = input.Name,
-                    MainImageURL = url,
+                    MainImageURL = imagesLocation + fileName,
                     RoomId = input.RoomId,
                     LocationId = input.LocationId
                 };
