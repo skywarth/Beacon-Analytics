@@ -23,7 +23,12 @@
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-
+<!--Visitors by hours-->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<link href="~/css/VisitorsbyHours.css" rel="stylesheet" />
+<script src="~/js/VisitorsDashboard.js"></script>
 
 <script>
 
@@ -371,18 +376,12 @@
 
     </div>
     <!--Row2-->
-
-
+    <!--Row3-->
     <div class="row pt-3 pr-3">
 
-        <!--Chart1-->
+        <!--Chart1--><!--Behaviour Flow-->
         <div class="col-md-8">
 
-
-
-
-
-            <!-- Chart code -->
             <script>
                 am4core.ready(function () {
 
@@ -424,11 +423,19 @@
 
         </div>
 
-
+        <!--Behaviour Flow Bilgileri-->
         <div class="col-md-4" style="background-color:white;">
             ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
             ...Kimin kiminle ilişkisi var listelenecek...
         </div>
+    </div>
+    <!--Row3-->
+
+
+    <!--Row4-->
+    <div class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
+        <div id="chartdiv3"></div>
+
     </div>
 
 

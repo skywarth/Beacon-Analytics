@@ -25,7 +25,14 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
+    <link href="~/css/LayoutAnalytics.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+
 </head>
 
 <body id="page-top">
@@ -54,31 +61,7 @@
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
-            @*<li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <span class="badge badge-danger">9+</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <span class="badge badge-danger">7</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>*@
-
+        
             <li class="nav-item dropdown no-arrow text-white">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-circle fa-fw"></i>
@@ -106,10 +89,34 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
-                @*<a class="nav-link" href="~/Project/Index" role="button" aria-haspopup="true">
-                    <i class="fas fa-fw fa-project-diagram"></i>
-                    <span>Projects</span>
-                </a>*@
+
+               <!--Dropdown-->
+                <div class="nav-link">
+
+                    <button class="dropdown-btn">
+                        <i class="fas fa-chart-line"></i>
+                        Analytics
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div class="dropdown-container">
+                        <a href="/Analytics/ArtifactsIndex" style="color:lightgrey;">
+                            <i class="fas fa-fw fa-paint-brush" ></i>Artifacts
+                        </a><br />
+                        
+                        <a href="/Analytics/RoomsIndex" style="color:lightgrey;">
+                            <i class=" 	fas fa-university"></i> Rooms
+                        </a><br />
+
+                        <a href="/Analytics/MuseumIndex" style="color:lightgrey;" >
+                            <i class=" 	fas fa-building"></i>Museum
+                        </a><br />
+                    </div>
+                    <script src="~/js/LayoutAnalytics.js"></script>
+                </div>
+                <!--Dropdown-->
+
+           
                 <a class="nav-link" href="~/Location/Index" role="button" aria-haspopup="true">
                     <i class="fas fa-fw fa-map"></i>
                     <span>Locations</span>
@@ -118,14 +125,7 @@
                     <i class="fas fa-fw fa-building"></i>
                     <span>Buildings</span>
                 </a>
-                @*<a class="nav-link" href="~/Floor/Index" role="button" aria-haspopup="true">
-                    <i class="fas fa-fw fa-boxes"></i>
-                    <span>Floors</span>
-                </a>
-                <a class="nav-link" href="~/Room/Index" role="button" aria-haspopup="true">
-                    <i class="fas fa-fw fa-box"></i>
-                    <span>Rooms</span>
-                </a>*@
+       
                 <a class="nav-link" href="~/Artifact/Index" role="button" aria-haspopup="true">
                     <i class="fas fa-fw fa-paint-brush"></i>
                     <span>Artifacts</span>
@@ -139,9 +139,11 @@
                     <span>Beacons</span>
                 </a>
                 @*<a class="nav-link" href="~/Relation/Index" role="button" aria-haspopup="true">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Relations</span>
-                </a>*@
+            <i class="fas fa-fw fa-table"></i>
+            <span>Relations</span>
+        </a>*@
+
+
             </li>
             @*<li class="nav-item">
                 <a class="nav-link" href="charts.html">
