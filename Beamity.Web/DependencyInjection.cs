@@ -12,6 +12,7 @@ using Beamity.EntityFrameworkCore.EntityFrameworkCore.Repositories;
 using Beamity.Web.Blob;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +24,7 @@ namespace Beamity.Web
 {
     public class DependencyInjection
     {
-        public DependencyInjection(IServiceCollection services, IConfiguration Configuration)
+        public DependencyInjection(IServiceCollection services, IConfiguration Configuration, IHostingEnvironment hostingEnvironment)
         {
             services.AddTransient<IArtifactService, ArtifactService>();
             services.AddTransient<IBeaconService, BeaconService>();
@@ -37,6 +38,7 @@ namespace Beamity.Web
             services.AddTransient<IUserService, UserService>();
             services.AddScoped<IAnalyticService, AnalyticService>();
 
+            services.AddScoped<IBeaconActivityService, BeaconActivityService>();
             //services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             //services.AddScoped<RoomRepository, RoomRepository>();
             //services.AddScoped<ArtifactRepository, ArtifactRepository>();
@@ -87,6 +89,8 @@ namespace Beamity.Web
             services.AddScoped(typeof(IBaseGenericRepository<User>), typeof(GenericRepository<User>));
             services.AddScoped(typeof(IBaseGenericRepository<Relation>), typeof(GenericRepository<Relation>));
             services.AddScoped(typeof(IBaseGenericRepository<Statistics>), typeof(GenericRepository<Statistics>));
+
+            services.AddScoped(typeof(IBaseGenericRepository<BeaconActivity>), typeof(GenericRepository<BeaconActivity>));
 
         }
     }

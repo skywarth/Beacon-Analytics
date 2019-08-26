@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Beamity.Application.DTOs.ArtifactDTOs;
+using Beamity.Application.DTOs.BeaconActivityDTOs;
 using Beamity.Application.DTOs.BeaconDTOs;
 using Beamity.Application.DTOs.BuildingDTOs;
 using Beamity.Application.DTOs.ContentDTOs;
@@ -61,6 +62,11 @@ namespace Beamity.Application
             CreateMap<CreateBeaconDTO,Beacon>();
             CreateMap<Beacon, ReadBeaconDTO>();
             CreateMap<UpdateBeaconDTO, Beacon>();
+
+            CreateMap<CreateBeaconActivityDTO, BeaconActivity>();
+            CreateMap<BeaconActivity, ReadBeaconActivityDTO>();
+            CreateMap<BeaconActivity, DeleteBeaconActivityDTO>();
+
         }
     }
 }

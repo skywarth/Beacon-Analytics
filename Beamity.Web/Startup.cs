@@ -16,9 +16,12 @@ namespace Beamity.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        private readonly IHostingEnvironment hostingEnvironment;
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            hostingEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,6 +29,7 @@ namespace Beamity.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(hostingEnvironment.ContentRootFileProvider);
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -41,7 +45,8 @@ namespace Beamity.Web
             {
                 opts.IdleTimeout = TimeSpan.FromHours(1);
             });
-            DependencyInjection DI = new DependencyInjection(services,Configuration);
+            DependencyInjection DI = new DependencyInjection(services,Configuration,hostingEnvironment);
+        
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()

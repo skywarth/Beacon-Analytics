@@ -18,15 +18,15 @@ namespace Beamity.Application.Service.Services
     {
         private readonly IBaseGenericRepository<Room> _roomRepository;
         private readonly IBaseGenericRepository<Floor> _floorRepository;
-        private readonly IBaseGenericRepository<Beacon> _beaconRepository;
+        //private readonly IBaseGenericRepository<Beacon> _beaconRepository;
         private readonly IMapper _mapper;
         public RoomService(
-            IBaseGenericRepository<Beacon> beaconRepository, 
+            //IBaseGenericRepository<Beacon> beaconRepository, 
             IBaseGenericRepository<Room> roomRepository, 
             IBaseGenericRepository<Floor> floorRepository,
             IMapper mapper)
         {
-            _beaconRepository = beaconRepository;
+            //_beaconRepository = beaconRepository;
             _roomRepository = roomRepository;
             _floorRepository = floorRepository;
             _mapper = mapper;
@@ -38,10 +38,10 @@ namespace Beamity.Application.Service.Services
             if(input.FloorId != Guid.Empty)
                 room.Floor = await _floorRepository.GetById(input.FloorId);
 
-            if (input.BeaconId != Guid.Empty)
+            /*if (input.BeaconId != Guid.Empty)
             {
                 room.Beacon = await _beaconRepository.GetById(input.BeaconId);
-            }
+            }*/
             await _roomRepository.Create(room);
         }
 

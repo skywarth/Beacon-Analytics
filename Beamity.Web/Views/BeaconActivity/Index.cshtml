@@ -1,0 +1,464 @@
+﻿
+
+
+@model IEnumerable<Beamity.Application.DTOs.BeaconActivityDTOs.ReadBeaconActivityDTO>
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>View</h1>
+
+<div class="col-md-12 mt-2">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                <i class="far fa-list-alt"></i> Artifact List Page
+            </h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <button id="btnShowModal" type="button" class="btn btn-success m-1">
+                Create <i class="far fa-plus-square"></i>
+            </button>
+        </div>
+        <div class="col-md-6 text-right">
+            <button id="bulkCreate" type="button" class="btn btn-success m-1">
+                Bulk Create <i class="far fa-plus-square"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Create Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" name="createForm" onsubmit="return false" enctype="multipart/form-data">
+                    <div class="form-group">
+                        
+
+                    </div>
+
+                   
+
+                    <div class="form-group input">
+                        <label class="control-label">Beacon</label>
+                        <select id="beacons" class="form-control input" required></select>
+                    </div>
+                    <button type="submit" id="create" class="btn btn-primary button button4">Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="deleteRelationModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Delete Relation</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this?</h4>
+                <p id="deleteRelationModalText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteRelation" class="btn btn-primary button button4">Delete</button>
+                <button type="button" id="deleteRelationModalHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="deleteArtifactModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Delete Artifact</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this?</h4>
+                <p id="deleteArtifactModalText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteArtifact" class="btn btn-primary button button4">Delete</button>
+                <button type="button" id="deleteArtifactHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="detailModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-lg-start">Artifact Details</h4>
+                <button type="button" class="close text-lg-right" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="put" name="editForm" enctype="multipart/form-data">
+                    <p id="detailModalText"></p>
+                    <div class="form-group">
+                        <input class="form-control" type="text"
+                               placeholder="Name" id="editName"
+                               required minlength="5" maxlength="50" />
+                    </div>
+                    <input type="file" id="editfiles" name="files"
+                           required />
+
+                    <select class="form-control" id="EditRoom"></select>
+                    <button type="submit" id="update" class="btn btn-primary button button4">Update</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="detailHideModal" class="btn btn-primary button button4">
+                    Hide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Beacon.Artifact.Room.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Beacon.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnterTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExitTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedTime)
+            </th>
+            <th>
+                Image
+            </th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beacon.Artifact.Room.Floor.Name)     @Html.DisplayFor(modelItem => item.Beacon.Artifact.Room.Name)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Beacon.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnterTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExitTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+                @*@<td>
+                        <button type="button" class="btn btn-warning detailShowModal m-1" data-id="@item.Id" data-name="@item.Name"
+                                data-ctime="@item.CreatedTime" value="Details">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                        <button type="button" class="btn btn-danger deleteShowModal m-1" data-name="@item.Name" data-id="@item.Id" value="Delete"><i class="far fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-primary relations m-1" data-name="@item.Name" data-id="@item.Id" value="Connections"><i class="fas fa-wifi"></i> Connections</button>
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+        function swalload() {
+            swal.fire({
+                title: 'Loading....',
+                html: 'Please wait during the processing time',
+                timer: 10000,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                onClose: () => {
+
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+            $("#btnShowModal").click(function () {
+                $("#loginModal").modal('show');
+
+            });
+
+            $("#btnHideModal").click(function () {
+                $("#loginModal").modal('hide');
+            });
+        });
+
+        /*Random Date*/
+        function randomDate(start, end) {
+            return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+        }
+        /*Random Date*/
+        /*alert(randomDate(new Date(2012, 0, 1), new Date()));*/
+
+
+        /* Random int */
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        /* Random int */
+
+        /* Random Guid */
+
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+
+        }
+
+        function randomGuid() {
+            return ((S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase());
+        }
+        /* Random Guid */
+
+        /* Bulk Create */
+    $("#bulkCreate").click(function () {
+        var $options = $('#beacons').find('option');
+        for (var i = 0; i < 5; i++) {
+            
+    random = ~~(Math.random() * $options.length);
+            BulkCreateRandom($options.eq(random).val());
+            }
+
+
+
+        function BulkCreateRandom(beaconId) {
+            if (beaconId == null || beaconId == undefined) {
+                alert("huu undefined geldi");
+            }
+
+        swalload();
+        var options = {};
+        options.url = "https://localhost:44327/api/BeaconActivity/CreateBeaconActivity/";
+        options.type = "POST";
+            var obj = {};
+            obj.BeaconId = beaconId;
+        obj.UserId = randomGuid();
+        rndDate = randomDate(new Date(2016, 0, 1), new Date());
+        obj.EnterTime = rndDate;
+        rndDate.setSeconds = (rndDate.getDate() + getRandomInt(10, 1000));
+        obj.ExitTime = rndDate;
+
+
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/BeaconActivity/Index";
+            })
+        };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+        $("#loginModal").modal('hide');
+    }
+        
+    });
+
+    /* Bulk Create */
+
+
+
+
+    /* Create */
+
+    $("#create").click(function (){
+
+
+        swalload();
+        var options = {};
+        options.url = "https://localhost:44327/api/BeaconActivity/CreateBeaconActivity/";
+        options.type = "POST";
+        var obj = {};
+        obj.BeaconId = $("#beacons").val();
+        obj.UserId = randomGuid();
+        rndDate = randomDate(new Date(2016, 0, 1), new Date());
+        obj.EnterTime = rndDate;
+        rndDate.setSeconds = (rndDate.getDate() + getRandomInt(10, 1000));
+        obj.ExitTime = rndDate;
+
+
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        debugger
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            }).then(function () {
+
+                window.location.href = "/BeaconActivity/Index";
+            })
+        };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+        $("#loginModal").modal('hide');
+    });
+    /* Create*/
+
+
+        /* Get Beacons for select */
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            var options = {};
+            options.url = "https://localhost:44327/api/Beacon/GetAllBeacons";
+            var obj = {};
+            obj.Id = locationId;
+            debugger
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                $("#beacons").empty();
+
+                data.forEach(function (v) {
+                    
+                    $("#beacons").append('<option value="' + v.id + '">' + v.name + '</option>');
+                    //$("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            
+            
+            $("#loginModal").modal('show');
+
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+    /* Get Beacons for select */
+
+    /* Listing */
+
+    /*$(document).ready(function ()
+
+    {
+        $('.detailShowModal').click(function () {
+            $("#detailModal").modal('show');
+            var options = {};
+            options.url = "https://localhost:44327/api/BeaconActivity/GetAllBeaconActivities";
+            var obj = {};
+            obj.Id = locationId;
+            options.type = "POST";
+            options.dataType = "json";
+            options.contentType = "application/json";
+            options.data = JSON.stringify(obj);
+            options.success = function (data) {
+                data.forEach(function (v) {
+                    $("#EditRoom").append('<option value="' + v.id + '">' + v.name + '</option>');
+                });
+            };
+            options.error = function (e) {
+                alert(e.error);
+            };
+            $.ajax(options);
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var room = $(this).data('room');
+
+            $("#editName").val(name);
+            $("#EditRoom").val(room);
+
+            $("#detailModalText").append('<input type="hidden" id="detailModalId" />');
+            $('#detailModalId').val(id);
+        })
+    }
+    
+    );*/
+    /* Listing */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

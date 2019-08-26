@@ -12,7 +12,7 @@ namespace Beamity.Core.Models
 
 
         /*Foreign Keys*/
-        public virtual Beacon Beacon { get; set; }
+        //public virtual Beacon Beacon { get; set; }
         public virtual Floor Floor { get; set; }
         public virtual ICollection<Artifact> Artifacts { get; set; }
 
