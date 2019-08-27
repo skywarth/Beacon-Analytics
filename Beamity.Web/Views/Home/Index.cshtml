@@ -49,7 +49,7 @@
     <!-- Icon Cards-->
     <!--Rooms Card-->
     <div class="row">
-        <!-- Yapılacak Değişikliler: Buildings yerine odalar görünecek -->
+        <!-- Toplam oda sayısı gösterilecek-->
         <div class="col-xl-3 col-sm-6  Link hvr-grow">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="mr-5">ROOMS</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="/Building/Index">
+                <a class="card-footer text-white clearfix small z-1" href="/Analytics/RoomsIndex">
                     <span class="float-left">View Details</span>
                     <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <!--Artifacts Card-->
+        <!--Artifacts Card--> <!--Toplam eser sayısı gösterilecek-->
         <div class="col-xl-3 col-sm-6  Link hvr-grow">
             <div class="card text-white bg-danger o-hidden h-100">
                 <div class="card-body">
@@ -76,7 +76,7 @@
                     </div>
                     <div class="mr-5">ARTIFACTS</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="/Artifact/Index">
+                <a class="card-footer text-white clearfix small z-1" href="/Analytics/ArtifactsIndex">
                     <span class="float-left">View Details</span>
                     <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <!--Beacons Card-->
+        <!--Beacons Card--> <!--Toplam beacon sayısı gösterilecek-->
         <div class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
             <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
@@ -104,7 +104,7 @@
         </div>
 
         <!--Visitors Card-->
-        <!-- Yapılacak Değişiklikler: o an müzede olan müşteriler gösterilecek-->
+        <!-- Yapılacak Değişiklikler: o an müzede olan müşteri sayısı gösterilecek (anlık) -->
         <div class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="mr-5">VISITORS (now) </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="/Building/Index">
+                <a class="card-footer text-white clearfix small z-1" href="/Analytics/MuseumIndex">
                     <span class="float-left">View Details</span>
                     <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -125,6 +125,7 @@
     </div>
 
 </div>
+
 
 
 <div class="col-md-12 mt-3 pl-3">
@@ -139,15 +140,20 @@
 </div>
 
 
+
+<!--Chart1 and Chart2 Row-->
 <div class="row pr-3">
-    <div id="container" class="col-12 col-md-4"></div>
-    <div id="chartdiv" class="col-12 col-md-8 "></div>
+    <div id="container" class="col-12 col-md-4"></div> <!--Chart1 Html-->
+    <div id="chartdiv" class="col-12 col-md-8 "></div><!--Chart2 Html-->
 
 </div>
 
 
-<!-- SeecondChart Styles-->
-<div id="secondChart">
+
+
+<!--First Chart Start-->
+
+<div id="secondChart"> <!--First Chart Table-->
     <table id="datatable">
         <thead>
             <tr>
@@ -171,51 +177,49 @@
     </table>
 </div>
 
-<div>
+<div> <!--First Chart Script Codes-->
 
+    <script>
 
-    <!-- New Chart-->
-    <div>
-
-        <script>
-
-            Highcharts.chart('container', {
-                data: {
-                    table: 'datatable'
-                },
-                chart: {
-                    type: 'column'
-                },
+        Highcharts.chart('container', {
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'MOST / LEAST interested artifacts.'
+            },
+            yAxis: {
+                allowDecimals: false,
                 title: {
-                    text: 'MOST / LEAST interested artifacts.'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: ''
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + ' ' + this.point.name.toLowerCase();
-                    }
+                    text: ''
                 }
-            });
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
+            }
+        });
 
-        </script>
-    </div>
-
+    </script>
 </div>
+<!--First Chart Finish-->
 
 
-<!--Cards2-->
+
+
+
+<!--Average Cards-->
 <div>
 
     <!--Row1-->
     <div class="row" style="margin-top:10px;">
 
-        <!--Card1-->
+        <!--Card1 --> <!--Eselere Gelen Kişi Ortalaması-->
         <div class="col-md-3 col-sm-6 pl-3">
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
@@ -234,7 +238,7 @@
             </div>
         </div>
 
-        <!--Card2-->
+        <!--Card2--> <!--Odalara Gelen Kişi Ortalaması-->
         <div class="col-md-3 col-sm-6 pl-0">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -252,7 +256,7 @@
             </div>
         </div>
 
-        <!--Card3-->
+        <!--Card3--> <!--Eserlerin Ortalama İzlenme Süresi-->
         <div class="col-md-3 col-sm-6 pl-0">
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
@@ -271,7 +275,7 @@
             </div>
         </div>
 
-        <!--Card4-->
+        <!--Card4--> <!--Odaların Ortalama İzlenme Süresi-->
         <div class="col-md-3 col-sm-6 pl-0 pr-6">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -294,7 +298,8 @@
     <!--Row1-->
     <!--Row2-->
     <div class="row" style="margin-top:10px;">
-        <!--Card1-->
+
+        <!--Card1--><!--Müze Bounce Rate-->
         <div class="col-md-3 col-sm-12 pl-3">
 
             <div class="card card-stats">
@@ -314,7 +319,7 @@
 
         </div>
 
-        <!--Card2-->
+        <!--Card2--> <!--Total Visitors-->
         <div class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
@@ -334,7 +339,7 @@
 
         </div>
 
-        <!--Card3-->
+        <!--Card3--><!--Museum Total Time-->
         <div class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
@@ -354,7 +359,7 @@
 
         </div>
 
-        <!--Card4-->
+        <!--Card4--><!--Artifacts/Museum Average-->
         <div class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
@@ -376,6 +381,8 @@
 
     </div>
     <!--Row2-->
+
+
     <!--Row3-->
     <div class="row pt-3 pr-3">
 
@@ -423,6 +430,7 @@
 
         </div>
 
+
         <!--Behaviour Flow Bilgileri-->
         <div class="col-md-4" style="background-color:white;">
             ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
@@ -432,7 +440,7 @@
     <!--Row3-->
 
 
-    <!--Row4-->
+    <!--Row4--> <!--Visitors for hours-->
     <div class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
         <div id="chartdiv3"></div>
 
@@ -442,5 +450,4 @@
 </div>
 
 
-<!-- HTML -->
-<!--  -->
+
