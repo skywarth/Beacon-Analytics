@@ -1,6 +1,4 @@
 ﻿
-
-var asd;
 $(document).ready(function () {
     swalload();
     var options = {};
@@ -12,6 +10,10 @@ $(document).ready(function () {
     options.contentType = "application/json";
     options.dataType = "html";
     options.success = function (data, msg) {
+        var a = $("#Average1-data")[0];
+        a.textContent = data;
+
+        debugger
         $("#msg").html(msg);
         Swal({
             type: 'success',
@@ -23,5 +25,5 @@ $(document).ready(function () {
         $("#msg").html("Error while calling the Web API!");
         alert("Hata");
     };
-    asd = $.ajax(options);
+    $.ajax(options);
 });
