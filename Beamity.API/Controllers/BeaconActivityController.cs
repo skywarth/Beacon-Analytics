@@ -84,7 +84,21 @@ namespace Beamity.API.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<double> GetArtifactsVisitorAverage(EntityDTO input)
+        {
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetArtifactsVisitorAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
 
+                throw;
+            }
+
+        }
 
 
 

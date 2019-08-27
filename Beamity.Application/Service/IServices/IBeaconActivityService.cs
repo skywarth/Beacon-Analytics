@@ -13,5 +13,7 @@ namespace Beamity.Application.Service.IServices
         Task DeleteBeaconActivity(DeleteBeaconActivityDTO input);
         Task<ReadBeaconActivityDTO> GetBeaconActivity(EntityDTO input);
         //Task<List<ReadArtifactDTO>> GetArtifactsInRoom(EntityDTO input);
+
+        Task<double> GetArtifactsVisitorAverage(EntityDTO input);
     }
 }
