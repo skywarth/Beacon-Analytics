@@ -7,8 +7,14 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="~/js/ArtifactsChart1.js"></script>
+    <script src="~/js/Average.js"></script>
 
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="~/js/ArtifactsChart1.js"></script>
 
     <script>
 
@@ -16,12 +22,33 @@
         el.style.backgroundColor = "#008b8b";
     </script>
 }
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a id="textofDashboard" href="#"><b style="font-size:20px;">Artifacts Analytics</b></a>
+        </li>
+    </ol>
+</div>
 
-<h1>ArtifactsIndex</h1>
+<!--
+<div class="row p-md-2" >
+  <div class="col-md-4 pr-3" style="background-color:white; border:groove; ">
+
+  </div>
+
+    <div class="col-md-8" style="background-color:white; border:groove;">
+
+    </div>
+</div>
+-->
 
 
+<!--Body Row-->
 <div class="row pl-2 pr-2">
-    <div class="col-md-4 pr-3" style="height: 650px; overflow: scroll; width: 50%; background-color:white;">
+    <div class="col-md-4 pr-3" style="height: 750px; overflow: scroll; width: 50%; background-color:white; border:groove;">
+
+        <div class="pb-3" style="text-align:center;"><b style="font-size:20px;">Artifacts List</b></div>
+
         <table class="pr-0" style="width:100%;  background-color:white;">
             <tr>
                 <th>Artifact Name</th>
@@ -176,32 +203,194 @@
 
     </div>
 
-    <div class="col-md-8 pl-md-4" style="background-color:white;">
+    <!--Row1-->
+    <div class="col-md-8 pl-md-4">
 
-        <!--Row1-->
-        <div class="row" style="background-color:white; height:50%;">
+        <!--Row 1.1-->
+        <div class="row" style="height:50%; border:groove;">
 
             <style>
                 #chartdiv {
                     width: 100%;
-                    height:100%;
+                    height: 100%;
+                    background-color: white;
                 }
             </style>
+            <script>
+                am4core.ready(function () {
+
+                    // Themes begin
+                    am4core.useTheme(am4themes_animated);
+                    // Themes end
+
+                    // Create chart instance
+                    var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+                    // Add data
+                    chart.data = generateChartData();
+
+                    // Create axes
+                    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                    dateAxis.renderer.minGridDistance = 50;
+
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+                    // Create series
+                    var series = chart.series.push(new am4charts.LineSeries());
+                    series.dataFields.valueY = "visits";
+                    series.dataFields.dateX = "date";
+                    series.strokeWidth = 2;
+                    series.minBulletDistance = 10;
+                    series.tooltipText = "{valueY}";
+                    series.tooltip.pointerOrientation = "vertical";
+                    series.tooltip.background.cornerRadius = 20;
+                    series.tooltip.background.fillOpacity = 0.5;
+                    series.tooltip.label.padding(12, 12, 12, 12)
+
+                    // Add scrollbar
+                    chart.scrollbarX = new am4charts.XYChartScrollbar();
+                    chart.scrollbarX.series.push(series);
+
+                    // Add cursor
+                    chart.cursor = new am4charts.XYCursor();
+                    chart.cursor.xAxis = dateAxis;
+                    chart.cursor.snapToSeries = series;
+
+                    function generateChartData() {
+                        var chartData = [];
+                        var firstDate = new Date();
+                        firstDate.setDate(firstDate.getDate() - 1000);
+                        var visits = 1200;
+                        for (var i = 0; i < 500; i++) {
+                            // we create date objects here. In your data, you can have date strings
+                            // and then set format of your dates using chart.dataDateFormat property,
+                            // however when possible, use date objects, as this will speed up chart rendering.
+                            var newDate = new Date(firstDate);
+                            newDate.setDate(newDate.getDate() + i);
+
+                            visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+
+                            chartData.push({
+                                date: newDate,
+                                visits: visits
+                            });
+                        }
+                        return chartData;
+                    }
+
+                }); // end am4core.ready()
+            </script>
 
             <div id="chartdiv"></div>
         </div>
 
-        <!--Ro2-->
-        <div class="row" style="background-color: azure;">
+        <!--Row 1.2-->
+        <div class="row" >
             Bir eser için toplam izlenme süresinin yer aldığı chart (Haftalık,Aylık,Yıllık)
+            <!-- Styles -->
+            <style>
+                #Chart1 {
+                    width: 100%;
+                    height: 350px;
+                    background-color: white;
+                    border:groove;
+                }
+            </style>
+
+            <div id="Chart1"></div>
         </div>
     </div>
 
-    <div class="row" style="background-color:aquamarine;">
-      
 
+</div>
+<!--Row2-->
+<div class="row p-md-2 ">
+
+    <div class="col-md-4 pr-2 ">
+        <!-- Styles -->
+        <style>
+            #chartdiv2 {
+                width: 100%;
+                height: 500px;
+                background-color:white;
+            }
+        </style>
+
+        <!-- Resources -->
+        <script src="https://www.amcharts.com/lib/4/core.js"></script>
+        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+        <script>
+            am4core.ready(function () {
+
+                // Themes begin
+                am4core.useTheme(am4themes_dataviz);
+                am4core.useTheme(am4themes_animated);
+                // Themes end
+
+                var chart = am4core.create("chartdiv2", am4charts.PieChart3D);
+                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                chart.legend = new am4charts.Legend();
+
+                chart.data = [
+                    {
+                        country: "Lithuania",
+                        litres: 501.9
+                    },
+                    {
+                        country: "Czech Republic",
+                        litres: 301.9
+                    },
+                    {
+                        country: "Ireland",
+                        litres: 201.1
+                    },
+                    {
+                        country: "Germany",
+                        litres: 165.8
+                    },
+                    {
+                        country: "Australia",
+                        litres: 139.9
+                    },
+                    {
+                        country: "Austria",
+                        litres: 128.3
+                    },
+                    {
+                        country: "UK",
+                        litres: 99
+                    },
+                    {
+                        country: "Belgium",
+                        litres: 60
+                    },
+                    {
+                        country: "The Netherlands",
+                        litres: 50
+                    }
+                ];
+
+                var series = chart.series.push(new am4charts.PieSeries3D());
+                series.dataFields.value = "litres";
+                series.dataFields.category = "country";
+
+            }); // end am4core.ready()
+        </script>
+
+        <!-- HTML -->
+        <div id="chartdiv2"></div>
     </div>
-
+    <div class="col-md-4 pr-2" style="background-color:white;">
+        lskflksdflj
+    </div>
+    <div class="col-md-4 pr-2" style="background-color:white;">
+       safga
+    </div>
 </div>
 
 

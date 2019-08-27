@@ -4,59 +4,62 @@
     am4core.useTheme(am4themes_animated);
     // Themes end
 
-    // Create chart instance
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
+    var chart = am4core.create("Chart1", am4charts.XYChart);
+    chart.paddingRight = 20;
 
-    // Add data
-    chart.data = generateChartData();
+    var data = [];
+    var visits = 10;
+    var previousValue;
 
-    // Create axes
+    for (var i = 0; i < 100; i++) {
+        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+
+        if (i > 0) {
+            // add color to previous data item depending on whether current value is less or more than previous value
+            if (previousValue <= visits) {
+                data[i - 1].color = chart.colors.getIndex(0);
+            }
+            else {
+                data[i - 1].color = chart.colors.getIndex(5);
+            }
+        }
+
+        data.push({ date: new Date(2018, 0, i + 1), value: visits });
+        previousValue = visits;
+    }
+
+    chart.data = data;
+
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.renderer.minGridDistance = 50;
+    dateAxis.renderer.grid.template.location = 0;
+    dateAxis.renderer.axisFills.template.disabled = true;
+    dateAxis.renderer.ticks.template.disabled = true;
 
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.tooltip.disabled = true;
+    valueAxis.renderer.minWidth = 35;
+    valueAxis.renderer.axisFills.template.disabled = true;
+    valueAxis.renderer.ticks.template.disabled = true;
 
-    // Create series
     var series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueY = "visits";
     series.dataFields.dateX = "date";
+    series.dataFields.valueY = "value";
     series.strokeWidth = 2;
-    series.minBulletDistance = 10;
-    series.tooltipText = "{valueY}";
-    series.tooltip.pointerOrientation = "vertical";
-    series.tooltip.background.cornerRadius = 20;
-    series.tooltip.background.fillOpacity = 0.5;
-    series.tooltip.label.padding(12, 12, 12, 12)
+    series.tooltipText = "value: {valueY}, day change: {valueY.previousChange}";
 
-    // Add scrollbar
-    chart.scrollbarX = new am4charts.XYChartScrollbar();
-    chart.scrollbarX.series.push(series);
+    // set stroke property field
+    series.propertyFields.stroke = "color";
 
-    // Add cursor
     chart.cursor = new am4charts.XYCursor();
-    chart.cursor.xAxis = dateAxis;
-    chart.cursor.snapToSeries = series;
 
-    function generateChartData() {
-        var chartData = [];
-        var firstDate = new Date();
-        firstDate.setDate(firstDate.getDate() - 1000);
-        var visits = 1200;
-        for (var i = 0; i < 500; i++) {
-            // we create date objects here. In your data, you can have date strings
-            // and then set format of your dates using chart.dataDateFormat property,
-            // however when possible, use date objects, as this will speed up chart rendering.
-            var newDate = new Date(firstDate);
-            newDate.setDate(newDate.getDate() + i);
+    var scrollbarX = new am4core.Scrollbar();
+    chart.scrollbarX = scrollbarX;
 
-            visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-
-            chartData.push({
-                date: newDate,
-                visits: visits
-            });
-        }
-        return chartData;
-    }
+    chart.events.on("ready", function (ev) {
+        dateAxis.zoomToDates(
+            chart.data[50].date,
+            chart.data[80].date
+        );
+    });
 
 }); // end am4core.ready()
