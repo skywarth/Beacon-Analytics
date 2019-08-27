@@ -306,13 +306,20 @@
 <!--Row2-->
 <div class="row p-md-2 ">
 
-    <div class="col-md-4 pr-2 ">
+    <div class="col-md-4 pr-2 pl-0 ">
+
+        <div class="row pl-3 pr-3" >
+            <div class="col-md-12 " style="background-color:white;">
+                <b style="text-align:center;">Mounthly Artifacts Average</b>
+            </div>
+        </div>
+
         <!-- Styles -->
         <style>
-            #chartdiv2 {
+            #chartdiv3 {
                 width: 100%;
                 height: 500px;
-                background-color:white;
+                background-color: white;
             }
         </style>
 
@@ -322,7 +329,7 @@
         <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
         <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-
+        <!-- Chart code -->
         <script>
             am4core.ready(function () {
 
@@ -331,66 +338,103 @@
                 am4core.useTheme(am4themes_animated);
                 // Themes end
 
-                var chart = am4core.create("chartdiv2", am4charts.PieChart3D);
-                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+                // Create chart instance
+                var chart = am4core.create("chartdiv3", am4charts.PieChart);
 
+                // Add and configure Series
+                var pieSeries = chart.series.push(new am4charts.PieSeries());
+                pieSeries.dataFields.value = "litres";
+                pieSeries.dataFields.category = "country";
+
+                // Let's cut a hole in our Pie chart the size of 30% the radius
+                chart.innerRadius = am4core.percent(30);
+
+                // Put a thick white border around each Slice
+                pieSeries.slices.template.stroke = am4core.color("#fff");
+                pieSeries.slices.template.strokeWidth = 2;
+                pieSeries.slices.template.strokeOpacity = 1;
+                pieSeries.slices.template
+                    // change the cursor on hover to make it apparent the object can be interacted with
+                    .cursorOverStyle = [
+                        {
+                            "property": "cursor",
+                            "value": "pointer"
+                        }
+                    ];
+
+                pieSeries.alignLabels = false;
+                pieSeries.labels.template.bent = true;
+                pieSeries.labels.template.radius = 3;
+                pieSeries.labels.template.padding(0, 0, 0, 0);
+
+                pieSeries.ticks.template.disabled = true;
+
+                // Create a base filter effect (as if it's not there) for the hover to return to
+                var shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter);
+                shadow.opacity = 0;
+
+                // Create hover state
+                var hoverState = pieSeries.slices.template.states.getKey("hover"); // normally we have to create the hover state, in this case it already exists
+
+                // Slightly shift the shadow and make it more prominent on hover
+                var hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
+                hoverShadow.opacity = 0.7;
+                hoverShadow.blur = 5;
+
+                // Add a legend
                 chart.legend = new am4charts.Legend();
 
-                chart.data = [
-                    {
-                        country: "Lithuania",
-                        litres: 501.9
-                    },
-                    {
-                        country: "Czech Republic",
-                        litres: 301.9
-                    },
-                    {
-                        country: "Ireland",
-                        litres: 201.1
-                    },
-                    {
-                        country: "Germany",
-                        litres: 165.8
-                    },
-                    {
-                        country: "Australia",
-                        litres: 139.9
-                    },
-                    {
-                        country: "Austria",
-                        litres: 128.3
-                    },
-                    {
-                        country: "UK",
-                        litres: 99
-                    },
-                    {
-                        country: "Belgium",
-                        litres: 60
-                    },
-                    {
-                        country: "The Netherlands",
-                        litres: 50
-                    }
-                ];
-
-                var series = chart.series.push(new am4charts.PieSeries3D());
-                series.dataFields.value = "litres";
-                series.dataFields.category = "country";
+                chart.data = [{
+                    "country": "January",
+                    "litres": 501.9
+                }, {
+                    "country": "February",
+                    "litres": 165.8
+                }, {
+                    "country": "March",
+                    "litres": 139.9
+                }, {
+                    "country": "April",
+                    "litres": 128.3
+                }, {
+                    "country": "May",
+                    "litres": 60
+                }, {
+                    "country": "June",
+                    "litres": 165.8
+                }, {
+                    "country": "July",
+                    "litres": 139.9
+                },{
+                    "country": "August",
+                    "litres": 165.8
+                }, {
+                    "country": "September",
+                    "litres": 139.9
+                },{
+                    "country": "October",
+                    "litres": 165.8
+                }, {
+                    "country": "November",
+                    "litres": 139.9
+                },{
+                    "country": "December",
+                    "litres": 99
+                }];
 
             }); // end am4core.ready()
         </script>
 
         <!-- HTML -->
-        <div id="chartdiv2"></div>
+        <div id="chartdiv3"></div>
     </div>
     <div class="col-md-4 pr-2" style="background-color:white;">
         lskflksdflj
     </div>
     <div class="col-md-4 pr-2" style="background-color:white;">
-       safga
+        lskflksdflj
     </div>
+
 </div>
 
 
