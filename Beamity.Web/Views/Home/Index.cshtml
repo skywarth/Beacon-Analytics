@@ -47,10 +47,11 @@
     </ol>
 
     <!-- Icon Cards-->
-    <!--Rooms Card-->
+    
     <div class="row">
-        <!-- Toplam oda sayısı gösterilecek-->
-        <div class="col-xl-3 col-sm-6  Link hvr-grow">
+
+        <!--Rooms Card--><!-- Toplam oda sayısı gösterilecek-->
+        <div id="RoomsCard" class="col-xl-3 col-sm-6  Link hvr-grow">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
@@ -68,7 +69,7 @@
         </div>
 
         <!--Artifacts Card--> <!--Toplam eser sayısı gösterilecek-->
-        <div class="col-xl-3 col-sm-6  Link hvr-grow">
+        <div id="ArtifactsCard" class="col-xl-3 col-sm-6  Link hvr-grow">
             <div class="card text-white bg-danger o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
@@ -86,7 +87,7 @@
         </div>
 
         <!--Beacons Card--> <!--Toplam beacon sayısı gösterilecek-->
-        <div class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
+        <div id="BeaconsCard" class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
             <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
@@ -105,7 +106,7 @@
 
         <!--Visitors Card-->
         <!-- Yapılacak Değişiklikler: o an müzede olan müşteri sayısı gösterilecek (anlık) -->
-        <div class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
+        <div id="VisitorsCard" class="col-xl-3 col-sm-6  Link hvr-grow" style="float:left;">
             <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
@@ -220,7 +221,7 @@
     <div class="row" style="margin-top:10px;">
 
         <!--Card1 --> <!--Eselere Gelen Kişi Ortalaması-->
-        <div class="col-md-3 col-sm-6 pl-3">
+        <div id="Average1" class="col-md-3 col-sm-6 pl-3">
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <div class="card-icon">
@@ -239,7 +240,7 @@
         </div>
 
         <!--Card2--> <!--Odalara Gelen Kişi Ortalaması-->
-        <div class="col-md-3 col-sm-6 pl-0">
+        <div id="Average2" class="col-md-3 col-sm-6 pl-0">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
@@ -257,7 +258,7 @@
         </div>
 
         <!--Card3--> <!--Eserlerin Ortalama İzlenme Süresi-->
-        <div class="col-md-3 col-sm-6 pl-0">
+        <div id="Average3" class="col-md-3 col-sm-6 pl-0">
             <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                     <div class="card-icon">
@@ -276,7 +277,7 @@
         </div>
 
         <!--Card4--> <!--Odaların Ortalama İzlenme Süresi-->
-        <div class="col-md-3 col-sm-6 pl-0 pr-6">
+        <div id="Average4" class="col-md-3 col-sm-6 pl-0 pr-6">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
@@ -302,7 +303,7 @@
         <!--Card1--><!--Müze Bounce Rate-->
         <div class="col-md-3 col-sm-12 pl-3">
 
-            <div class="card card-stats">
+            <div id="Average5" class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
                         <i class="material-icons"><b>Müze Bounce Rate</b></i>
@@ -320,7 +321,7 @@
         </div>
 
         <!--Card2--> <!--Total Visitors-->
-        <div class="col-md-3 col-sm-12 pl-0">
+        <div id="Average6" class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -340,7 +341,7 @@
         </div>
 
         <!--Card3--><!--Museum Total Time-->
-        <div class="col-md-3 col-sm-12 pl-0">
+        <div id="Average7" class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -360,7 +361,7 @@
         </div>
 
         <!--Card4--><!--Artifacts/Museum Average-->
-        <div class="col-md-3 col-sm-12 pl-0">
+        <div id="Average8" class="col-md-3 col-sm-12 pl-0">
 
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -432,7 +433,7 @@
 
 
         <!--Behaviour Flow Bilgileri-->
-        <div class="col-md-4" style="background-color:white;">
+        <div id="BFinformation" class="col-md-4" style="background-color:white;">
             ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
             ...Kimin kiminle ilişkisi var listelenecek...
         </div>
@@ -441,7 +442,7 @@
 
 
     <!--Row4--> <!--Visitors for hours-->
-    <div class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
+    <div  id="VisitforHours" class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
         <div id="chartdiv3"></div>
 
     </div>
