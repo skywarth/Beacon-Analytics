@@ -215,10 +215,11 @@
 
     
     <script type="text/javascript">
+
+        
         var locationId;
 
         $(document).ready(function () {
-            debugger
             $.ajax({
 
                 url: "/Session/GetVariable",
@@ -243,18 +244,9 @@
         function swalload() {
             swal.fire({
                 title: 'Loading....',
-                html: 'Please wait during the processing time',
-                timer: 9999999999,
-                onBeforeOpen: () => {
-                    Swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
-                    }, 100)
-                },
-                onClose: () => {
-
-                }
+                html: '<strong>Please wait during the processing time</strong>',
+                    
+                
             });
         }
         $("#logout").click(function () {
