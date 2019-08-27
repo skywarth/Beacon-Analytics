@@ -81,5 +81,24 @@ namespace Beamity.Application.Service.Services
             var beaconActivity = await _beaconActivityRepository.GetById(input.Id);
             return _mapper.Map<ReadBeaconActivityDTO>(beaconActivity);
         }
+
+
+        public async Task<Double> GetArtifactsVisitorAverage(EntityDTO input)
+        {
+            var beaconActivity = await _beaconActivityRepository.GetAll()
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                          group t by t.BeaconId into grouped
+                          select new
+                          {
+                              id = grouped.Key,
+                              Count = grouped.Count()
+
+                          };
+            double average = subList.Average(x => x.Count);
+            return average;
+        }
     }
 }

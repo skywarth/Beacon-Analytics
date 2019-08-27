@@ -5,6 +5,39 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
+<script>
+    var asd;
+    $(document).ready(function () {
+        swalload();
+        var options = {};
+        options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactsVisitorAverage";
+        options.type = "POST";
+        var obj = {};
+        obj.LocationId = "8962C635 - D42D - 43C5 - B1E3 - FC77FCF71B19";
+        options.data = JSON.stringify(obj);
+        options.contentType = "application/json";
+        options.dataType = "html";
+        options.success = function (data, msg) {
+            asd = data;
+            alert(asd);
+            $("#msg").html(msg);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            })
+        };
+        options.error = function () {
+            $("#msg").html("Error while calling the Web API!");
+            alert("Hata");
+        };
+        asd = $.ajax(options);
+    });
+
+</script>
 <link href="~/css/Hover.min.css" rel="stylesheet" />
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -47,7 +80,7 @@
     </ol>
 
     <!-- Icon Cards-->
-    
+
     <div class="row">
 
         <!--Rooms Card--><!-- Toplam oda sayısı gösterilecek-->
@@ -154,7 +187,8 @@
 
 <!--First Chart Start-->
 
-<div id="secondChart"> <!--First Chart Table-->
+<div id="secondChart">
+    <!--First Chart Table-->
     <table id="datatable">
         <thead>
             <tr>
@@ -178,7 +212,8 @@
     </table>
 </div>
 
-<div> <!--First Chart Script Codes-->
+<div>
+    <!--First Chart Script Codes-->
 
     <script>
 
@@ -209,11 +244,6 @@
     </script>
 </div>
 <!--First Chart Finish-->
-
-
-
-
-
 <!--Average Cards-->
 <div>
 
@@ -382,8 +412,6 @@
 
     </div>
     <!--Row2-->
-
-
     <!--Row3-->
     <div class="row pt-3 pr-3">
 
@@ -439,16 +467,12 @@
         </div>
     </div>
     <!--Row3-->
-
-
     <!--Row4--> <!--Visitors for hours-->
-    <div  id="VisitforHours" class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
+    <div id="VisitforHours" class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
         <div id="chartdiv3"></div>
 
     </div>
 
 
 </div>
-
-
 
