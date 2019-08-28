@@ -293,7 +293,13 @@
             var obj = {};
             obj.BeaconId = beaconId;
             obj.UserId = randomGuid();
-            var rndDate = new Date((randomDate(new Date(2016, 0, 1), new Date())).toString());
+            //var startRange = new Date(2016, 0, 1);
+            var startRange = new Date();
+            startRange.setHours(00);
+            //var endRange = new Date();
+            var endRange = new Date();
+            endRange.setHours(23);
+            var rndDate = new Date((randomDate(startRange, endRange)).toString());
 
             rndDate.setSeconds(getRandomInt(0, 59));
             

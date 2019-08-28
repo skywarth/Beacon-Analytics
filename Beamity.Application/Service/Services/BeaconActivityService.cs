@@ -28,13 +28,14 @@ namespace Beamity.Application.Service.Services
         private readonly IBaseGenericRepository<BeaconActivity> _beaconActivityRepository;
         private readonly IBaseGenericRepository<Beacon> _beaconRepository;
         private readonly IMapper _mapper;
-
+        public IQueryable<BeaconActivity> publicSet=null;
 
         public BeaconActivityService(IBaseGenericRepository<BeaconActivity> repository, IBaseGenericRepository<Beacon> beaconRepository, IMapper mapper)
         {
             _beaconActivityRepository = repository;
             _beaconRepository = beaconRepository;
             _mapper = mapper;
+            publicSet= _beaconActivityRepository.GetAll();
         }
         public async Task CreateBeaconActivity(CreateBeaconActivityDTO input)
         {
@@ -83,9 +84,12 @@ namespace Beamity.Application.Service.Services
         }
 
 
+
+
         public async Task<double> GetArtifactsVisitorAverage(EntityDTO input)
         {
-            var beaconActivity = await _beaconActivityRepository.GetAll()
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
                 .Include(x => x.Beacon)
 
 
@@ -109,7 +113,9 @@ namespace Beamity.Application.Service.Services
 
         public async Task<double> GetRoomsVisitorAverage(EntityDTO input)
         {
-            var beaconActivity = await _beaconActivityRepository.GetAll()
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+
+           var beaconActivity=await publicSet
                 .Include(x=>x.Beacon)
                 .ThenInclude(x=>x.Artifact.Room)
 
@@ -133,7 +139,8 @@ namespace Beamity.Application.Service.Services
 
         public async Task<double> GetArtifactsWatchTimeAverage(EntityDTO input)
         {
-            var beaconActivity = await _beaconActivityRepository.GetAll()
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
                 .Include(x => x.Beacon)
                 
                 .Where(x=>x.EnterTime.Date==DateTime.Now.Date)
@@ -156,6 +163,37 @@ namespace Beamity.Application.Service.Services
             average = Math.Round(average, 2);
             return average;
         }
+
+
+        public async Task<double> GetRoomsWatchTimeAverage(EntityDTO input)
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x=>x.Artifact.Room)
+
+                .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                          group t by t.Beacon.Artifact.Room.Id into grouped
+                          select new
+                          {
+                              id = grouped.Key,
+                              watchTime = grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+
+
+
+
+                          };
+            double average = subList.Average(x => x.watchTime);
+            average = Math.Round(average, 2);
+            return average;
+        }
+
+
     }
 }
 

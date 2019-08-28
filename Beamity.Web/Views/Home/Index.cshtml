@@ -5,7 +5,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!-- DataTransfers -->
+<script src="~/js/dataTransfers/GetElementsXAverage.js"></script>
 
 
 
@@ -35,8 +36,7 @@
 <link href="~/css/VisitorsbyHours.css" rel="stylesheet" />
 <script src="~/js/ChartsJS/VisitorsDashboard.js"></script>
 
-<!-- DataTransfers -->
-<script src="~/js/dataTransfers/GetElementsXAverage.js"></script>
+
 
 
 
@@ -291,7 +291,7 @@
                         <i class="material-icons"><b>Odaların Ortalama İzlenme Süresi</b></i>
                     </div>
                     <p class="card-category"></p>
-                    <h3 class="card-title">34 <i style="font-size:15px;">Average</i></h3>
+                    <h3 class="card-title"><span id="Average4-data">21</span><i style="font-size:15px;">Average</i></h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -394,7 +394,7 @@
 
         <!--Chart1--><!--Behaviour Flow-->
         <div class="col-md-8">
-       
+
             <div id="chartdiv2"></div>
 
 

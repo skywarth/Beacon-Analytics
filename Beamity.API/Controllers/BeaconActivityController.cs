@@ -124,6 +124,7 @@ namespace Beamity.API.Controllers
                 data.ArtifactsVisitorAverage1 = await _beaconActivityService.GetArtifactsVisitorAverage(input);
                 data.RoomsVisitorAverage1 = await _beaconActivityService.GetRoomsVisitorAverage(input);
                 data.ArtifactsWatchTimeAverage1 = await _beaconActivityService.GetArtifactsWatchTimeAverage(input);
+                data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
                 return data;
             }
             catch (System.Exception)
@@ -139,10 +140,12 @@ namespace Beamity.API.Controllers
             private double ArtifactsVisitorAverage;
             private double RoomsVisitorAverage;
             private double ArtifactsWatchTimeAverage;
+            private double RoomsWatchTimeAverage;
 
             public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
             public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
             public double ArtifactsWatchTimeAverage1 { get => ArtifactsWatchTimeAverage; set => ArtifactsWatchTimeAverage = value; }
+            public double RoomsWatchTimeAverage1 { get => RoomsWatchTimeAverage; set => RoomsWatchTimeAverage = value; }
         }
 
     }

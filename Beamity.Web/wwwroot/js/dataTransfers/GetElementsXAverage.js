@@ -4,11 +4,20 @@ function str_pad_left(string, pad, length) {
 }
 
 
-$(document).ready(function () {
+function secondsToFinalTime(sec) {
+    var _sec = sec;
+    var minutes = Math.floor(_sec / 60);
+    var seconds = _sec - minutes * 60;
+    seconds = seconds.toFixed(0);
+    var finalTime = minutes + ':' + seconds;
+    return finalTime;
+}
+
+
 
 
     $.when(locationAnon()).done(function () {
-        swalload();
+        //swalload();
         var options = {};
         options.url = "https://localhost:44327/api/BeaconActivity/GetDashboardPayload";
         options.type = "POST";
@@ -22,26 +31,28 @@ $(document).ready(function () {
             $("#Average1-data")[0].textContent = payload.artifactsVisitorAverage1;
             $("#Average2-data")[0].textContent = payload.roomsVisitorAverage1;
             /* time stuff */
-            var time = payload.artifactsWatchTimeAverage1;
+            /*var time = payload.artifactsWatchTimeAverage1;
             var minutes = Math.floor(time / 60);
             var seconds = time - minutes * 60;
             seconds = seconds.toFixed(0);
-            var finalTime = minutes + ':' + seconds;
+            var finalTime = minutes + ':' + seconds;*/
             /* time stuff */
-            $("#Average3-data")[0].textContent = finalTime;
+            $("#Average3-data")[0].textContent = secondsToFinalTime(payload.artifactsWatchTimeAverage1);
+
+            $("#Average4-data")[0].textContent = secondsToFinalTime(payload.roomsWatchTimeAverage1);
 
 
 
 
 
-            Swal({
+            /*Swal({
                 type: 'success',
                 title: 'Thanks',
                 text: 'Operation is success',
-            })
+            })*/
         };
         options.error = function (msg) {
-            $("#msg").html("Error while calling the Web API!");
+            /*$("#msg").html("Error while calling the Web API!");*/
             alert("Hata");
         };
         $.ajax(options);
@@ -110,4 +121,3 @@ $(document).ready(function () {
         $.ajax(options);
     });*/
 
-});
