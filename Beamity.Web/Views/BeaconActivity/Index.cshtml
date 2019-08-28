@@ -273,7 +273,7 @@
         /* Bulk Create */
     $("#bulkCreate").click(function () {
         var $options = $('#beacons').find('option');
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 50; i++) {
             
     random = ~~(Math.random() * $options.length);
             BulkCreateRandom($options.eq(random).val());
@@ -292,11 +292,21 @@
         options.type = "POST";
             var obj = {};
             obj.BeaconId = beaconId;
-        obj.UserId = randomGuid();
-        rndDate = randomDate(new Date(2016, 0, 1), new Date());
-        obj.EnterTime = rndDate;
-        rndDate.setSeconds = (rndDate.getDate() + getRandomInt(10, 1000));
-        obj.ExitTime = rndDate;
+            obj.UserId = randomGuid();
+            var rndDate = new Date((randomDate(new Date(2016, 0, 1), new Date())).toString());
+
+            rndDate.setSeconds(getRandomInt(0, 59));
+            
+            obj.EnterTime = rndDate;
+
+            var rndDate2 = new Date(rndDate.toString());
+            rndDate2.setSeconds(rndDate2.getSeconds() + getRandomInt(10, 2000));
+
+
+            obj.ExitTime = rndDate2;
+
+
+
 
 
         options.data = JSON.stringify(obj);
@@ -341,9 +351,11 @@
         obj.BeaconId = $("#beacons").val();
         obj.UserId = randomGuid();
         rndDate = randomDate(new Date(2016, 0, 1), new Date());
-        obj.EnterTime = rndDate;
-        rndDate.setSeconds = (rndDate.getDate() + getRandomInt(10, 1000));
-        obj.ExitTime = rndDate;
+        rndDate.setSeconds=getRandomInt(0, 59)
+        obj.EnterTime = rndDate.toString();
+
+        rndDate.setSeconds = (rndDate.getSeconds() + getRandomInt(10, 1000));
+        obj.ExitTime = rndDate.toString();
 
 
         options.data = JSON.stringify(obj);

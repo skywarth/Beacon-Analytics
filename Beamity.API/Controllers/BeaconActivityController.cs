@@ -100,7 +100,50 @@ namespace Beamity.API.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<double> GetRoomsVisitorAverage(EntityDTO input)
+        {
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetRoomsVisitorAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
 
+                throw;
+            }
+
+        }
+        [HttpPost]
+        public async Task<DashboardPayload> GetDashboardPayload(EntityDTO input)
+        {
+            try
+            {
+                DashboardPayload data = new DashboardPayload();
+                data.ArtifactsVisitorAverage1 = await _beaconActivityService.GetArtifactsVisitorAverage(input);
+                data.RoomsVisitorAverage1 = await _beaconActivityService.GetRoomsVisitorAverage(input);
+                data.ArtifactsWatchTimeAverage1 = await _beaconActivityService.GetArtifactsWatchTimeAverage(input);
+                return data;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public class DashboardPayload{
+            private double ArtifactsVisitorAverage;
+            private double RoomsVisitorAverage;
+            private double ArtifactsWatchTimeAverage;
+
+            public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
+            public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
+            public double ArtifactsWatchTimeAverage1 { get => ArtifactsWatchTimeAverage; set => ArtifactsWatchTimeAverage = value; }
+        }
 
     }
 }

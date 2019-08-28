@@ -15,5 +15,9 @@ namespace Beamity.Application.Service.IServices
         //Task<List<ReadArtifactDTO>> GetArtifactsInRoom(EntityDTO input);
 
         Task<double> GetArtifactsVisitorAverage(EntityDTO input);
+
+        Task<double> GetRoomsVisitorAverage(EntityDTO input);
+
+        Task<double> GetArtifactsWatchTimeAverage(EntityDTO input);
     }
 }

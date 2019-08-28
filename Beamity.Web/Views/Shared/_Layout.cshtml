@@ -219,7 +219,11 @@
         
         var locationId;
 
-        $(document).ready(function () {
+        
+
+
+        function locationAnon() {
+            var locationDefer = $.Deferred();
             $.ajax({
 
                 url: "/Session/GetVariable",
@@ -231,16 +235,20 @@
                 success: function (response) {
                     locationId = response.d;
                     SetLocationName(response.d);
+                    locationDefer.resolve('yay');
                     if (locationId == null) {
                         window.location.href = "/Location/ChooseLocation";
                     }
                 },
                 error: function () {
+                    locationDefer.reject('boo');
                     alert("couldnt get Session! ");
                 }
             });
+            return locationDefer.promise();
+        }
 
-        });
+        $(document).ready(locationAnon());
         function swalload() {
             swal.fire({
                 title: 'Loading....',
