@@ -1,11 +1,17 @@
-﻿am4core.ready(function () {
+﻿
+
+//Bir eser için ortalama izlenme süresi
+//...........................................................//
+//burası çalışmıyor indexte çalışıyor kodlar
+
+am4core.ready(function () {
 
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
 
     // Create chart instance
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
+    var chart = am4core.create("chartdiv5", am4charts.XYChart);
 
     // Add data
     chart.data = generateChartData();
