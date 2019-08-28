@@ -4,17 +4,36 @@
     ViewData["Title"] = "ArtifactsIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
+    <!--Resources of Chart1-->
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="~/js/Average.js"></script>
+    <script src="~/js/ChartsJS/ArtifactsChart1.js"></script>
 
-
-    <!-- Resources -->
+    <!-- Resources of Chart2-->
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="~/js/ArtifactsChart1.js"></script>
+    <script src="~/js/ChartsJS/ArtifactsChart2.js"></script>
+
+    <!-- Resources of Chart3-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+    <!--Resources of Chart4-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <!--Resources of Chart5-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
 
     <script>
 
@@ -41,13 +60,13 @@
     </div>
 </div>
 -->
-
-
 <!--Body Row-->
 <div class="row pl-2 pr-2">
-    <div class="col-md-4 pr-3" style="height: 750px; overflow: scroll; width: 50%; background-color:white; border:groove;">
+    <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:beige; border:groove;">
 
-        <div class="pb-3" style="text-align:center;"><b style="font-size:20px;">Artifacts List</b></div>
+        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+            <b>Average of time for one artifacts</b>
+        </p>
 
         <table class="pr-0" style="width:100%;  background-color:white;">
             <tr>
@@ -204,9 +223,22 @@
     </div>
 
     <!--Row1-->
-    <div class="col-md-8 pl-md-4">
+    <div class="col-md-8 pl-md-4" style="background-color:beige;">
 
-        <!--Row 1.1-->
+        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+            <b>Average of time for one artifacts</b>
+
+            <select style="float:right;">
+
+                <option selected>2015-2019</option>
+                <option>2010-2014</option>
+                <option>2005-2009</option>
+                <option>2000-2004</option>
+                <option>1995-1999 </option>
+            </select>
+        </p>
+
+        <!--Row 1.1--> <!--Bir eser için ortalama izlenme süresi-->
         <div class="row" style="height:50%; border:groove;">
 
             <style>
@@ -216,6 +248,7 @@
                     background-color: white;
                 }
             </style>
+
             <script>
                 am4core.ready(function () {
 
@@ -279,23 +312,29 @@
                     }
 
                 }); // end am4core.ready()
+
             </script>
 
             <div id="chartdiv"></div>
         </div>
 
         <!--Row 1.2-->
-        <div class="row" >
-            Bir eser için toplam izlenme süresinin yer aldığı chart (Haftalık,Aylık,Yıllık)
+        <div class="row">
+
+
             <!-- Styles -->
             <style>
                 #Chart1 {
                     width: 100%;
-                    height: 350px;
+                    height: 388px;
                     background-color: white;
-                    border:groove;
+                    border: groove;
                 }
             </style>
+
+            <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+                <b style="text-align:center;">Average of time for one artifacts</b>
+            </p>
 
             <div id="Chart1"></div>
         </div>
@@ -303,138 +342,79 @@
 
 
 </div>
+
+
 <!--Row2-->
 <div class="row p-md-2 ">
 
-    <div class="col-md-4 pr-2 pl-0 ">
+    <!--Row 3.1--> <!--Artifacts Weekly Average-->
+    <div class="col-md-4 pr-4 pl-2 " style="background-color: beige;">
 
-        <div class="row pl-3 pr-3" >
-            <div class="col-md-12 " style="background-color:white;">
-                <b style="text-align:center;">Mounthly Artifacts Average</b>
-            </div>
-        </div>
+        <p class="pt-md-3" style="text-align:center;">
+            <b style="text-align:center; color: dodgerblue;">Artifacts Weekly Average</b>
 
-        <!-- Styles -->
-        <style>
-            #chartdiv3 {
-                width: 100%;
-                height: 500px;
-                background-color: white;
-            }
-        </style>
+            <select style="float:right;">
+                
+                <option selected>January</option> <!--hangi aydaysak onu seçecek default olarak-->
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>july</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
 
-        <!-- Resources -->
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+        </p>
+        <div id="chart3" style="min-width: 310px; height: 400px; margin: 0 auto;  border:groove;"></div>
+        <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
 
-        <!-- Chart code -->
-        <script>
-            am4core.ready(function () {
-
-                // Themes begin
-                am4core.useTheme(am4themes_dataviz);
-                am4core.useTheme(am4themes_animated);
-                // Themes end
-
-                // Create chart instance
-                var chart = am4core.create("chartdiv3", am4charts.PieChart);
-
-                // Add and configure Series
-                var pieSeries = chart.series.push(new am4charts.PieSeries());
-                pieSeries.dataFields.value = "litres";
-                pieSeries.dataFields.category = "country";
-
-                // Let's cut a hole in our Pie chart the size of 30% the radius
-                chart.innerRadius = am4core.percent(30);
-
-                // Put a thick white border around each Slice
-                pieSeries.slices.template.stroke = am4core.color("#fff");
-                pieSeries.slices.template.strokeWidth = 2;
-                pieSeries.slices.template.strokeOpacity = 1;
-                pieSeries.slices.template
-                    // change the cursor on hover to make it apparent the object can be interacted with
-                    .cursorOverStyle = [
-                        {
-                            "property": "cursor",
-                            "value": "pointer"
-                        }
-                    ];
-
-                pieSeries.alignLabels = false;
-                pieSeries.labels.template.bent = true;
-                pieSeries.labels.template.radius = 3;
-                pieSeries.labels.template.padding(0, 0, 0, 0);
-
-                pieSeries.ticks.template.disabled = true;
-
-                // Create a base filter effect (as if it's not there) for the hover to return to
-                var shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter);
-                shadow.opacity = 0;
-
-                // Create hover state
-                var hoverState = pieSeries.slices.template.states.getKey("hover"); // normally we have to create the hover state, in this case it already exists
-
-                // Slightly shift the shadow and make it more prominent on hover
-                var hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
-                hoverShadow.opacity = 0.7;
-                hoverShadow.blur = 5;
-
-                // Add a legend
-                chart.legend = new am4charts.Legend();
-
-                chart.data = [{
-                    "country": "January",
-                    "litres": 501.9
-                }, {
-                    "country": "February",
-                    "litres": 165.8
-                }, {
-                    "country": "March",
-                    "litres": 139.9
-                }, {
-                    "country": "April",
-                    "litres": 128.3
-                }, {
-                    "country": "May",
-                    "litres": 60
-                }, {
-                    "country": "June",
-                    "litres": 165.8
-                }, {
-                    "country": "July",
-                    "litres": 139.9
-                },{
-                    "country": "August",
-                    "litres": 165.8
-                }, {
-                    "country": "September",
-                    "litres": 139.9
-                },{
-                    "country": "October",
-                    "litres": 165.8
-                }, {
-                    "country": "November",
-                    "litres": 139.9
-                },{
-                    "country": "December",
-                    "litres": 99
-                }];
-
-            }); // end am4core.ready()
-        </script>
-
-        <!-- HTML -->
-        <div id="chartdiv3"></div>
     </div>
-    <div class="col-md-4 pr-2" style="background-color:white;">
-        lskflksdflj
+
+
+    <!--Row 3.2--><!--Artifacts Monthly Average-->
+    <div class="col-md-4 pr-2 pl-0" style="background-color:beige;">
+
+        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+            <b>Artifacts Monthly Average</b>
+
+            <select style="float:right;">
+                <option selected>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014</option>
+                <option>2013 </option>
+            </select>
+        </p>
+        <div id="chart4" style="min-width: 310px; height: 400px;  border:groove;"></div>
+        <script src="~/js/ChartsJS/ArtifactsChart4.js"></script>
     </div>
-    <div class="col-md-4 pr-2" style="background-color:white;">
-        lskflksdflj
+
+    <div class="col-md-4" style="background-color:beige;">
+        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+            <b>Artifacts Average for Years</b>
+
+            <select style="float:right;">
+                
+                <option selected>2015-2019</option>
+                <option>2010-2014</option>
+                <option>2005-2009</option>
+                <option>2000-2004</option>
+                <option>1995-1999 </option>
+            </select>
+        </p>
+
+        <div id="chart5" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; border:groove;"></div>
+        <script src="~/js/ChartsJS/ArtifactsChart5.js"></script>
+
     </div>
+
+
 
 </div>
-
-
+<!--Row2-->

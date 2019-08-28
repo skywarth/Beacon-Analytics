@@ -1,4 +1,9 @@
-﻿am4core.ready(function () {
+﻿
+//Bir eser için toplam izlenme süresi
+//..................................................................//
+
+
+am4core.ready(function () {
 
     // Themes begin
     am4core.useTheme(am4themes_animated);
