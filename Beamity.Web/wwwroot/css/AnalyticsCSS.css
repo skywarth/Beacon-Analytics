@@ -1,0 +1,27 @@
+﻿
+
+#chart1 {
+    width: 100%;
+    height: 100%;
+    background-color: #30303d;
+    color:white;
+    padding: 5px;
+    border-bottom: gray solid 5px;
+    border-top: white solid 5px;
+    border-left: gray solid 5px;
+    border-right: gray solid 5px;
+}
+
+#chartdiv {
+    width: 100%;
+    height: 360px;
+    padding: 5px;
+    background-color: #30303d;
+    color: #fff;
+    border-radius: 5px;
+    border-bottom: darkgray solid 5px;
+    border-top: gray solid 3px;
+    border-left: gray solid 3px;
+    border-right: darkgray solid 5px;
+    position: relative;
+}

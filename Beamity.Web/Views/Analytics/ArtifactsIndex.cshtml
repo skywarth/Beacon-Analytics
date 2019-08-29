@@ -8,37 +8,36 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
     <script src="~/js/ChartsJS/ArtifactsChart1.js"></script>
 
-    <!-- Resources of Chart2-->
+
+    <!-- Chart2 Resources -->
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="~/js/ChartsJS/ArtifactsChart2.js"></script>
-
-    <!-- Resources of Chart3-->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 
-    <!--Resources of Chart4-->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-    <!--Resources of Chart5-->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!--Chart3 Resources-->
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
+
+    <!--Chart4 Resources-->
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+
 
 
     <script>
 
         var el = document.getElementById("contain");
-        el.style.backgroundColor = "#008b8b";
+        el.style.backgroundColor = "#30305f";
     </script>
 }
 <div class="container-fluid">
@@ -49,26 +48,16 @@
     </ol>
 </div>
 
-<!--
-<div class="row p-md-2" >
-  <div class="col-md-4 pr-3" style="background-color:white; border:groove; ">
 
-  </div>
-
-    <div class="col-md-8" style="background-color:white; border:groove;">
-
-    </div>
-</div>
--->
 <!--Body Row-->
-<div class="row pl-2 pr-2">
-    <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:beige; border:groove;">
+<div class="row pl-4 pr-4 ">
+    <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:#30303d; color:#fff; border:groove;">
 
-        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
+        <p class="pt-md-3" style="text-align:center; color:#fff;">
             <b>Average of time for one artifacts</b>
         </p>
 
-        <table class="pr-0" style="width:100%;  background-color:white;">
+        <table class="pr-0" style="width:100%;  background-color:#30303d; color:#fff;">
             <tr>
                 <th>Artifact Name</th>
                 <th>Room ID</th>
@@ -223,198 +212,181 @@
     </div>
 
     <!--Row1-->
-    <div class="col-md-8 pl-md-4" style="background-color:beige;">
-
-        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
-            <b>Average of time for one artifacts</b>
-
-            <select style="float:right;">
-
-                <option selected>2015-2019</option>
-                <option>2010-2014</option>
-                <option>2005-2009</option>
-                <option>2000-2004</option>
-                <option>1995-1999 </option>
-            </select>
-        </p>
+    <div class="col-md-8 pl-md-4" style="background-color:#30303d; color:#fff; border:groove;">
 
         <!--Row 1.1--> <!--Bir eser için ortalama izlenme süresi-->
-        <div class="row" style="height:50%; border:groove;">
+        <div class="row" style="height:50%; ">
+            <p class="pt-md-3" style="text-align:center; color:#fff; border:groove; width:100%;">
+                <b>Average of time for one artifacts</b>
 
-            <style>
-                #chartdiv {
-                    width: 100%;
-                    height: 100%;
-                    background-color: white;
-                }
-            </style>
+                <select style="float:right;">
 
-            <script>
-                am4core.ready(function () {
-
-                    // Themes begin
-                    am4core.useTheme(am4themes_animated);
-                    // Themes end
-
-                    // Create chart instance
-                    var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-                    // Add data
-                    chart.data = generateChartData();
-
-                    // Create axes
-                    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                    dateAxis.renderer.minGridDistance = 50;
-
-                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-                    // Create series
-                    var series = chart.series.push(new am4charts.LineSeries());
-                    series.dataFields.valueY = "visits";
-                    series.dataFields.dateX = "date";
-                    series.strokeWidth = 2;
-                    series.minBulletDistance = 10;
-                    series.tooltipText = "{valueY}";
-                    series.tooltip.pointerOrientation = "vertical";
-                    series.tooltip.background.cornerRadius = 20;
-                    series.tooltip.background.fillOpacity = 0.5;
-                    series.tooltip.label.padding(12, 12, 12, 12)
-
-                    // Add scrollbar
-                    chart.scrollbarX = new am4charts.XYChartScrollbar();
-                    chart.scrollbarX.series.push(series);
-
-                    // Add cursor
-                    chart.cursor = new am4charts.XYCursor();
-                    chart.cursor.xAxis = dateAxis;
-                    chart.cursor.snapToSeries = series;
-
-                    function generateChartData() {
-                        var chartData = [];
-                        var firstDate = new Date();
-                        firstDate.setDate(firstDate.getDate() - 1000);
-                        var visits = 1200;
-                        for (var i = 0; i < 500; i++) {
-                            // we create date objects here. In your data, you can have date strings
-                            // and then set format of your dates using chart.dataDateFormat property,
-                            // however when possible, use date objects, as this will speed up chart rendering.
-                            var newDate = new Date(firstDate);
-                            newDate.setDate(newDate.getDate() + i);
-
-                            visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-
-                            chartData.push({
-                                date: newDate,
-                                visits: visits
-                            });
-                        }
-                        return chartData;
-                    }
-
-                }); // end am4core.ready()
-
-            </script>
-
-            <div id="chartdiv"></div>
+                    <option selected>2018-2019</option>
+                    <option>2017-2018</option>
+                    <option>2016-2017</option>
+                    <option>2015-2016</option>
+                    <option>2014-2015 </option>
+                </select>
+            </p>
+            <div id="chart1"></div>
         </div>
+
+
 
         <!--Row 1.2-->
-        <div class="row">
+        <div class="row pt-5 " style=" max-height:50%;">
+            <p class="pt-md-3" style="text-align:center; color:#fff; border:groove; width:100%; color:white;">
+                <b>Average of time for one artifacts</b>
+                <select style="float:right;">
 
-
-            <!-- Styles -->
-            <style>
-                #Chart1 {
-                    width: 100%;
-                    height: 388px;
-                    background-color: white;
-                    border: groove;
-                }
-            </style>
-
-            <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
-                <b style="text-align:center;">Average of time for one artifacts</b>
+                    <option selected>2018-2019</option>
+                    <option>2017-2018</option>
+                    <option>2016-2017</option>
+                    <option>2015-2016</option>
+                    <option>2014-2015 </option>
+                </select>
             </p>
 
-            <div id="Chart1"></div>
+
+
+            <link href="~/css/AnalyticsCSS.css" rel="stylesheet" /><!-- Styles -->
+            <div id="chartdiv" style="width:900px; height:390px; "></div>
+            <script src="~/js/ChartsJS/ArtifactsChart2.js"></script>
+
+
         </div>
     </div>
 
 
-</div>
+    <!--Row2--> <!--Calendar Chart-->
+    <div class="row p-md-3 " style=" color:white;">
+        <div class="col-md-12 p-0" style=" border:groove;  width:1250px; ">
+
+            <div id="chart3" style="height: 400px; min-width: 310px; background-color:#30303d"></div>
+            <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
+        </div>
+    </div>
+    <!--Row2-->
+    <!--Row3-->
+    <div class="row p-md-3">
+        <div class="col-md-12 p-0" style=" border:groove;  width:1250px; color:white; ">
+
+            <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
+                <div id="ac_style_samples-stock-spline-05" style="display:none;">
+
+                    <style>
+                        html, body, #container {
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                            padding: 0;
+                           
+                        }
+                    </style>
+                </div>
 
 
-<!--Row2-->
-<div class="row p-md-2 ">
+                <div id="container" style="width:1250px; "></div>
 
-    <!--Row 3.1--> <!--Artifacts Weekly Average-->
-    <div class="col-md-4 pr-4 pl-2 " style="background-color: beige;">
+                <script>
+                    (function () {
+                        function ac_add_to_head(el) {
+                            var head = document.getElementsByTagName('head')[0];
+                            head.insertBefore(el, head.firstChild);
+                        }
+                        function ac_add_link(url) {
+                            var el = document.createElement('link');
+                            el.rel = 'stylesheet'; el.type = 'text/css'; el.media = 'all'; el.href = url;
+                            ac_add_to_head(el);
+                        }
+                        function ac_add_style(css) {
+                            var ac_style = document.createElement('style');
+                            if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+                            else ac_style.appendChild(document.createTextNode(css));
+                            ac_add_to_head(ac_style);
+                        }
 
-        <p class="pt-md-3" style="text-align:center;">
-            <b style="text-align:center; color: dodgerblue;">Artifacts Weekly Average</b>
-
-            <select style="float:right;">
+                        ac_add_style(document.getElementById("ac_style_samples-stock-spline-05").innerHTML);
+                        ac_add_style(".anychart-embed-samples-stock-spline-05{width:600px;height:450px;}");
+                    })();
                 
-                <option selected>January</option> <!--hangi aydaysak onu seçecek default olarak-->
-                <option>February</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>july</option>
-                <option>August</option>
-                <option>September</option>
-                <option>October</option>
-                <option>November</option>
-                <option>December</option>
-            </select>
+                    anychart.onDocumentReady(function () {
 
-        </p>
-        <div id="chart3" style="min-width: 310px; height: 400px; margin: 0 auto;  border:groove;"></div>
-        <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
+                        // set the data
+                        table = anychart.data.table();
+                        table.addData([
+                            ['2010-01-01', 1.0860, 73],
+                            ['2010-02-04', 1.0832, 72.7250],
+                            ['2010-02-05', 1.0780, 73.3850],
+                            ['2010-03-06', 1.0781, 74.6020],
+                            ['2010-04-07', 1.0936, 75.1000],
+                            ['2011-01-08', 1.0932, 74.8050],
+                            ['2011-08-11', 1.0860, 76.3750],
+                            ['2011-01-12', 1.0857, 76.9360],
+                            ['2011-01-13', 1.0877, 76.6310],
+                            ['2012-07-14', 1.0865, 76.2450],
+                            ['2012-07-15', 1.0917, 77.7650],
+                            ['2012-01-18', 1.0893, 79.4090],
+                            ['2013-01-19', 1.0909, 78.8160],
+                            ['2013-12-20', 1.0891, 81.3790],
+                            ['2013-01-21', 1.0874, 82.3970],
+                            ['2014-11-22', 1.0797, 78.1713],
+                            ['2014-01-25', 1.0849, 80.0704],
+                            ['2014-01-26', 1.0872, 78.8750],
+                            ['2015-01-27', 1.0893, 78.0500],
+                            ['2015-01-28', 1.0939, 76.3325],
+                            ['2015-01-29', 1.0837, 75.5213],
+                            ['2016-02-01', 1.0889, 77.2277],
+                            ['2016-02-02', 1.0919, 79.7967],
+                            ['2016-02-03', 1.1104, 76.8869],
+                            ['2016-02-04', 1.1208, 76.9080],
+                            ['2016-02-05', 1.1159, 77.4872],
+                            ['2016-02-08', 1.1198, 78.5509],
+                            ['2016-02-09', 1.1293, 79.7087],
+                            ['2016-02-10', 1.1290, 78.6429],
+                            ['2016-02-11', 1.1324, 79.5917],
+                            ['2016-02-12', 1.1260, 78.3558],
+                            ['2016-02-15', 1.1155, 76.9807],
+                            ['2016-02-16', 1.1144, 77.8876],
+                            ['2016-02-17', 1.1128, 75.0400],
+                            ['2016-02-18', 1.1107, 76.4278],
+                            ['2016-02-19', 1.1135, 76.9937],
+                            ['2016-02-22', 1.1029, 77.0453],
+                            ['2016-02-23', 1.1020, 75.3462],
+                            ['2016-02-24', 1.1013, 75.7421],
+                            ['2016-02-25', 1.1023, 75.3641],
+                            ['2016-02-26', 1.0934, 76.1883],
+                            ['2016-02-29', 1.0873, 75.1682]
+                        ]);
 
+                        // map the data
+                        mapping_euro = table.mapAs();
+                        mapping_euro.addField('value', 1);
+                        mapping_rub = table.mapAs();
+                        mapping_rub.addField('value', 2);
+
+                        // chart type
+                        var chart = anychart.stock();
+
+                        // set the series
+                        var series_euro = chart.plot(0).spline(mapping_euro);
+                        series_euro.name("Average of Visitors for All Artifacts");
+
+                        var series_rub = chart.plot(1).spline(mapping_rub);
+                        series_rub.name("Average of time for All Artifacts");
+
+                        // coloring
+                        series_euro.stroke("#ff0000");
+
+                        chart.title('Average of All Artifacts by Visitors and by Time');
+
+                        chart.container('container');
+                        chart.draw();
+                    });
+                </script>
+            </div>
+        </div>
     </div>
-
-
-    <!--Row 3.2--><!--Artifacts Monthly Average-->
-    <div class="col-md-4 pr-2 pl-0" style="background-color:beige;">
-
-        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
-            <b>Artifacts Monthly Average</b>
-
-            <select style="float:right;">
-                <option selected>2018</option>
-                <option>2017</option>
-                <option>2016</option>
-                <option>2015</option>
-                <option>2014</option>
-                <option>2013 </option>
-            </select>
-        </p>
-        <div id="chart4" style="min-width: 310px; height: 400px;  border:groove;"></div>
-        <script src="~/js/ChartsJS/ArtifactsChart4.js"></script>
-    </div>
-
-    <div class="col-md-4" style="background-color:beige;">
-        <p class="pt-md-3" style="text-align:center; color: dodgerblue;">
-            <b>Artifacts Average for Years</b>
-
-            <select style="float:right;">
-                
-                <option selected>2015-2019</option>
-                <option>2010-2014</option>
-                <option>2005-2009</option>
-                <option>2000-2004</option>
-                <option>1995-1999 </option>
-            </select>
-        </p>
-
-        <div id="chart5" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; border:groove;"></div>
-        <script src="~/js/ChartsJS/ArtifactsChart5.js"></script>
-
-    </div>
-
-
 
 </div>
-<!--Row2-->
+<!--Body Row-->
