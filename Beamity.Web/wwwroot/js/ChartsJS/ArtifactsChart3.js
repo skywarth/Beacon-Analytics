@@ -1,54 +1,61 @@
-﻿
+﻿Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json', function (data) {
 
-//Bütün eserlere gelen kişilerin ve izleme süresinin haftalık ortalaması
+    var startDate = new Date(data[data.length - 1][0]),
+        minRate = 1,
+        maxRate = 0,
+        startPeriod,
+        date,
+        rate,
+        index;
 
-Highcharts.chart('chart3', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        text: ''
-    },
-    xAxis: {
-        categories: [
-            'Week1',
-            'Week2',
-            'Week3',
-            'Week4',
-           
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
+    startDate.setMonth(startDate.getMonth() - 3); // a quarter of a year before last data point
+    startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+    for (index = data.length - 1; index >= 0; index = index - 1) {
+        date = data[index][0]; // data[i][0] is date
+        rate = data[index][1]; // data[i][1] is exchange rate
+        if (date < startPeriod) {
+            break; // stop measuring highs and lows
+        }
+        if (rate > maxRate) {
+            maxRate = rate;
+        }
+        if (rate < minRate) {
+            minRate = rate;
+        }
+    }
+
+    // Create the chart
+    Highcharts.stockChart('chart3', {
+
+        rangeSelector: {
+            selected: 1
+        },
+
         title: {
-            text: 'Rainfall (mm)'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'Average of visitors for all artifacts',
-        data: [49.9, 71.5, 106.4, 54.4]
+            text: 'Most/Least Artifacts'
+        },
 
-    }, {
-        name: 'Average of times for all artifacts',
-        data: [42.4, 33.2, 34.5, 39.7]
+        yAxis: {
+            title: {
+                text: 'Visitors Number'
+            },
+            plotBands: [{
+                from: minRate,
+                to: maxRate,
+                color: 'rgba(68, 170, 213, 0.2)',
+                label: {
+                    text: 'Last quarter year\'s value range'
+                }
+            }]
+        },
 
-    }]
+        series: [{
+            name: 'USD to EUR',
+            data: data,
+            tooltip: {
+                valueDecimals: 4
+            }
+        }]
+    });
 });
