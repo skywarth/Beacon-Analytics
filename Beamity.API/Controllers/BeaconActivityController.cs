@@ -1,5 +1,6 @@
 ﻿using Beamity.Application.DTOs;
 using Beamity.Application.DTOs.BeaconActivityDTOs;
+using Beamity.Application.DTOs.CustomDTOs;
 using Beamity.Application.Service.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -125,6 +126,12 @@ namespace Beamity.API.Controllers
                 data.RoomsVisitorAverage1 = await _beaconActivityService.GetRoomsVisitorAverage(input);
                 data.ArtifactsWatchTimeAverage1 = await _beaconActivityService.GetArtifactsWatchTimeAverage(input);
                 data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
+                data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
+                data.LocationBounceRate1 = await _beaconActivityService.GetLocationBounceRate(input);
+                data.LocationCurrentVisitors1 = await _beaconActivityService.GetCurrentVisitors(input);
+                data.UserWatchTimeAverage1 = await _beaconActivityService.GetUserWatchTimeAverage(input);
+                data.UserArtifactAverage1 = await _beaconActivityService.GetUserArtifactAverage(input);
+                data.MaxMinVisitorArtifact1 = await _beaconActivityService.GetMaxVisitorArtifact(input);
                 return data;
             }
             catch (System.Exception)
@@ -141,11 +148,21 @@ namespace Beamity.API.Controllers
             private double RoomsVisitorAverage;
             private double ArtifactsWatchTimeAverage;
             private double RoomsWatchTimeAverage;
+            private double LocationBounceRate;
+            private int LocationCurrentVisitors;
+            private double UserWatchTimeAverage;
+            private double UserArtifactAverage;
+            private List<MaxMinVisitorArtifactDTO> MaxMinVisitorArtifact;
 
             public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
             public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
             public double ArtifactsWatchTimeAverage1 { get => ArtifactsWatchTimeAverage; set => ArtifactsWatchTimeAverage = value; }
             public double RoomsWatchTimeAverage1 { get => RoomsWatchTimeAverage; set => RoomsWatchTimeAverage = value; }
+            public double LocationBounceRate1 { get => LocationBounceRate; set => LocationBounceRate = value; }
+            public int LocationCurrentVisitors1 { get => LocationCurrentVisitors; set => LocationCurrentVisitors = value; }
+            public double UserWatchTimeAverage1 { get => UserWatchTimeAverage; set => UserWatchTimeAverage = value; }
+            public double UserArtifactAverage1 { get => UserArtifactAverage; set => UserArtifactAverage = value; }
+            public List<MaxMinVisitorArtifactDTO> MaxMinVisitorArtifact1 { get => MaxMinVisitorArtifact; set => MaxMinVisitorArtifact = value; }
         }
 
     }

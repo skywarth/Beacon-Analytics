@@ -1,5 +1,6 @@
 ﻿using Beamity.Application.DTOs;
 using Beamity.Application.DTOs.BeaconActivityDTOs;
+using Beamity.Application.DTOs.CustomDTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,5 +21,14 @@ namespace Beamity.Application.Service.IServices
 
         Task<double> GetArtifactsWatchTimeAverage(EntityDTO input);
         Task<double> GetRoomsWatchTimeAverage(EntityDTO input);
+
+        Task<double> GetLocationBounceRate(EntityDTO input);
+
+        Task<int> GetCurrentVisitors(EntityDTO input);
+
+        Task<double> GetUserWatchTimeAverage(EntityDTO input);
+        Task<double> GetUserArtifactAverage(EntityDTO input);
+
+        Task<List<MaxMinVisitorArtifactDTO>> GetMaxVisitorArtifact(EntityDTO input);
     }
 }

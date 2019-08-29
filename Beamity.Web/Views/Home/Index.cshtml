@@ -24,15 +24,9 @@
 <link href="~/css/DashboardStyle.css" rel="stylesheet" />
 
 <!--Behaviour Flow Resources-->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script src="~/js/ChartsJS/BehaviourFlow.js"></script>
 
 <!--Visitors by hours-->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <link href="~/css/VisitorsbyHours.css" rel="stylesheet" />
 <script src="~/js/ChartsJS/VisitorsDashboard.js"></script>
 
@@ -192,33 +186,7 @@
 <div>
     <!--First Chart Script Codes-->
 
-    <script>
-
-        Highcharts.chart('container', {
-            data: {
-                table: 'datatable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'MOST / LEAST interested artifacts.'
-            },
-            yAxis: {
-                allowDecimals: false,
-                title: {
-                    text: ''
-                }
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        this.point.y + ' ' + this.point.name.toLowerCase();
-                }
-            }
-        });
-
-    </script>
+    
 </div>
 <!--First Chart Finish-->
 <!--Average Cards-->
@@ -316,7 +284,7 @@
                         <i class="material-icons"><b>Müze Bounce Rate</b></i>
                     </div>
                     <p class="card-category"></p>
-                    <h3 class="card-title">43 <i style="font-size:15px;">%</i></h3>
+                    <h3 class="card-title"><span id="Average5-data">21</span> <i style="font-size:15px;">%</i></h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -333,10 +301,10 @@
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                        <i class="material-icons"><b>Total Visitors</b></i>
+                        <i class="material-icons"><b>Current Visitors</b></i>
                     </div>
                     <p class="card-category"></p>
-                    <h3 class="card-title">106<i style="font-size:15px;">&nbsp;&nbsp;Person</i></h3>
+                    <h3 class="card-title"><span id="Average6-data">21</span><i style="font-size:15px;">&nbsp;&nbsp;Person</i></h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -356,7 +324,7 @@
                         <i class="material-icons"><b>Museum Total Time</b></i>
                     </div>
                     <p class="card-category"></p>
-                    <h3 class="card-title">7<i style="font-size:15px;">Hours</i></h3>
+                    <h3 class="card-title"><span id="Average7-data">21</span><i style="font-size:15px;"> Minutes</i></h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -376,7 +344,7 @@
                         <i class="material-icons"><b>Artifacts/Museum Average</b></i>
                     </div>
                     <p class="card-category"></p>
-                    <h3 class="card-title">12 <i style="font-size:15px;">Average</i></h3>
+                    <h3 class="card-title"><span id="Average8-data">21</span><i style="font-size:15px;">Average</i></h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -417,3 +385,36 @@
 
 </div>
 
+<script>
+    //$.when(locationAnon()).done(loadDatatableChart);
+
+    
+    function loadDatatableChart() {
+        Highcharts.chart('container', {
+        data: {
+            table: 'datatable'
+        },
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'MOST / LEAST interested artifacts.'
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: ''
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        }
+    });
+    
+    }
+
+    locationAnon().pipe(loadPayload).pipe(loadDatatableChart);
+</script>
