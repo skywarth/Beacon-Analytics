@@ -3,6 +3,103 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<!--Resources Chart1--><!--Total Visitors for one Room-->
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
- 
+
+
+
+
+<script>
+
+    var el = document.getElementById("contain");
+    el.style.backgroundColor = "teal";
+</script>
+
+<div class="container-fluid pb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a id="textofDashboard" href="#"><b style="font-size:20px; ">Rooms Analytics</b></a>
+        </li>
+    </ol>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="pl-0" style="border:groove;">
+       
+          
+        
+
+        <!--Row1-->
+        <div class="row pl-2">
+
+            <!--Chart1--><!--Total Visitors and Bounce Rate for one Room-->
+            <div class="col-md-6 pl-2 pb-0" style="text-align:center;">
+                <div>
+                    <div>
+                        <select style="float:left; border: double; width:300px; background-color:lavender; color:blue;">
+                            <option selected>Oda-1</option>
+                            <option>Oda-2</option>
+                            <option>Oda-3</option>
+                            <option>Oda-4</option>
+                            <option>Oda-5</option>
+                        </select>
+                    </div>
+
+                    <div id="chart1" class="pl-0 pt-2" style="height:400px; min-width: 310px"></div>
+                    <script src="~/js/ChartsJS/RoomsChart1.js"></script>
+                </div>
+            </div>
+
+
+            <!--Chart2--><!--Bounce Rate for one Room-->
+            <div class="col-md-6" ;">
+                Bir Odaya Göre ortalama ve toplam izlenme sayısı
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--Row2-->
+    <div class="row p-2">
+        <div style="background-color: blue; width:100%;">
+            Bütün odaların kişi ortalaması (haftalık, aylık, yıllık)
+        </div>
+    </div>
+
+
+
+    <!--Row3-->
+    <div class="row p-2" style="background-color: aquamarine;">
+        <div style="background-color:chartreuse; width:100%;">
+            Bütün odaların izlenme süresi ortalaması (haftalık, aylık, yıllık)
+        </div>
+    </div>
+
+
+
+    <!--Row4-->
+    <div class="row p-2" style="background-color: crimson;">
+        <div style="background-color: darkgreen; width:100%;">
+            Behavior Flow
+        </div>
+    </div>
+
+
+
+    <!--Row5-->
+    <div class="row p-2" style="background-color: darkmagenta;">
+        <div style="background-color: darkgreen; width:100%;">
+            yok
+        </div>
+    </div>
+
+</div>
+
