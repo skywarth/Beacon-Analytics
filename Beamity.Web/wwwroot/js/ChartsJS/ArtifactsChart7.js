@@ -35,7 +35,7 @@ anychart.onDocumentReady(function () {
     var currentScroller = chart.scroller();
     currentScroller.line(mapping);
 
-    chart.title("Disable data grouping.");
+    chart.title("Bounce Rate for All Artifacts ");
     chart.container("chart7");
     chart.draw();
 });
