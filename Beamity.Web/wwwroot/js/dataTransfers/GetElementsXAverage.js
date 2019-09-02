@@ -48,7 +48,7 @@ function loadPayload() {
         $("#Average7-data")[0].textContent = secondsToFinalTime(payload.userWatchTimeAverage1);
         $("#Average8-data")[0].textContent = payload.userArtifactAverage1;
         var dataForTable = payload.maxMinVisitorArtifact1;
-        var stringPart1 = "<thead><tr><th>" + dataForTable[0].name + "</th><th>" + dataForTable[1].name + "</th></tr></thead>";
+        var stringPart1 = "<thead><tr><th></th><th>" + dataForTable[0].name + "</th><th>" + dataForTable[1].name + "</th></tr></thead>";
         var stringPart2 = "<tbody><tr><th>Dun</th><td>" + dataForTable[2].count + "</td><td>" + dataForTable[3].count + "</td></tr>";
         var stringPart3 = "<tr><th>Bugun</th><td>" + dataForTable[0].count + "</td><td>" + dataForTable[1].count + "</td></tr></tbody>"
 

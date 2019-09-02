@@ -27,13 +27,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
     <link href="~/css/LayoutAnalytics.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/js/jquery.min.js"></script>
     <script src="~/package/dist/sweetalert2.js"></script>
     <script src="~/js/bootstrap.bundle.js"></script>
-
+    <link href="~/css/fontawesome.css" rel="stylesheet" />
     <!-- Core plugin JavaScript-->
     <script src="~/js/jquery.easing.min.js"></script>
 
@@ -100,6 +100,18 @@
         }
 
         //locationAnon();
+
+        @{string a = Context.Request.Path; }
+        @{ if (a=="/Home/Index")
+            {
+                @*alert("a");*@
+            }
+            else
+            {
+               @:locationAnon();
+            }
+
+        }
 
     </script>
 
