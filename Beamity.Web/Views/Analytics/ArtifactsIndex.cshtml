@@ -4,7 +4,7 @@
     ViewData["Title"] = "ArtifactsIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    <!--Resources of Chart1-->
+    <!--Resources of Chart1--> <!--Bir eser için ortalama kişi sayısı-->
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
@@ -12,7 +12,7 @@
     <script src="~/js/ChartsJS/ArtifactsChart1.js"></script>
 
 
-    <!-- Chart2 Resources -->
+    <!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
@@ -20,19 +20,30 @@
 
 
 
-    <!--Chart3 Resources-->
+    <!--Chart3 Resources--><!--Most/Least Artifacts-->
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
     <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
 
-    <!--Chart4 Resources-->
+    <!--Chart4 Resources--><!--Total Visitors for one Artifact-->
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
+
+    <!--Chart5 Resources--><!--Average of All Artifacts by visitors and time-->
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 
-
+    <!--Chart7--><!--Bounce Rate-->
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
 
     <script>
 
@@ -51,7 +62,8 @@
 
 <!--Body Row-->
 <div class="row pl-4 pr-4 ">
-    <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:#30303d; color:#fff; border:groove;">
+    <!--Table of Artifacts-->
+    <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:#30303d; color:#fff; border:groove; border-bottom:none;">
 
         <p class="pt-md-3" style="text-align:center; color:#fff;">
             <b>Average of time for one artifacts</b>
@@ -206,18 +218,17 @@
                 <td><button onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
             </tr>
-
         </table>
-
     </div>
-
+    <!--Table of Artifacts-->
+    <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Row1-->
     <div class="col-md-8 pl-md-4" style="background-color:#30303d; color:#fff; border:groove;">
 
-        <!--Row 1.1--> <!--Bir eser için ortalama izlenme süresi-->
+        <!--Row 1.1--> <!--Bir eser için ortalama kişi sayısı-->
         <div class="row" style="height:50%; ">
             <p class="pt-md-3" style="text-align:center; color:#fff; border:groove; width:100%;">
-                <b>Average of time for one artifacts</b>
+                <b>Average of Visitors for one artifacts</b>
 
                 <select style="float:right;">
 
@@ -230,10 +241,9 @@
             </p>
             <div id="chart1"></div>
         </div>
-
-
-
-        <!--Row 1.2-->
+        <!--Row 1.1-->
+        <!--------------------------------------------------------------------------------------------------------------------------->
+        <!--Row 1.2--> <!--Bir eser için ortalama izlenme süresi-->
         <div class="row pt-5 " style=" max-height:50%;">
             <p class="pt-md-3" style="text-align:center; color:#fff; border:groove; width:100%; color:white;">
                 <b>Average of time for one artifacts</b>
@@ -247,18 +257,27 @@
                 </select>
             </p>
 
-
-
             <link href="~/css/AnalyticsCSS.css" rel="stylesheet" /><!-- Styles -->
             <div id="chartdiv" style="width:900px; height:390px; "></div>
             <script src="~/js/ChartsJS/ArtifactsChart2.js"></script>
 
-
         </div>
     </div>
 
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Row2-->
+    <!--Total Visitors for one Artifact-->
+    <div class="row p-3">
+        <div class="col-12" style="border:groove; background-color:white;">
 
-    <!--Row2--> <!--Calendar Chart-->
+            <div id="chart4" style="height: 400px; width:1215px;"></div>
+            <script src="~/js/ChartsJS/ArtifacstChart4.js"></script>
+
+        </div>
+    </div>
+    <!--Row2-->
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Row3--> <!--Most/Least Artifacts-->
     <div class="row p-md-3 " style=" color:white;">
         <div class="col-md-12 p-0" style=" border:groove;  width:1250px; ">
 
@@ -266,127 +285,68 @@
             <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
         </div>
     </div>
-    <!--Row2-->
     <!--Row3-->
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Row4--><!--Average of All Artifacts by visitors and time-->
     <div class="row p-md-3">
         <div class="col-md-12 p-0" style=" border:groove;  width:1250px; color:white; ">
 
             <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
-                <div id="ac_style_samples-stock-spline-05" style="display:none;">
+                <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
 
-                    <style>
-                        html, body, #container {
-                            width: 100%;
-                            height: 100%;
-                            margin: 0;
-                            padding: 0;
-                           
-                        }
-                    </style>
-                </div>
+                <div id="chart5" style="width:1250px; height:450px; "></div> <!--Chart div-->
+                <script src="~/js/ChartsJS/ArtifactsChart5.js"></script><!--Chart script-->
 
-
-                <div id="container" style="width:1250px; "></div>
-
-                <script>
-                    (function () {
-                        function ac_add_to_head(el) {
-                            var head = document.getElementsByTagName('head')[0];
-                            head.insertBefore(el, head.firstChild);
-                        }
-                        function ac_add_link(url) {
-                            var el = document.createElement('link');
-                            el.rel = 'stylesheet'; el.type = 'text/css'; el.media = 'all'; el.href = url;
-                            ac_add_to_head(el);
-                        }
-                        function ac_add_style(css) {
-                            var ac_style = document.createElement('style');
-                            if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
-                            else ac_style.appendChild(document.createTextNode(css));
-                            ac_add_to_head(ac_style);
-                        }
-
-                        ac_add_style(document.getElementById("ac_style_samples-stock-spline-05").innerHTML);
-                        ac_add_style(".anychart-embed-samples-stock-spline-05{width:600px;height:450px;}");
-                    })();
-                
-                    anychart.onDocumentReady(function () {
-
-                        // set the data
-                        table = anychart.data.table();
-                        table.addData([
-                            ['2010-01-01', 1.0860, 73],
-                            ['2010-02-04', 1.0832, 72.7250],
-                            ['2010-02-05', 1.0780, 73.3850],
-                            ['2010-03-06', 1.0781, 74.6020],
-                            ['2010-04-07', 1.0936, 75.1000],
-                            ['2011-01-08', 1.0932, 74.8050],
-                            ['2011-08-11', 1.0860, 76.3750],
-                            ['2011-01-12', 1.0857, 76.9360],
-                            ['2011-01-13', 1.0877, 76.6310],
-                            ['2012-07-14', 1.0865, 76.2450],
-                            ['2012-07-15', 1.0917, 77.7650],
-                            ['2012-01-18', 1.0893, 79.4090],
-                            ['2013-01-19', 1.0909, 78.8160],
-                            ['2013-12-20', 1.0891, 81.3790],
-                            ['2013-01-21', 1.0874, 82.3970],
-                            ['2014-11-22', 1.0797, 78.1713],
-                            ['2014-01-25', 1.0849, 80.0704],
-                            ['2014-01-26', 1.0872, 78.8750],
-                            ['2015-01-27', 1.0893, 78.0500],
-                            ['2015-01-28', 1.0939, 76.3325],
-                            ['2015-01-29', 1.0837, 75.5213],
-                            ['2016-02-01', 1.0889, 77.2277],
-                            ['2016-02-02', 1.0919, 79.7967],
-                            ['2016-02-03', 1.1104, 76.8869],
-                            ['2016-02-04', 1.1208, 76.9080],
-                            ['2016-02-05', 1.1159, 77.4872],
-                            ['2016-02-08', 1.1198, 78.5509],
-                            ['2016-02-09', 1.1293, 79.7087],
-                            ['2016-02-10', 1.1290, 78.6429],
-                            ['2016-02-11', 1.1324, 79.5917],
-                            ['2016-02-12', 1.1260, 78.3558],
-                            ['2016-02-15', 1.1155, 76.9807],
-                            ['2016-02-16', 1.1144, 77.8876],
-                            ['2016-02-17', 1.1128, 75.0400],
-                            ['2016-02-18', 1.1107, 76.4278],
-                            ['2016-02-19', 1.1135, 76.9937],
-                            ['2016-02-22', 1.1029, 77.0453],
-                            ['2016-02-23', 1.1020, 75.3462],
-                            ['2016-02-24', 1.1013, 75.7421],
-                            ['2016-02-25', 1.1023, 75.3641],
-                            ['2016-02-26', 1.0934, 76.1883],
-                            ['2016-02-29', 1.0873, 75.1682]
-                        ]);
-
-                        // map the data
-                        mapping_euro = table.mapAs();
-                        mapping_euro.addField('value', 1);
-                        mapping_rub = table.mapAs();
-                        mapping_rub.addField('value', 2);
-
-                        // chart type
-                        var chart = anychart.stock();
-
-                        // set the series
-                        var series_euro = chart.plot(0).spline(mapping_euro);
-                        series_euro.name("Average of Visitors for All Artifacts");
-
-                        var series_rub = chart.plot(1).spline(mapping_rub);
-                        series_rub.name("Average of time for All Artifacts");
-
-                        // coloring
-                        series_euro.stroke("#ff0000");
-
-                        chart.title('Average of All Artifacts by Visitors and by Time');
-
-                        chart.container('container');
-                        chart.draw();
-                    });
-                </script>
             </div>
         </div>
     </div>
+    <!--Row4-->
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Row5--> <!--Behaviour Flow-->
+    <div class="row pl-3 pt-3 pr-0 pb-3" style=" width:1260px;">
+
+        <div class="col-md-8 pr-3" style="background-color:white; border:groove; ">
+            <script src="https://www.amcharts.com/lib/4/core.js"></script>
+            <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+            <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+            <link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
+            <script src="~/js/ChartsJS/BehaviourFlow.js"></script>
+
+            <div id="chartdiv2" style="height:500px; width:100%;"></div>
+        </div>
+
+        <!--Behaviour Flow Bilgileri-->
+        <div class="col-md-4 pl-3" style="background-color:white; border:groove;">
+            ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
+            ...Kimin kiminle ilişkisi var listelenecek...
+        </div>
+
+    </div>
+    <!--Row5-->
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Row6--> <!--Bounce Rate-->
+    <div class="row  " style="width:100%; border:groove; color:white; margin:auto;">
+        <div id="anychart-embed-samples-stock-grouping-01" class="anychart-embed anychart-embed-samples-stock-grouping-01">
+
+            <div id="ac_style_samples-stock-grouping-01" style="display:none;">
+
+                <style>
+                    html, body, #chart7 {
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                </style>
+            </div>
+
+            <script src="~/js/ChartsJS/ArtifactsChart7.js"></script>
+            <div id="chart7" style="width:1250px;"></div>
+        </div>
+    </div>
+    <!--Row6-->
+
+
 
 </div>
 <!--Body Row-->
