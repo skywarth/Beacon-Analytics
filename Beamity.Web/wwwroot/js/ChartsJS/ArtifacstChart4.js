@@ -11,17 +11,17 @@
         },
 
         title: {
-            text: 'Total Visitors for one Artifact'
+            text: 'Average of Artifact by Visitors '
         },
 
         yAxis: {
             title: {
-                text: 'Exchange rate'
+                text: 'Average of Artifact by Visitors'
             }
         },
 
         series: [{
-            name: 'USD to EUR',
+            name: 'Average Artifacts',
             data: data,
             id: 'dataseries',
             tooltip: {
