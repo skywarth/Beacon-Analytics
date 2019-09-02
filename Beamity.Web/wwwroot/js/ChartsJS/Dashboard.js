@@ -1,7 +1,7 @@
 ﻿/*Chart code*/
-
-am4core.ready(function () {
-
+var temperatures= null;
+am4core.ready(qwe());
+    function qwe() {
             // Themes begin
             am4core.useTheme(am4themes_animated);
         // Themes end
@@ -11,9 +11,9 @@ am4core.ready(function () {
          */
 
         // disclaimer: this data is not accuarate, don't use it for any puroposes
-        // first temperature is average for 1973-1980 period
-
-        var temperatures = {
+    // first temperature is average for 1973-1980 period
+    if (temperatures == null)
+        temperatures = {
             "ODA 1": [
             ["ESER 1", 1, 2, 3, 4, 5, 6, 7, 8, 4, 5, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 4, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.2, 3, 4, 1, 2, 3, 4, 4, 5],
             ["ESER 2", 1.1, 3.2, 4.2, 2],
@@ -270,5 +270,5 @@ slider.exportable = false;
         valueAxis.renderer.axisAngle = chart.startAngle;
     })
 
-}); // end am4core.ready()
+}; // end am4core.ready()
    

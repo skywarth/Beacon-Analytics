@@ -30,5 +30,9 @@ namespace Beamity.Application.Service.IServices
         Task<double> GetUserArtifactAverage(EntityDTO input);
 
         Task<List<MaxMinVisitorArtifactDTO>> GetMaxVisitorArtifact(EntityDTO input);
+
+        Task<List<HourlyVisitorMuseumDTO>> GetHourlyVisitorsMuseum(EntityDTO input);
+
+        Task<int> GetHourlyVisitorsArtifact(EntityDTO input);
     }
 }

@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Beamity.Application.DTOs.CustomDTOs;
+using Beamity.Application.DTOs.RoomDTOs;
+using Beamity.Application.DTOs.ArtifactDTOs;
 
 namespace Beamity.Application.Service.Services
 {
@@ -401,7 +403,144 @@ namespace Beamity.Application.Service.Services
         }
 
 
+        public async Task<List<HourlyVisitorMuseumDTO>> GetHourlyVisitorsMuseum(EntityDTO input)
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x => x.Artifact.Room)
 
+                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
+                .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
+                          group t by tempClass.TruncateToHourStart(t.EnterTime) into grouped
+                          orderby grouped.Key ascending
+                          select new HourlyVisitorMuseumDTO
+                          {
+                              Hour = grouped.Key.TimeOfDay,
+                              Count = grouped.Count()
+
+
+
+
+                          };
+
+
+
+
+            var chart = subList.ToList();
+            //rate = Math.Round(rate, 2);
+            return chart;
+        }
+
+        public async Task<List<>> GetHourlyVisitorsArtifact(EntityDTO input)
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x => x.Artifact.Room)
+
+                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
+                .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
+                          select new ReadRoomDTO
+                          {
+                              Id=t.Beacon.Artifact.Room.Id,
+                              Name=t.Beacon.Artifact.Room.Name
+                              
+                              
+
+
+
+
+                          };
+
+            var subList2 = from t in beaconActivity
+                           select new ReadArtifactDTO
+                           {
+                               Id = t.Beacon.Artifact.Id,
+                               Name = t.Beacon.Artifact.Name,
+                               RoomName=t.Beacon.Artifact.Room.Name
+                           };
+
+
+            var subList3 = from t in beaconActivity
+                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
+                          group t by (tempClass.TruncateToHourStart(t.EnterTime),t.Beacon.Artifact.Id) into grouped
+                          orderby grouped.Key ascending
+                          select new
+                          {
+                              Hour = grouped.Key.Item1.TimeOfDay,
+                              ArtifactId=grouped.Key.Id,
+                              Count = grouped.Count()
+
+
+
+
+                          };
+            var list = subList.Distinct().ToList();
+            var list2 = subList2.Distinct().ToList();
+            var list3 = subList3.ToList();
+
+            var list4 = from k in list2
+                        join time in list3 on k.Id equals time.ArtifactId into m
+                        select new
+                        {
+                            Id=k.Id,
+                            Name = k.Name,
+                            RoomName=k.RoomName,
+                            Times=m
+
+                        };
+            /* var subList3 = subList.ToList().GroupJoin(subList2.ToList(), room => room.Name, x=>x.RoomName, (room, artifact) => new
+             {
+                 room.Id,
+                 room.Name,
+                 artifact.Name
+
+             }
+             );*/
+            
+
+
+            var finalList = from d in list
+                           join s in list4 on d.Name equals s.RoomName into g
+                           
+                           select new
+                           {
+                               RoomName = d.Name,
+                               Artifacts = g
+                           };
+            var final = finalList.ToList();
+
+            //fix by changing join order, time->artifact->room 
+            
+ 
+
+    
+
+
+            return final;
+        }
+
+
+    }
+    static class tempClass
+    {
+        public static DateTime TruncateToHourStart(this DateTime dt)
+        {
+            return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, 0, 0);
+        }
     }
 }
 

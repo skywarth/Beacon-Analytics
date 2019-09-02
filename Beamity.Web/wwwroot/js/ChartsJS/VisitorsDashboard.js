@@ -1,13 +1,15 @@
-﻿am4core.ready(function () {
+﻿var chart;
+am4core.ready(function () {
 
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
 
     // Create chart instance
-    var chart = am4core.create("chartdiv3", am4charts.XYChart);
+    chart = am4core.create("chartdiv3", am4charts.XYChart);
 
     // Add data
+    /*
     chart.data = [{
         "date": "2012-07-27",
         "value": 13
@@ -573,9 +575,9 @@
         "date": "2013-01-30",
         "value": 81
     }];
-
+    */
     // Set input format for the dates
-    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+    chart.dateFormatter.inputDateFormat = "H";
 
     // Create axes
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
