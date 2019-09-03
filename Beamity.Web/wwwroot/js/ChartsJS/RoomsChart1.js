@@ -2,6 +2,8 @@
 
 //Total Visitors for one Room
 
+
+
 Highcharts.getJSON('https://www.highcharts.com/samples/data/aapl-c.json', function (data) {
 
     // Create the chart
@@ -13,11 +15,11 @@ Highcharts.getJSON('https://www.highcharts.com/samples/data/aapl-c.json', functi
         },
 
         title: {
-            text: 'Total Visitors and Bounce Rate for one Room'
+            text: 'AAPL Stock Price'
         },
 
         series: [{
-            name: 'Total Visitors,Bounce Rate',   
+            name: 'AAPL Stock Price',
             data: data,
             lineWidth: 0,
             marker: {
@@ -33,6 +35,5 @@ Highcharts.getJSON('https://www.highcharts.com/samples/data/aapl-c.json', functi
                 }
             }
         }]
-       
     });
 });

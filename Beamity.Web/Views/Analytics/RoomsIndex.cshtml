@@ -9,7 +9,11 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
-
+<!--Resources Chart2--><!--Average of time and total time for one artifact-->
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 
 
 
@@ -31,9 +35,6 @@
 
 <div class="container-fluid">
     <div class="pl-0" style="border:groove;">
-       
-          
-        
 
         <!--Row1-->
         <div class="row pl-2">
@@ -51,15 +52,24 @@
                         </select>
                     </div>
 
-                    <div id="chart1" class="pl-0 pt-2" style="height:400px; min-width: 310px"></div>
                     <script src="~/js/ChartsJS/RoomsChart1.js"></script>
+                    <div id="chart1" style="height: 400px; min-width: 310px; background-color:aquamarine;"></div>
+
                 </div>
             </div>
 
 
-            <!--Chart2--><!--Bounce Rate for one Room-->
+            <!--Chart2--><!--Bir Odaya Göre ortalama ve toplam izlenme sayısı-->
             <div class="col-md-6" ;">
-                Bir Odaya Göre ortalama ve toplam izlenme sayısı
+                <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
+                    <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
+
+
+                    <div id="chart5" style="width:100%; height:100%; border:solid; border-color:white; border-radius:5px; "></div> <!--Chart div-->
+                    <script src="~/js/ChartsJS/RoomChart2.js"></script>
+                    
+
+                </div>
             </div>
 
         </div>
