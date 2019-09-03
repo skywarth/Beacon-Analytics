@@ -1,7 +1,7 @@
 ﻿/*Chart code*/
 var temperatures= null;
-am4core.ready(qwe());
-    function qwe() {
+//am4core.ready(qwe());
+    function fillRadarChart() {
             // Themes begin
             am4core.useTheme(am4themes_animated);
         // Themes end

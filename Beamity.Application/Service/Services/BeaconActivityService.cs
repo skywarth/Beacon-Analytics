@@ -153,6 +153,7 @@ namespace Beamity.Application.Service.Services
 
             var subList = from t in beaconActivity
                           group t by t.Beacon.Id into grouped
+                          where grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds) >= 0
                           select new
                           {
                               id = grouped.Key,
@@ -182,6 +183,7 @@ namespace Beamity.Application.Service.Services
 
             var subList = from t in beaconActivity
                           group t by t.Beacon.Artifact.Room.Id into grouped
+                          where grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds) >= 0
                           select new
                           {
                               id = grouped.Key,
@@ -285,7 +287,9 @@ namespace Beamity.Application.Service.Services
                  .ToListAsync();
 
             var subList = from t in beaconActivity
+                          
                           group t by t.UserId into grouped
+                          where grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds)>=0
                           select new
                           {
                               id = grouped.Key,
@@ -332,7 +336,7 @@ namespace Beamity.Application.Service.Services
 
 
             double count = subList.Average(x => x.count);
-            //rate = Math.Round(rate, 2);
+            count = Math.Round(count, 2);
             return count;
         }
 
@@ -408,21 +412,22 @@ namespace Beamity.Application.Service.Services
             //var beaconActivity = await _beaconActivityRepository.GetAll()
             var beaconActivity = await publicSet
                 .Include(x => x.Beacon)
-                .ThenInclude(x => x.Artifact.Room)
 
-                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
+
+                
                 .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                //.Where(x => x.EnterTime.Hour >= 21)
                 .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
 
                  .ToListAsync();
 
             var subList = from t in beaconActivity
-                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
-                          group t by tempClass.TruncateToHourStart(t.EnterTime) into grouped
+                          group t by tempClass.TruncateToHourStart(t.EnterTime).TimeOfDay into grouped
+                          
                           orderby grouped.Key ascending
                           select new HourlyVisitorMuseumDTO
                           {
-                              Hour = grouped.Key.TimeOfDay,
+                              Hour = grouped.Key,
                               Count = grouped.Count()
 
 

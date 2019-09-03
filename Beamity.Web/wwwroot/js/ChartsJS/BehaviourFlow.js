@@ -19,8 +19,7 @@ chartDiv2Data = [
 
 
 
-    function asd () {
-        alert("a");
+    function fillBehaviourChart () {
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
