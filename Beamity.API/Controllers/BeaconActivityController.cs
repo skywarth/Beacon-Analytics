@@ -135,6 +135,7 @@ namespace Beamity.API.Controllers
                 //new
                 data.HourlyVisitorsMuseum1=await _beaconActivityService.GetHourlyVisitorsMuseum(input);
                 data.RoomsArtifactHourly=await _beaconActivityService.GetHourlyVisitorsArtifact(input);
+                data.BehaviourFlow= await _beaconActivityService.GetBehaviourFlow(input);
                 return data;
             }
             catch (System.Exception)
@@ -158,6 +159,8 @@ namespace Beamity.API.Controllers
             private List<MaxMinVisitorArtifactDTO> MaxMinVisitorArtifact;
             private List<HourlyVisitorMuseumDTO> HourlyVisitorsMuseum;
             private List<RoomsArtifactHourly> roomsArtifactHourly;
+            private List<BehaviourFlowListDTO> behaviourFlow;
+
 
             public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
             public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
@@ -170,6 +173,7 @@ namespace Beamity.API.Controllers
             public List<MaxMinVisitorArtifactDTO> MaxMinVisitorArtifact1 { get => MaxMinVisitorArtifact; set => MaxMinVisitorArtifact = value; }
             public List<HourlyVisitorMuseumDTO> HourlyVisitorsMuseum1 { get => HourlyVisitorsMuseum; set => HourlyVisitorsMuseum = value; }
             public List<RoomsArtifactHourly> RoomsArtifactHourly { get => roomsArtifactHourly; set => roomsArtifactHourly = value; }
+            public List<BehaviourFlowListDTO> BehaviourFlow { get => behaviourFlow; set => behaviourFlow = value; }
         }
 
     }

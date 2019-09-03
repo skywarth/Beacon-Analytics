@@ -1,5 +1,5 @@
 ﻿
-
+    <script src="~/js/chance.min.js"></script>
 
 @model IEnumerable<Beamity.Application.DTOs.BeaconActivityDTOs.ReadBeaconActivityDTO>
 @{
@@ -273,15 +273,29 @@
         /* Bulk Create */
     $("#bulkCreate").click(function () {
         var $options = $('#beacons').find('option');
-        for (var i = 0; i < 50; i++) {
+        var guid = randomGuid();
+        for (var i = 0; i < 100; i++) {
             
-    random = ~~(Math.random() * $options.length);
-            BulkCreateRandom($options.eq(random).val());
+            random = ~~(Math.random() * $options.length);
+
+            if (chance.bool({ likelihood: 70 })) {
+                
+            }
+            else {
+                guid=randomGuid();
+            }
+            
+            BulkCreateRandom($options.eq(random).val(),guid);
+            Swal({
+                type: 'success',
+                title: 'Thanks',
+                text: 'Operation is success',
+            });
             }
 
 
 
-        function BulkCreateRandom(beaconId) {
+        function BulkCreateRandom(beaconId,userId) {
             if (beaconId == null || beaconId == undefined) {
                 alert("huu undefined geldi");
             }
@@ -292,7 +306,7 @@
         options.type = "POST";
             var obj = {};
             obj.BeaconId = beaconId;
-            obj.UserId = randomGuid();
+            obj.UserId = userId;
             //var startRange = new Date(2016, 0, 1);
             var startRange = new Date();
             startRange.setHours(00);
@@ -321,20 +335,21 @@
         debugger
         options.success = function (msg) {
             $("#msg").html(msg);
-            Swal({
+            /*Swal({
                 type: 'success',
                 title: 'Thanks',
                 text: 'Operation is success',
             }).then(function () {
-
-                window.location.href = "/BeaconActivity/Index";
-            })
+            */
+                window.location.href = "/BeaconActivity/Index";/*
+            })*/
         };
         options.error = function () {
             $("#msg").html("Error while calling the Web API!");
         };
         $.ajax(options);
-        $("#loginModal").modal('hide');
+            $("#loginModal").modal('hide');
+
     }
         
     });

@@ -84,7 +84,11 @@ function loadPayload() {
            }
 
        });
-
+        var behaviourFlow = payload.behaviourFlow;
+        chartDiv2Data = [];
+        for (var i = 0; i < behaviourFlow.length; i++) {
+            chartDiv2Data[i] = { from: behaviourFlow[i].from, to: behaviourFlow[i].to, value: behaviourFlow[i].count };
+        }
 
 
         payloadDefer.resolve('yay');

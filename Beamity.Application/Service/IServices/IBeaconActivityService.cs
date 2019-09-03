@@ -34,5 +34,9 @@ namespace Beamity.Application.Service.IServices
         Task<List<HourlyVisitorMuseumDTO>> GetHourlyVisitorsMuseum(EntityDTO input);
 
         Task<List<RoomsArtifactHourly>> GetHourlyVisitorsArtifact(EntityDTO input);
+
+        //Task<List<RoomsArtifactHourly>> GetHourlyVisitorsArtifact(EntityDTO input);
+
+        Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(EntityDTO input);
     }
 }

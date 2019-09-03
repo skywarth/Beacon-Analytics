@@ -536,6 +536,110 @@ namespace Beamity.Application.Service.Services
             return final;
         }
 
+        public async Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(EntityDTO input)
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x => x.Artifact.Room)
+
+                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
+                .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            
+
+           /* var startRoom = from t in beaconActivity
+                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
+                          group t by (t.Beacon.Artifact.Room.Id,t.Beacon.Artifact.Room.Name) into grouped
+                          
+                          select new ReadRoomDTO
+                          {
+                              Id = grouped.Key.Id,
+                              Name=grouped.Key.Name
+                          };
+
+
+
+
+            var startRoomList = startRoom.ToList();
+            var nextRoomList = startRoomList;
+
+
+            var startRoom = from t in beaconActivity
+                                //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
+                            group t by (t.Beacon.Artifact.Room.Id, t.Beacon.Artifact.Room.Name) into grouped
+
+                            select new ReadRoomDTO
+                            {
+                                Id = grouped.Key.Id,
+                                Name = grouped.Key.Name
+                            };
+                            */
+            var usersWithMultipleActivity = from t in beaconActivity
+                                           group t by (t.UserId) into grouped
+                                           where grouped.Count() > 1
+                                           select new
+                                           {
+                                               grouped.Key
+                                           };
+            var usersWithMultipleActivityList = usersWithMultipleActivity.ToList();
+
+
+            List<BehaviourFlowDTO> activities = new List<BehaviourFlowDTO>();
+            foreach (var user in usersWithMultipleActivityList)
+            {
+                Guid id = user.Key;
+                var sub = from t in beaconActivity
+                              where t.UserId == id
+                              orderby t.EnterTime ascending
+                              select new ReadBeaconActivityDTO
+                              {
+                                  Id=t.Id,
+                                  BeaconId=t.BeaconId,
+                                  Beacon=t.Beacon,
+                                  EnterTime=t.EnterTime,
+                                  ExitTime=t.ExitTime,
+                                  UserId=t.UserId
+                                  
+                              };
+                var subList = sub.ToList();//all activities for a user
+                /*for (int i = 0; i < subList.Count/2; i++)
+                {
+
+                }*/
+
+                while (subList.Count > 1)
+                {
+                    var firstAct = subList.First();
+                    subList.RemoveAt(0);
+                    var nextAct = subList.First();
+                    subList.RemoveAt(0);
+                    activities.Add(new BehaviourFlowDTO(firstAct, nextAct));
+                }
+
+                
+            }
+            //Counts are all the way 1 problem
+            var behaviourFlow = from t in activities
+                                group t by (t.From.Beacon.Artifact.Room.Name, t.To.Beacon.Artifact.Room.Name, t.From.Beacon.Artifact.Room.Id,t.To.Beacon.Artifact.Room.Id) into grouped
+                                where (grouped.Key.Item1!=grouped.Key.Item2)
+                                select new BehaviourFlowListDTO
+                                {
+                                    From = grouped.Key.Item1,
+                                    To = grouped.Key.Item2,
+                                    Count = grouped.Count()
+                                };
+
+
+
+
+            //rate = Math.Round(rate, 2);
+            return behaviourFlow.ToList();
+        }
+
 
     }
     static class tempClass
