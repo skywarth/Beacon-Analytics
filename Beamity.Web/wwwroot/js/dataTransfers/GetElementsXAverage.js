@@ -53,6 +53,40 @@ function loadPayload() {
         var stringPart3 = "<tr><th>Bugun</th><td>" + dataForTable[0].count + "</td><td>" + dataForTable[1].count + "</td></tr></tbody>"
 
         $("#datatable")[0].innerHTML = stringPart1 + stringPart2 + stringPart3;
+       am4core.ready(function () {
+            
+           var data = [];
+           // Add data
+           for (var i = 0; i < payload.hourlyVisitorsMuseum1.length; i++) {
+               data.push({ date: payload.hourlyVisitorsMuseum1[i].hour, value:payload.hourlyVisitorsMuseum1[i].count });
+           }
+
+
+           chart.data = data;
+
+
+           temperatures = [];
+           var tempHourly = payload.roomsArtifactHourly;
+           //flower
+           for (var i = 0; i < tempHourly.length; i++) {
+               temperatures[tempHourly[i].roomName] = [];
+               for (var k = 0; k < tempHourly[i].artifacts.length; k++) {
+                   //temperatures[tempHourly[i].roomName][k] = [];
+                   var counts = [];
+                   counts[0] = tempHourly[i].artifacts[k].name;
+                   for (var m = 1; m < tempHourly[i].artifacts[k].times.length; m++) {
+                       counts[m]= tempHourly[i].artifacts[k].times[m].count;
+                      
+                   }
+                   temperatures[tempHourly[i].roomName][k] = counts;
+               }
+               
+           }
+
+       });
+
+
+
         payloadDefer.resolve('yay');
         
 

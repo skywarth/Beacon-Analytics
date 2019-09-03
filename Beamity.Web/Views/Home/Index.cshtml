@@ -416,5 +416,10 @@
     
     }
 
-    locationAnon().pipe(loadPayload).pipe(loadDatatableChart);
+    locationAnon().pipe(loadPayload).pipe(dataToChart);
+
+    async function dataToChart() {
+        await loadDatatableChart();
+        await qwe();
+    } 
 </script>
