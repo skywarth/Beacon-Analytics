@@ -52,9 +52,9 @@ am4core.ready(qwe());
         ]
     }
 
-    var startYear = 1973;
-    var endYear = 2016;
-    var currentYear = 1995;
+    var startYear = 00;
+        var endYear = 24;
+        var currentYear = new Date().getHours();
     var colorSet = new am4core.ColorSet();
 
     var chart = am4core.create("chartdiv", am4charts.RadarChart);

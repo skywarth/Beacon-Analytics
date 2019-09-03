@@ -66,19 +66,19 @@ function loadPayload() {
 
 
            temperatures = [];
-           var tempHourly = payload.hourlyVisitorsArtifact1;
+           var tempHourly = payload.roomsArtifactHourly;
            //flower
            for (var i = 0; i < tempHourly.length; i++) {
                temperatures[tempHourly[i].roomName] = [];
-               for (var k = 0; k < tempHourly[i].Artifacts.length; k++) {
+               for (var k = 0; k < tempHourly[i].artifacts.length; k++) {
                    //temperatures[tempHourly[i].roomName][k] = [];
                    var counts = [];
-                   counts[0] = tempHourly[i].Artifacts.name;
-                   for (var m = 1; m <= tempHourly[i].Artifacts.times.length; m++) {
-                       counts[m]= tempHourly[i].Artifacts.times.count;
+                   counts[0] = tempHourly[i].artifacts[k].name;
+                   for (var m = 1; m < tempHourly[i].artifacts[k].times.length; m++) {
+                       counts[m]= tempHourly[i].artifacts[k].times[m].count;
                       
                    }
-                   temperatures[tempHourly[i].roomName][k] = [];
+                   temperatures[tempHourly[i].roomName][k] = counts;
                }
                
            }

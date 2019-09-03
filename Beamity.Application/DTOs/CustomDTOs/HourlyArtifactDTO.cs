@@ -8,11 +8,11 @@ namespace Beamity.Application.DTOs.CustomDTOs
     {
         private TimeSpan hour;
         private int count;
-        private Guid ArtifactId;
+        private Guid artifactId;
 
 
         public TimeSpan Hour { get => hour; set => hour = value; }
         public int Count { get => count; set => count = value; }
-        public Guid ArtifactId1 { get => ArtifactId; set => ArtifactId = value; }
+        public Guid ArtifactId { get => artifactId; set => artifactId = value; }
     }
 }

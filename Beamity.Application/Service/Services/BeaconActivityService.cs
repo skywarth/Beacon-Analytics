@@ -438,7 +438,7 @@ namespace Beamity.Application.Service.Services
             return chart;
         }
 
-        public async Task<List<>> GetHourlyVisitorsArtifact(EntityDTO input)
+        public async Task<List<RoomsArtifactHourly>> GetHourlyVisitorsArtifact(EntityDTO input)
         {
             //var beaconActivity = await _beaconActivityRepository.GetAll()
             var beaconActivity = await publicSet
@@ -453,7 +453,7 @@ namespace Beamity.Application.Service.Services
 
             var subList = from t in beaconActivity
                               //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
-                          select new ReadRoomDTO
+                          select new
                           {
                               Id=t.Beacon.Artifact.Room.Id,
                               Name=t.Beacon.Artifact.Room.Name
@@ -466,11 +466,14 @@ namespace Beamity.Application.Service.Services
                           };
 
             var subList2 = from t in beaconActivity
+
+                           group t by (t.Beacon.Artifact.Id, t.Beacon.Artifact.Name, t.Beacon.Artifact.Room.Name) into grouped
                            select new ReadArtifactDTO
+
                            {
-                               Id = t.Beacon.Artifact.Id,
-                               Name = t.Beacon.Artifact.Name,
-                               RoomName=t.Beacon.Artifact.Room.Name
+                               Id = grouped.Key.Id,
+                               Name = grouped.Key.Item2,
+                               RoomName=grouped.Key.Item3
                            };
 
 
@@ -478,7 +481,7 @@ namespace Beamity.Application.Service.Services
                               //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
                           group t by (tempClass.TruncateToHourStart(t.EnterTime),t.Beacon.Artifact.Id) into grouped
                           orderby grouped.Key ascending
-                          select new
+                          select new HourlyArtifactDTO
                           {
                               Hour = grouped.Key.Item1.TimeOfDay,
                               ArtifactId=grouped.Key.Id,
@@ -494,12 +497,12 @@ namespace Beamity.Application.Service.Services
 
             var list4 = from k in list2
                         join time in list3 on k.Id equals time.ArtifactId into m
-                        select new
+                        select new ArtifactRoomTimesDTO
                         {
-                            Id=k.Id,
+                            Id = k.Id,
                             Name = k.Name,
-                            RoomName=k.RoomName,
-                            Times=m
+                            RoomName = k.RoomName,
+                            Times = m.ToList()
 
                         };
             /* var subList3 = subList.ToList().GroupJoin(subList2.ToList(), room => room.Name, x=>x.RoomName, (room, artifact) => new
@@ -510,16 +513,16 @@ namespace Beamity.Application.Service.Services
 
              }
              );*/
-            
+
 
 
             var finalList = from d in list
-                           join s in list4 on d.Name equals s.RoomName into g
-                           
-                           select new
-                           {
-                               RoomName = d.Name,
-                               Artifacts = g
+                            join s in list4 on d.Name equals s.RoomName into g
+
+                            select new RoomsArtifactHourly
+                            {
+                                RoomName = d.Name,
+                                Artifacts = g.ToList()
                            };
             var final = finalList.ToList();
 
