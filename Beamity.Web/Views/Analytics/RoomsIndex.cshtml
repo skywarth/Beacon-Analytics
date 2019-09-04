@@ -56,10 +56,10 @@
     </div>
 
     <div class="pl-3 col-md-6" style="width:100%;">
-        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Total Visitors and Bounce Rate for one Room</b></div>
+        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Total Visitors and Bounce Rate for One Room</b></div>
     </div>
     <div class="pl-3 col-md-6" style="width:100%;">
-        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of time and total time for one Room</b></div>
+        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Time and Total Time for One Room</b></div>
     </div>
 
 </div>
@@ -76,7 +76,9 @@
             <div class="col-md-6 pl-4 pb-0" style="text-align:center; background-color:aliceblue; border-radius:5px; ">
                 <div>
                     <script src="~/js/ChartsJS/RoomsChart1.js"></script>
-                    <div id="chart1" style="height: 400px; min-width: 310px; "></div>
+                    <div id="chart1" style="height: 400px; min-width: 310px;">
+                        burası boş çünkü chartın aldığı veriler gelince dolması gerekiyor.
+                    </div>
 
                 </div>
             </div>
@@ -100,7 +102,7 @@
     <!-- "Row2" , "Chart3" -->  <!--Average of visitors and time for all rooms-->
     <div class="row p-3">
         <div style="width:100%;">
-            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of visitors and time for all rooms</b></div>
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Visitors and Time for All Rooms</b></div>
             <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15">
 
                 <div id="ac_style_DHd8fH15" style="display:none;">
@@ -127,12 +129,11 @@
         <div class="pt-4" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
 
         <div class="row p-2 ">
-
             <!--Chart4--><!--Behaviour Flow-->
             <div class="col-md-8" style=" width:100%; background-color:white; border-radius:5px;">
+               
                 <div class="row">
                     @{var tarih = DateTime.Now;}
-
                     <div class="col-md-5 pl-4" style="width:100%;">
                         Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
                     </div>
@@ -141,14 +142,22 @@
                         <button onclick="">SHOW</button>
                     </div>
                 </div>
-
-
-                <script src="~/js/ChartsJS/BehaviourFlow.js"></script>
-                <div id="chartdiv2" style="height:500px; width:100%; background-color:white;"></div>
+                <script src="~/js/ChartsJS/RoomsBehaviourFlow.js"></script>
+                <div id="chartdiv" style="width: 100%;height: 500px;"></div>
             </div>
 
-            <div class="col-md-4">
+            <!--Behaviour Flow Bilgileri-->
+            <div class="col-md-4" style="background-color:white; border-radius:5px;">
 
+                <div class="pt-3 pb-3">
+                    <h1 style="font-size:20px;">
+                      Informations of Behaviour Flow Relations 
+                    </h1>
+                </div>
+                Room1 -> Room2 = 320 kişi <br />
+                Room2 -> Room1 = 410 kişi <br />
+                Room1 -> Room3 = 200 kişi <br />
+                Room3 -> Room2 = 130 kişi <br />
 
             </div>
         </div>
