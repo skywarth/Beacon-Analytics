@@ -116,23 +116,34 @@ async function loadPayload() {
 
 
 
+var a;
 
-
-function GetArtifactCount(){
-        var options = {};
-        options.url = "https://localhost:44327/api/Artifact/GetArtifactCount";
+function GetArtifactCount() {
+    var artifactCountDefer = $.Deferred();
+    //swalload();
+    artifactCountDefer = $.Deferred();
+    var options = {};
+    options.url = "https://localhost:44327/api/Artifact/GetArtifactCount?id="+locationId;
         var obj = {};
         obj.Id = locationId;
         options.type = "GET";
         options.dataType = "json";
         options.contentType = "application/json";
         options.data = JSON.stringify(obj);
-        options.success = function (data) {
-            alert(data);
+    options.success = function (data) {
+
+        artifactCountDefer.resolve('yay');
+        $("#artifactCount")[0].textContent = data;
         };
-        options.error = function (e) {
+    options.error = function (e) {
+        artifactCountDefer.reject('boo');
             alert(e.error);
         };
         $.ajax(options);
+    return artifactCountDefer.promise();
+}
+
+function SetArtifactCount() {
+    
 
 }

@@ -134,11 +134,11 @@ namespace Beamity.Application.Service.Services
 
 
         //locationId
-        public async Task<int> GetArtifactCount(EntityDTO input)
+        public async Task<int> GetArtifactCount(Guid input)
         {
             int count = await _artifactRepository.GetAll()
 
-                .Where(x => x.IsActive && x.Room.Floor.Building.Location.Id == input.Id)
+                .Where(x => x.IsActive && x.Room.Floor.Building.Location.Id == input)
                 .CountAsync();
 
             return count;

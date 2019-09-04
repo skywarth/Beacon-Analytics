@@ -108,8 +108,8 @@ namespace Beamity.API.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public async Task<int> GetArtifactCount(int id)
+        [HttpGet]
+        public async Task<int> GetArtifactCount(System.Guid id)
         {
             try
             {

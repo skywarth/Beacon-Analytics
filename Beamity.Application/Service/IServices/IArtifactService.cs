@@ -14,6 +14,6 @@ namespace Beamity.Application.Service.IServices
         Task<ReadArtifactDTO> GetArtifact(EntityDTO input);
         Task<List<ReadArtifactDTO>> GetArtifactsInRoom(EntityDTO input);
 
-        Task<int> GetArtifactCount(EntityDTO input);
+        Task<int> GetArtifactCount(System.Guid input);
     }
 }
