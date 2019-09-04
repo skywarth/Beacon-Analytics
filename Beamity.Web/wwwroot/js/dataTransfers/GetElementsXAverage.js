@@ -17,7 +17,7 @@ function secondsToFinalTime(sec) {
 
 
 
-function loadPayload() {
+async function loadPayload() {
     var payloadDefer = $.Deferred();
     //swalload();
     payloadDefer = $.Deferred();
@@ -53,6 +53,9 @@ function loadPayload() {
         var stringPart3 = "<tr><th>Bugun</th><td>" + dataForTable[0].count + "</td><td>" + dataForTable[1].count + "</td></tr></tbody>"
 
         $("#datatable")[0].innerHTML = stringPart1 + stringPart2 + stringPart3;
+        /*CARDS*/
+        $("#visitorChange")[0].textContent = payload.visitorChange; 
+        /*CARDS*/
        am4core.ready(function () {
             
            var data = [];
@@ -105,7 +108,7 @@ function loadPayload() {
         payloadDefer.reject('boo');
         alert("Payload hata");
     };
-    $.ajax(options);
+    await $.ajax(options);
     return payloadDefer.promise();
     
 }
@@ -113,67 +116,4 @@ function loadPayload() {
 
 
 
-
-
-
-
-    /*$.when(locationAnon()).done(function () {
-        //Artifacts visitor average
-        swalload();
-        var options = {};
-        options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactsVisitorAverage";
-        options.type = "POST";
-        var obj = {};
-        obj.LocationId = locationId;
-        options.data = JSON.stringify(obj);
-        options.contentType = "application/json";
-        options.dataType = "html";
-        options.success = function (data, msg) {
-            var a = $("#Average1-data")[0];
-            a.textContent = data;
-
-            //debugger
-            //$("#msg").html(msg);
-            Swal({
-                type: 'success',
-                title: 'Thanks',
-                text: 'Operation is success',
-            })
-        };
-        options.error = function () {
-            $("#msg").html("Error while calling the Web API!");
-            alert("Hata");
-        };
-        $.ajax(options);
-    });
-
-    $.when(locationAnon()).done(function () {
-        //Artifacts visitor average
-        swalload();
-        var options = {};
-        options.url = "https://localhost:44327/api/BeaconActivity/GetRoomsVisitorAverage";
-        options.type = "POST";
-        var obj = {};
-        obj.LocationId = locationId;
-        options.data = JSON.stringify(obj);
-        options.contentType = "application/json";
-        options.dataType = "html";
-        options.success = function (data, msg) {
-            var a = $("#Average2-data")[0];
-            a.textContent = data;
-
-            //debugger
-            //$("#msg").html(msg);
-            Swal({
-                type: 'success',
-                title: 'Thanks',
-                text: 'Operation is success',
-            })
-        };
-        options.error = function () {
-            $("#msg").html("Error while calling the Web API!");
-            alert("Hata");
-        };
-        $.ajax(options);
-    });*/
 

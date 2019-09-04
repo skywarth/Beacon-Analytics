@@ -614,6 +614,40 @@ namespace Beamity.Application.Service.Services
         }
 
 
+        public async Task<string> GetVisitorChange(EntityDTO input)
+        {
+            DateTime current = DateTime.Now.Date;
+
+            DateTime yesterday = current.AddDays(-1).Date;
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x => x.Artifact.Room)
+
+                .Where(x => x.EnterTime.Date == current || x.EnterTime.Date == yesterday)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                            group t by (t.EnterTime.Date) into grouped
+                            orderby grouped.Key ascending
+                            select new 
+                            {
+                                date=grouped.Key,
+                                count = grouped.Count()
+                            };
+            var list = subList.ToList();
+            //decimal calculation = ((Convert.ToDecimal(list[1].count) / Convert.ToDecimal(list[0].count)) * Convert.ToDecimal(100));
+            decimal calculation = Convert.ToDecimal(list[1].count - list[0].count) / Convert.ToDecimal(list[0].count) * 100;
+
+            string result = Math.Round(calculation,2).ToString();
+            
+
+
+            return result.Insert(1, "%"); ;
+        }
+
+
     }
     static class tempClass
     {
