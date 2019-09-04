@@ -33,7 +33,7 @@
         },
 
         title: {
-            text: 'Most/Least Artifacts'
+            text: ''
         },
 
         yAxis: {

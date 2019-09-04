@@ -1,5 +1,7 @@
 ﻿
-//Dashboard Behaviour Flow
+//Artifacts Analytics View Behaviour Flow
+
+
 
 am4core.ready(function () {
 
@@ -9,7 +11,7 @@ am4core.ready(function () {
 
 
 
-    var chart = am4core.create("chartdiv2", am4charts.ChordDiagram);
+    var chart = am4core.create("chart10", am4charts.ChordDiagram);
 
 
     chart.data = [

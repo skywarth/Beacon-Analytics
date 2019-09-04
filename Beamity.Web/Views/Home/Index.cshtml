@@ -24,6 +24,10 @@
 <link href="~/css/DashboardStyle.css" rel="stylesheet" />
 
 <!--Behaviour Flow Resources-->
+
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script src="~/js/ChartsJS/BehaviourFlow.js"></script>
 
 <!--Visitors by hours-->
@@ -186,7 +190,7 @@
 <div>
     <!--First Chart Script Codes-->
 
-    
+
 </div>
 <!--First Chart Finish-->
 <!--Average Cards-->
@@ -365,14 +369,64 @@
 
             <div id="chartdiv2"></div>
 
-
         </div>
 
-
         <!--Behaviour Flow Bilgileri-->
-        <div id="BFinformation" class="col-md-4" style="background-color:white;">
-            ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
-            ...Kimin kiminle ilişkisi var listelenecek...
+        <div id="BFinformation" class="col-md-4" >
+            <div style="background-color:white; overflow:scroll; height:500px; border:groove;">
+                <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
+                    <tr style="background-color:lavender;">
+                        <th >From</th>
+                        <th >To</th>
+                        <th >Value</th>                       
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>                   
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>                
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>  
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>  
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>                    
+                </table>
+            </div>
         </div>
     </div>
     <!--Row3-->
@@ -388,32 +442,32 @@
 <script>
     //$.when(locationAnon()).done(loadDatatableChart);
 
-    
+
     function loadDatatableChart() {
         Highcharts.chart('container', {
-        data: {
-            table: 'datatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'MOST / LEAST interested artifacts.'
-        },
-        yAxis: {
-            allowDecimals: false,
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: ''
+                text: 'MOST / LEAST interested artifacts.'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
             }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-    
+        });
+
     }
 
     locationAnon().pipe(loadPayload).pipe(dataToChart);
@@ -422,5 +476,5 @@
         await loadDatatableChart();
         await fillRadarChart();
         await fillBehaviourChart();
-    } 
+    }
 </script>

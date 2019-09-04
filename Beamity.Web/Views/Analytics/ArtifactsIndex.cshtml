@@ -13,7 +13,7 @@
 
 
     <!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
-   
+
     <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
@@ -26,7 +26,7 @@
 
     <!--Chart4 Resources--><!--Total Visitors for one Artifact-->
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
-    
+
 
 
     <!--Chart5 Resources--><!--Average of All Artifacts by visitors and time-->
@@ -35,11 +35,15 @@
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
     <!--Chart7--><!--Bounce Rate-->
     <script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
 
     <script>
-
         var el = document.getElementById("contain");
         el.style.backgroundColor = "teal";
     </script>
@@ -59,7 +63,7 @@
         <!--Row1-->
         <div class="row pl-3 pr-3">
             <!--Table of Artifacts-->
-            <div class="col-md-4 pr-3" style="height: 1000px; overflow: scroll; width: 50%; background-color:white; color:#fff; border:groove; border-radius:5px;">
+            <div class="col-md-4 pr-3" style="height: 500px; overflow: scroll; width: 100%; background-color:white; color:#fff; border:groove; border-radius:5px;">
                 <div class="pl-0">
                     <p class="pt-md-3 pl-0" style="text-align:center; color:black; border:groove; border-radius:5px; background-color:lavender;">
                         <b>Artifacts</b>
@@ -79,14 +83,14 @@
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Eve</td>
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -94,7 +98,7 @@
                             <td>Doe</td>
                             <td>80</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -102,57 +106,49 @@
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>John</td>
                             <td>Doe</td>
                             <td>80</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
-
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>80</td>
-                            <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -160,7 +156,15 @@
                             <td>Doe</td>
                             <td>80</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+
+                        </tr>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>80</td>
+                            <td>50</td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -168,35 +172,35 @@
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
                         <tr>
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -204,7 +208,7 @@
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -212,7 +216,7 @@
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -220,7 +224,7 @@
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -228,7 +232,7 @@
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                         <tr>
@@ -236,7 +240,7 @@
                             <td>Jackson</td>
                             <td>94</td>
                             <td>50</td>
-                            <td><button style="background-color:darkseagreen;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
+                            <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
                     </table>
@@ -246,30 +250,12 @@
             <!--------------------------------------------------------------------------------------------------------------------------->
             <div class="col-md-8 pl-md-4" style="background-color:teal; color:#fff; border-radius:5px;">
 
-                <!--Row 1.1--> <!--Bir eser için toplam kişi sayısı-->
-                <div class="row" style="height:50%; ">
-                    <p class="pt-md-3" style="text-align:center;  border:groove; border-radius:5px; width:100%; background-color:lavender; color:black;">
-                        <b>Total Visitors for one artifacts</b>
-
-                        <select style="float:right; border: double;">
-
-                            <option selected>2018-2019</option>
-                            <option>2017-2018</option>
-                            <option>2016-2017</option>
-                            <option>2015-2016</option>
-                            <option>2014-2015 </option>
-                        </select>
-                    </p>
-
-                    <div id="chart1" class="pb-2" style="background-color:white; border-radius:5px; border:groove;"></div>
-                </div>
-
-                <!--------------------------------------------------------------------------------------------------------------------------->
-                <!--Row 1.2--> <!--Bir eser için ortalama izlenme süresi-->
-                <div class="row pt-5 " style=" max-height:50%; ">
-                    <div class="pt-4" style="width:100%;  ">
-                        <p class="pt-2" style="text-align:center; border:groove; border-radius:5px; width:100%; background-color:lavender; color:black; ">
-                            <b>Average of time for one artifacts</b>
+          
+                <!--Row 1.2--> <!--Average of Time for One Artifact-->
+                <div class="row " style=" max-height:50%; ">
+                    <div style="width:100%;  ">
+                        <p class="pt-2" style="text-align:center; border:groove; border-radius:5px; width:100%; background-color:lavender; color:black; margin-bottom:auto; ">
+                            <b>Average of Time and Total Visitors for One Artifact</b>
                             <select style="float:right; border:dashed;">
 
                                 <option selected>2018-2019</option>
@@ -282,18 +268,18 @@
 
                     </div>
 
-                    <div style="width:100%; ">
-                        <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15">
+                    
+                        <div id="anychart-embed-DHd8fH15" class=" pt-1 pb-0 anychart-embed anychart-embed-DHd8fH15">
 
                             <div id="ac_style_DHd8fH15" style="display:none;"></div>
 
                             <script src="~/js/ChartsJS/ArtifactsChart9.js"></script>
-                            <div id="chart9" style="border:groove; border-radius:5px; width:820px;;height: 370px;"></div>
+                            <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:820px;height:103%;"></div>
 
                         </div>
 
-                    </div>
-                    
+                  
+
                 </div>
 
             </div>
@@ -303,8 +289,10 @@
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Average of Artifact by Visitors --> <!--Bir esere  ortalama kaç kişi düşüyorun hesaplanması-->
-    <div class="row pl-3 pr-3 pt-2 pb-0">
+    <div class="row pl-3 pr-3 pt-4 pb-0">
+
         <div class="col-12" style="border:groove; border-radius:5px; background-color:white;">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Average of Artifact by Visitors</b></div>
 
             <script src="~/js/ChartsJS/ArtifacstChart4.js"></script>
             <div id="chart4" style="height: 400px; width:1215px;"></div>
@@ -314,7 +302,8 @@
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Most/Least Artifacts-->
     <div class="row p-md-3 " style=" color:white;">
-        <div class="col-md-12 p-0" style=" border:groove 5px; border-radius:5px;  width:1250px; ">
+        <div class="col-md-12 p-0" style=" border:groove 5px; border-radius:5px;  width:1250px; background-color:white; ">
+            <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; color:black; width:100%; border-radius:5px;"><b>Most/Least Artifacts</b></div>
 
             <div id="chart3" style="height: 400px; min-width: 310px; background-color:#30303d"></div>
             <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
@@ -325,6 +314,7 @@
     <!--Average of All Artifacts by visitors and time--> <!--Eserlerin Zamana göre ve ziyaretçi sayısına göre ortalması -->
     <div class="row p-md-3">
         <div class="col-md-12 p-0" style=" border:groove; border-radius:5px;  width:1250px; color:white; ">
+            <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; color:black; width:100%; border-radius:5px;"><b>Average of All Artifacts by visitors and time</b></div>
 
             <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
                 <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
@@ -340,23 +330,23 @@
     <!--Behaviour Flow-->
     <div class="row pl-3 pt-3 pr-0 pb-3" style=" width:1260px;">
 
-        <div class="col-md-8 pr-3 pt-1" style="background-color:white; border:groove;  border-radius:5px;">
-            <script src="https://www.amcharts.com/lib/4/core.js"></script>
-            <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-            <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-            <style>
-                #chart6 {
-                    width: 100%;
-                    height: 500px;
-                    background-color: white;
-                }
-            </style>
-
-            <script src="~/js/ChartsJS/BehaviourFlow2.js"></script>
+        <div class="col-md-8 pr-3 pt-1" style="background-color:white;   border-radius:5px;">
             <div class="pt-4" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
 
-            <div id="chart6" style="height:500px; width:100%; background-color:antiquewhite;"></div>
+            <div class="row">
+                @{var tarih = DateTime.Now;}
+                <div class="col-md-5 pl-4" style="width:100%;">
+                    Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                </div>
+                <div class="col-md-6" style="width:100%; background-color:white;">
+                    Bitiş Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                    <button onclick="">SHOW</button>
+                </div>
+            </div>
+
+            <script src="~/js/ChartsJS/ArtifactsBehaviourFlow.js"></script>
+            <div id="chart10" style="width: 100%;height: 500px;"></div>
+
         </div>
 
         <!--Behaviour Flow Bilgileri-->
@@ -370,6 +360,8 @@
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Bounce Rate-->
+    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%; margin-top:20px; margin-bottom:5px;"><b>Bounce Rate for All Artifacts</b></div>
+
     <div class="row  " style="width:100%; border:groove; border-radius:5px; color:white; margin:auto; ">
         <div id="anychart-embed-samples-stock-grouping-01" class="anychart-embed anychart-embed-samples-stock-grouping-01">
 

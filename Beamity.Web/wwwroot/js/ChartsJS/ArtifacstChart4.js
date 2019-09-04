@@ -11,12 +11,12 @@
         },
 
         title: {
-            text: 'Average of Artifact by Visitors '
+            text: ''
         },
 
         yAxis: {
             title: {
-                text: 'Average of Artifact by Visitors'
+                text: ''
             }
         },
 
