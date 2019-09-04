@@ -5,6 +5,7 @@ using Beamity.Application.Service.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Beamity.API.Controllers
@@ -126,16 +127,20 @@ namespace Beamity.API.Controllers
                 data.RoomsVisitorAverage1 = await _beaconActivityService.GetRoomsVisitorAverage(input);
                 data.ArtifactsWatchTimeAverage1 = await _beaconActivityService.GetArtifactsWatchTimeAverage(input);
                 data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
+                //681,812
                 data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
                 data.LocationBounceRate1 = await _beaconActivityService.GetLocationBounceRate(input);
                 data.LocationCurrentVisitors1 = await _beaconActivityService.GetCurrentVisitors(input);
                 data.UserWatchTimeAverage1 = await _beaconActivityService.GetUserWatchTimeAverage(input);
                 data.UserArtifactAverage1 = await _beaconActivityService.GetUserArtifactAverage(input);
                 data.MaxMinVisitorArtifact1 = await _beaconActivityService.GetMaxVisitorArtifact(input);
-                //new
                 data.HourlyVisitorsMuseum1=await _beaconActivityService.GetHourlyVisitorsMuseum(input);
                 data.RoomsArtifactHourly=await _beaconActivityService.GetHourlyVisitorsArtifact(input);
                 data.BehaviourFlow= await _beaconActivityService.GetBehaviourFlow(input);
+
+                data.VisitorChange = await _beaconActivityService.GetVisitorChange(input);
+                data.DurationChange = await _beaconActivityService.GetDurationChange(input);
+
                 return data;
             }
             catch (System.Exception)
@@ -161,6 +166,9 @@ namespace Beamity.API.Controllers
             private List<RoomsArtifactHourly> roomsArtifactHourly;
             private List<BehaviourFlowListDTO> behaviourFlow;
 
+            /*CARDS*/
+            private string visitorChange;
+            private string durationChange;
 
             public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
             public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
@@ -174,6 +182,8 @@ namespace Beamity.API.Controllers
             public List<HourlyVisitorMuseumDTO> HourlyVisitorsMuseum1 { get => HourlyVisitorsMuseum; set => HourlyVisitorsMuseum = value; }
             public List<RoomsArtifactHourly> RoomsArtifactHourly { get => roomsArtifactHourly; set => roomsArtifactHourly = value; }
             public List<BehaviourFlowListDTO> BehaviourFlow { get => behaviourFlow; set => behaviourFlow = value; }
+            public string VisitorChange { get => visitorChange; set => visitorChange = value; }
+            public string DurationChange { get => durationChange; set => durationChange = value; }
         }
 
     }

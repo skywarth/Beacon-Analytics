@@ -1,0 +1,13 @@
+﻿.noRotation {
+    -webkit-transform: rotate(0deg) !important;
+    transform: rotate(0deg) !important;
+}
+
+.lightWeight{
+    font-weight:lighter;
+}
+
+.cardFlex {
+    display:flex;
+    flex-direction:column;
+}

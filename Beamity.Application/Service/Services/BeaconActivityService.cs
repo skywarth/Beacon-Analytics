@@ -3,23 +3,14 @@ using Beamity.Application.DTOs.BeaconActivityDTOs;
 using Beamity.Application.Service.IServices;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Beamity.Application.DTOs;
-using Beamity.Application.Service.IServices;
 using Beamity.Core.Models;
 using Beamity.EntityFrameworkCore.EntityFrameworkCore.Interfaces;
-using Beamity.EntityFrameworkCore.EntityFrameworkCore.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Beamity.Application.DTOs.CustomDTOs;
-using Beamity.Application.DTOs.RoomDTOs;
 using Beamity.Application.DTOs.ArtifactDTOs;
 
 namespace Beamity.Application.Service.Services
@@ -613,6 +604,71 @@ namespace Beamity.Application.Service.Services
             return behaviourFlow.ToList();
         }
 
+
+        public async Task<string> GetVisitorChange(EntityDTO input)
+        {
+            DateTime current = DateTime.Now.Date;
+
+            DateTime yesterday = current.AddDays(-1).Date;
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+
+                .Where(x => x.EnterTime.Date == current || x.EnterTime.Date == yesterday)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                            group t by (t.EnterTime.Date) into grouped
+                            orderby grouped.Key ascending
+                            select new 
+                            {
+                                date=grouped.Key,
+                                count = grouped.Count()
+                            };
+            var list = subList.ToList();
+            //decimal calculation = ((Convert.ToDecimal(list[1].count) / Convert.ToDecimal(list[0].count)) * Convert.ToDecimal(100));
+            decimal calculation = Convert.ToDecimal(list[1].count - list[0].count) / Convert.ToDecimal(list[0].count) * 100;
+
+            string result = Math.Round(calculation,2).ToString();
+            
+
+
+            return result.Insert(1, "%"); ;
+        }
+
+
+        public async Task<string> GetDurationChange(EntityDTO input)
+        {
+            DateTime current = DateTime.Now.Date;
+
+            DateTime yesterday = current.AddDays(-1).Date;
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+
+                .Where(x => x.EnterTime.Date == current || x.EnterTime.Date == yesterday)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                          group t by t.EnterTime.Date into grouped
+                          //where grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds) >= 0
+                          select new
+                          {
+                              date=grouped.Key,
+                              watchTime = grouped.Sum(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+                          };
+            var list = subList.ToList();
+            //decimal calculation = ((Convert.ToDecimal(list[1].count) / Convert.ToDecimal(list[0].count)) * Convert.ToDecimal(100));
+            decimal calculation = Convert.ToDecimal(list[1].watchTime - list[0].watchTime) / Convert.ToDecimal(list[0].watchTime) * 100;
+
+            string result = Math.Round(calculation, 2).ToString();
+
+
+
+            return result.Insert(1, "%"); ;
+        }
 
     }
     static class tempClass
