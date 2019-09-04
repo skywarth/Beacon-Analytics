@@ -548,41 +548,12 @@ namespace Beamity.Application.Service.Services
                 .Include(x => x.Beacon)
                 .ThenInclude(x => x.Artifact.Room)
 
-                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
                 .Where(x => x.EnterTime.Date == DateTime.Now.Date)
                 .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
 
                  .ToListAsync();
 
-            
 
-           /* var startRoom = from t in beaconActivity
-                              //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
-                          group t by (t.Beacon.Artifact.Room.Id,t.Beacon.Artifact.Room.Name) into grouped
-                          
-                          select new ReadRoomDTO
-                          {
-                              Id = grouped.Key.Id,
-                              Name=grouped.Key.Name
-                          };
-
-
-
-
-            var startRoomList = startRoom.ToList();
-            var nextRoomList = startRoomList;
-
-
-            var startRoom = from t in beaconActivity
-                                //where (t.ExitTime - t.EnterTime).TotalSeconds <= 100
-                            group t by (t.Beacon.Artifact.Room.Id, t.Beacon.Artifact.Room.Name) into grouped
-
-                            select new ReadRoomDTO
-                            {
-                                Id = grouped.Key.Id,
-                                Name = grouped.Key.Name
-                            };
-                            */
             var usersWithMultipleActivity = from t in beaconActivity
                                            group t by (t.UserId) into grouped
                                            where grouped.Count() > 1
@@ -611,10 +582,7 @@ namespace Beamity.Application.Service.Services
                                   
                               };
                 var subList = sub.ToList();//all activities for a user
-                /*for (int i = 0; i < subList.Count/2; i++)
-                {
-
-                }*/
+                
 
                 while (subList.Count > 1)
                 {
