@@ -106,5 +106,22 @@ namespace Beamity.API.Controllers
                 throw;
             }
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<int> GetArtifactCount(int id)
+        {
+            try
+            {
+                var artifact = await _artifactService.GetArtifactCount(id);
+                return artifact;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

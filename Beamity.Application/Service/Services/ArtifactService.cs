@@ -131,5 +131,17 @@ namespace Beamity.Application.Service.Services
 
             await _artifactRepository.Update(artifact.Id,artifact);
         }
+
+
+        //locationId
+        public async Task<int> GetArtifactCount(EntityDTO input)
+        {
+            int count = await _artifactRepository.GetAll()
+
+                .Where(x => x.IsActive && x.Room.Floor.Building.Location.Id == input.Id)
+                .CountAsync();
+
+            return count;
+        }
     }
 }

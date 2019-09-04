@@ -118,3 +118,21 @@ async function loadPayload() {
 
 
 
+function GetArtifactCount(){
+        var options = {};
+        options.url = "https://localhost:44327/api/Artifact/GetArtifactCount";
+        var obj = {};
+        obj.Id = locationId;
+        options.type = "GET";
+        options.dataType = "json";
+        options.contentType = "application/json";
+        options.data = JSON.stringify(obj);
+        options.success = function (data) {
+            alert(data);
+        };
+        options.error = function (e) {
+            alert(e.error);
+        };
+        $.ajax(options);
+
+}

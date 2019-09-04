@@ -13,5 +13,7 @@ namespace Beamity.Application.Service.IServices
         Task DeleteArtifact(DeleteArtifactDTO input);
         Task<ReadArtifactDTO> GetArtifact(EntityDTO input);
         Task<List<ReadArtifactDTO>> GetArtifactsInRoom(EntityDTO input);
+
+        Task<int> GetArtifactCount(EntityDTO input);
     }
 }
