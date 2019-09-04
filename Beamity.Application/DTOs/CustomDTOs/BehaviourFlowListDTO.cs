@@ -16,7 +16,7 @@ namespace Beamity.Application.DTOs.CustomDTOs
         
 
         public int Count { get => count; set => count = value; }
-        public string From { get => from; set => from = value; }
-        public string To { get => to; set => to = value; }
+        public new string From { get => from; set => from = value; }
+        public new string To { get => to; set => to = value; }
     }
 }

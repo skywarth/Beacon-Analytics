@@ -55,6 +55,7 @@ async function loadPayload() {
         $("#datatable")[0].innerHTML = stringPart1 + stringPart2 + stringPart3;
         /*CARDS*/
         $("#visitorChange")[0].textContent = payload.visitorChange; 
+        $("#durationChange")[0].textContent = payload.durationChange;
         /*CARDS*/
        am4core.ready(function () {
             

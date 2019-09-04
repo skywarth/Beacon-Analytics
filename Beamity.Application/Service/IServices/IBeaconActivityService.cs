@@ -40,5 +40,7 @@ namespace Beamity.Application.Service.IServices
         Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(EntityDTO input);
 
         Task<string> GetVisitorChange(EntityDTO input);
+
+        Task<string> GetDurationChange(EntityDTO input);
     }
 }

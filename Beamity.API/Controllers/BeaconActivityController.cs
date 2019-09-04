@@ -5,6 +5,7 @@ using Beamity.Application.Service.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Beamity.API.Controllers
@@ -126,6 +127,7 @@ namespace Beamity.API.Controllers
                 data.RoomsVisitorAverage1 = await _beaconActivityService.GetRoomsVisitorAverage(input);
                 data.ArtifactsWatchTimeAverage1 = await _beaconActivityService.GetArtifactsWatchTimeAverage(input);
                 data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
+                //681,812
                 data.RoomsWatchTimeAverage1 = await _beaconActivityService.GetRoomsWatchTimeAverage(input);
                 data.LocationBounceRate1 = await _beaconActivityService.GetLocationBounceRate(input);
                 data.LocationCurrentVisitors1 = await _beaconActivityService.GetCurrentVisitors(input);
@@ -137,6 +139,8 @@ namespace Beamity.API.Controllers
                 data.BehaviourFlow= await _beaconActivityService.GetBehaviourFlow(input);
 
                 data.VisitorChange = await _beaconActivityService.GetVisitorChange(input);
+                data.DurationChange = await _beaconActivityService.GetDurationChange(input);
+
                 return data;
             }
             catch (System.Exception)
@@ -164,6 +168,7 @@ namespace Beamity.API.Controllers
 
             /*CARDS*/
             private string visitorChange;
+            private string durationChange;
 
             public double ArtifactsVisitorAverage1 { get => ArtifactsVisitorAverage; set => ArtifactsVisitorAverage = value; }
             public double RoomsVisitorAverage1 { get => RoomsVisitorAverage; set => RoomsVisitorAverage = value; }
@@ -178,6 +183,7 @@ namespace Beamity.API.Controllers
             public List<RoomsArtifactHourly> RoomsArtifactHourly { get => roomsArtifactHourly; set => roomsArtifactHourly = value; }
             public List<BehaviourFlowListDTO> BehaviourFlow { get => behaviourFlow; set => behaviourFlow = value; }
             public string VisitorChange { get => visitorChange; set => visitorChange = value; }
+            public string DurationChange { get => durationChange; set => durationChange = value; }
         }
 
     }
