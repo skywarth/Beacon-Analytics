@@ -87,7 +87,7 @@ anychart.onDocumentReady(function () {
     // coloring
     series_euro.stroke("#ff0000");
 
-    chart.title('Average of time and total time for one artifact');
+    chart.title('');
 
     chart.container('chart5');
     chart.draw();

@@ -9,11 +9,22 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
-<!--Resources Chart2--><!--Average of time and total time for one artifact-->
+<!--Resources Chart2--><!--Average of time and total time for one room-->
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+
+<!--Resources Chart3--><!--Average of Visitors and Time for All Rooms-->
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-stock.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+
+<!--Resources Chart4--><!--Behaviour Flow-->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 
 
@@ -31,43 +42,53 @@
     </ol>
 </div>
 
+<!--DropDown and Title-->
+<div class="row pl-3 pr-3 pb-1">
+
+    <div class="col-md-12 p-3" style="width:100%;">
+        <select class="p-2" style="float:left; border: double; width:100%; background-color:lavender; color:blue;">
+            <option selected>Oda-1</option>
+            <option>Oda-2</option>
+            <option>Oda-3</option>
+            <option>Oda-4</option>
+            <option>Oda-5</option>
+        </select>
+    </div>
+
+    <div class="pl-3 col-md-6" style="width:100%;">
+        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Total Visitors and Bounce Rate for one Room</b></div>
+    </div>
+    <div class="pl-3 col-md-6" style="width:100%;">
+        <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of time and total time for one Room</b></div>
+    </div>
+
+</div>
 
 
+<!--Body div-->
 <div class="container-fluid">
-    <div class="pl-0" style="border:groove;">
+    <div class="pl-0 pb-4" border-radius:5px;">
 
         <!--Row1-->
         <div class="row pl-2">
 
             <!--Chart1--><!--Total Visitors and Bounce Rate for one Room-->
-            <div class="col-md-6 pl-2 pb-0" style="text-align:center;">
+            <div class="col-md-6 pl-4 pb-0" style="text-align:center; background-color:aliceblue; border-radius:5px; ">
                 <div>
-                    <div>
-                        <select style="float:left; border: double; width:300px; background-color:lavender; color:blue;">
-                            <option selected>Oda-1</option>
-                            <option>Oda-2</option>
-                            <option>Oda-3</option>
-                            <option>Oda-4</option>
-                            <option>Oda-5</option>
-                        </select>
-                    </div>
-
                     <script src="~/js/ChartsJS/RoomsChart1.js"></script>
-                    <div id="chart1" style="height: 400px; min-width: 310px; background-color:aquamarine;"></div>
+                    <div id="chart1" style="height: 400px; min-width: 310px; "></div>
 
                 </div>
             </div>
 
 
-            <!--Chart2--><!--Bir Odaya Göre ortalama ve toplam izlenme sayısı-->
-            <div class="col-md-6" ;">
-                <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
+            <!--Chart2--><!--"Average of time" and "total time" for one Room-->
+            <div class="col-md-6">
+                <div id="anychart-embed-samples-stock-spline-05" class="pr-1 anychart-embed anychart-embed-samples-stock-spline-05">
                     <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
-
 
                     <div id="chart5" style="width:100%; height:100%; border:solid; border-color:white; border-radius:5px; "></div> <!--Chart div-->
                     <script src="~/js/ChartsJS/RoomChart2.js"></script>
-                    
 
                 </div>
             </div>
@@ -76,39 +97,62 @@
     </div>
 
 
+    <!-- "Row2" , "Chart3" -->  <!--Average of visitors and time for all rooms-->
+    <div class="row p-3">
+        <div style="width:100%;">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of visitors and time for all rooms</b></div>
+            <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15">
 
-    <!--Row2-->
-    <div class="row p-2">
-        <div style="background-color: blue; width:100%;">
-            Bütün odaların kişi ortalaması (haftalık, aylık, yıllık)
+                <div id="ac_style_DHd8fH15" style="display:none;">
+                    <style>
+                        html, body, #chart3 {
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                            padding: 0;
+                        }
+                    </style>
+                </div>
+
+                <script src="~/js/ChartsJS/RoomsChart3.js"></script>
+                <div id="chart3" style="width:1235px; border:groove; border-radius:5px;  "></div>
+            </div>
         </div>
     </div>
 
 
 
     <!--Row3-->
-    <div class="row p-2" style="background-color: aquamarine;">
-        <div style="background-color:chartreuse; width:100%;">
-            Bütün odaların izlenme süresi ortalaması (haftalık, aylık, yıllık)
+    <div class="pt-4">
+        <div class="pt-4" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
+
+        <div class="row p-2 ">
+
+            <!--Chart4--><!--Behaviour Flow-->
+            <div class="col-md-8" style=" width:100%; background-color:white; border-radius:5px;">
+                <div class="row">
+                    @{var tarih = DateTime.Now;}
+
+                    <div class="col-md-5 pl-4" style="width:100%;">
+                        Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                    </div>
+                    <div class="col-md-6" style="width:100%; background-color:white;">
+                        Bitiş Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                        <button onclick="">SHOW</button>
+                    </div>
+                </div>
+
+
+                <script src="~/js/ChartsJS/BehaviourFlow.js"></script>
+                <div id="chartdiv2" style="height:500px; width:100%; background-color:white;"></div>
+            </div>
+
+            <div class="col-md-4">
+
+
+            </div>
         </div>
-    </div>
 
-
-
-    <!--Row4-->
-    <div class="row p-2" style="background-color: crimson;">
-        <div style="background-color: darkgreen; width:100%;">
-            Behavior Flow
-        </div>
-    </div>
-
-
-
-    <!--Row5-->
-    <div class="row p-2" style="background-color: darkmagenta;">
-        <div style="background-color: darkgreen; width:100%;">
-            yok
-        </div>
     </div>
 
 </div>
