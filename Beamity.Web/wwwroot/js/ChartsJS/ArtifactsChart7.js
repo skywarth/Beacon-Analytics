@@ -35,7 +35,7 @@ anychart.onDocumentReady(function () {
     var currentScroller = chart.scroller();
     currentScroller.line(mapping);
 
-    chart.title("Bounce Rate for All Artifacts ");
+    chart.title(" ");
     chart.container("chart7");
     chart.draw();
 });

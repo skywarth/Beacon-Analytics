@@ -58,19 +58,19 @@
 
 
 <!--Body Row-->
-<div class="row pl-4 pr-4 ">
-    <div style="border:groove; margin:auto; border-radius:5px;">
+<div class="row pl-5 pr-4 " style="position:relative; ">
+    <div style=" border-radius:5px; width:100%;">
         <!--Row1-->
-        <div class="row pl-3 pr-3">
+        <div class="row pl-3 pr-3 pt-4">
             <!--Table of Artifacts-->
-            <div class="col-md-4 pr-3" style="height: 500px; overflow: scroll; width: 100%; background-color:white; color:#fff; border:groove; border-radius:5px;">
+            <div class="col-md-4 pr-3" style="height: 488px; overflow: scroll; width: 100%; background-color:white; color:#fff; border:groove; border-radius:5px;">
                 <div class="pl-0">
                     <p class="pt-md-3 pl-0" style="text-align:center; color:black; border:groove; border-radius:5px; background-color:lavender;">
                         <b>Artifacts</b>
                     </p>
                 </div>
                 <div>
-                    <table border="1" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
+                    <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%; max-height:100%; background-color:white; color:black; ">
                         <tr>
                             <th style="background-color:lavender;">Artifact Name</th>
                             <th style="background-color:lavender;">Room ID</th>
@@ -252,7 +252,7 @@
 
           
                 <!--Row 1.2--> <!--Average of Time for One Artifact-->
-                <div class="row " style=" max-height:50%; ">
+                <div class="row " style=" max-height:50%; width:100%; ">
                     <div style="width:100%;  ">
                         <p class="pt-2" style="text-align:center; border:groove; border-radius:5px; width:100%; background-color:lavender; color:black; margin-bottom:auto; ">
                             <b>Average of Time and Total Visitors for One Artifact</b>
@@ -269,12 +269,12 @@
                     </div>
 
                     
-                        <div id="anychart-embed-DHd8fH15" class=" pt-1 pb-0 anychart-embed anychart-embed-DHd8fH15">
+                        <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15" style="width:100%;">
 
                             <div id="ac_style_DHd8fH15" style="display:none;"></div>
 
                             <script src="~/js/ChartsJS/ArtifactsChart9.js"></script>
-                            <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:820px;height:103%;"></div>
+                            <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:100%;height:100%;"></div>
 
                         </div>
 
@@ -288,38 +288,38 @@
     </div>
 
     <!--------------------------------------------------------------------------------------------------------------------------->
-    <!--Average of Artifact by Visitors --> <!--Bir esere  ortalama kaç kişi düşüyorun hesaplanması-->
-    <div class="row pl-3 pr-3 pt-4 pb-0">
+    <!--Average of Artifact for one Visitor --> <!--Bir esere  ortalama kaç kişi düşüyorun hesaplanması-->
+    <div class="row pl-3 pr-3 pt-5 pb-0" style="width:100%;">
 
         <div class="col-12" style="border:groove; border-radius:5px; background-color:white;">
-            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Average of Artifact by Visitors</b></div>
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Average of Artifact for one Visitor  </b></div>
 
             <script src="~/js/ChartsJS/ArtifacstChart4.js"></script>
-            <div id="chart4" style="height: 400px; width:1215px;"></div>
+            <div id="chart4" style="height: 400px; width:100%; "></div>
 
         </div>
     </div>
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Most/Least Artifacts-->
-    <div class="row p-md-3 " style=" color:white;">
-        <div class="col-md-12 p-0" style=" border:groove 5px; border-radius:5px;  width:1250px; background-color:white; ">
+    <div class="row pl-3 pr-3 pt-5 " style=" width:100%; color:white; height:100%;">
+        <div class="col-md-12 p-0" style=" border:groove 5px; border-radius:5px;  width:100%; background-color:white; height:100%; ">
             <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; color:black; width:100%; border-radius:5px;"><b>Most/Least Artifacts</b></div>
 
-            <div id="chart3" style="height: 400px; min-width: 310px; background-color:#30303d"></div>
+            <div id="chart3" style="height: 100%; width:100%;"></div>
             <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
         </div>
     </div>
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Average of All Artifacts by visitors and time--> <!--Eserlerin Zamana göre ve ziyaretçi sayısına göre ortalması -->
-    <div class="row p-md-3">
-        <div class="col-md-12 p-0" style=" border:groove; border-radius:5px;  width:1250px; color:white; ">
-            <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; color:black; width:100%; border-radius:5px;"><b>Average of All Artifacts by visitors and time</b></div>
+    <div class="row pl-3 pr-3 pt-5" style="width:100%;">
+        <div class="col-md-12 pl-2" style=" border:groove; border-radius:5px;  width:100%; background-color:white; ">
+            <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; width:100%; border-radius:5px;"><b>Average of All Artifacts by visitors and time</b></div>
 
-            <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05">
+            <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05" style="width:100%;">
                 <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
 
-                <div id="chart5" style="width:1250px; height:450px; border:groove; border-radius:5px; "></div> <!--Chart div-->
+                <div id="chart5" style="width:100%; height:100%;  border-radius:5px; "></div> <!--Chart div-->
                 <script src="~/js/ChartsJS/ArtifactsChart5.js"></script><!--Chart script-->
 
             </div>
@@ -328,12 +328,12 @@
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Behaviour Flow-->
-    <div class="row pl-3 pt-3 pr-0 pb-3" style=" width:1260px;">
+    <div class="row pl-3 pt-5 pr-0 pb-3" style=" width:100%;">
 
-        <div class="col-md-8 pr-3 pt-1" style="background-color:white;   border-radius:5px;">
-            <div class="pt-4" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
+        <div class="col-md-8 pr-3 pt-1" style="background-color:white; border-radius:5px;">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
 
-            <div class="row">
+            <div class="row" style="width:100%;">
                 @{var tarih = DateTime.Now;}
                 <div class="col-md-5 pl-4" style="width:100%;">
                     Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
@@ -345,32 +345,87 @@
             </div>
 
             <script src="~/js/ChartsJS/ArtifactsBehaviourFlow.js"></script>
-            <div id="chart10" style="width: 100%;height: 500px;"></div>
+            <div id="chart10" style="width:100%;height: 500px;"></div>
 
         </div>
 
         <!--Behaviour Flow Bilgileri-->
-        <div class="col-md-4 pl-3 pt-1" style="background-color:white; border:groove; border-radius:5px;">
-            <div class="pt-4" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow Listesi</b></div>
-            ...Buraya Behaviour Chartın bilgileri yazılacak...<br />
-            ...Kimin kiminle ilişkisi var listelenecek...
+        <div class="col-md-4 pl-3 pt-1" style=" border-radius:5px; width:100%;">
+            <div class="pt-0" style="background-color:white; overflow:scroll; width:100%; height:100%; border:groove; border-radius:5px;">
+                <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
+                    <tr style="background-color:lavender;">
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
     </div>
 
     <!--------------------------------------------------------------------------------------------------------------------------->
     <!--Bounce Rate-->
-    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%; margin-top:20px; margin-bottom:5px;"><b>Bounce Rate for All Artifacts</b></div>
 
-    <div class="row  " style="width:100%; border:groove; border-radius:5px; color:white; margin:auto; ">
-        <div id="anychart-embed-samples-stock-grouping-01" class="anychart-embed anychart-embed-samples-stock-grouping-01">
+    <div class="row pl-3 pr-3 pt-5" style="width:100%;">
+        <div id="anychart-embed-samples-stock-grouping-01" class=" anychart-embed anychart-embed-samples-stock-grouping-01" style="width:100%; background-color:white;border:groove; border-radius:5px;">
+            <div class=" row pl-4" style="text-align:center;border-radius:5px; width:100%; ">
+                <p class="pt-2 pb-2" style="text-align:center; width:inherit; background-color:lavender; border-radius:5px;">
+                    <b style="text-align:center;">Bounce Rate for All Artifacts</b>
+                </p>
+            </div>
 
             <div id="ac_style_samples-stock-grouping-01" style="display:none;">
 
                 <style>
                     html, body, #chart7 {
                         width: 100%;
-                        height: 100%;
+                        height: 400px;
                         margin: 0;
                         padding: 0;
                         border-radius: 5px;
@@ -379,12 +434,11 @@
             </div>
 
             <script src="~/js/ChartsJS/ArtifactsChart7.js"></script>
-            <div id="chart7" style="width:1250px; border-radius:5px;"></div>
+            <div class="row" id="chart7" style="width:100%; border-radius:5px;"></div>
         </div>
     </div>
 
-
-
+   
 
 </div>
 <!--Body Row-->
