@@ -91,5 +91,22 @@ namespace Beamity.API.Controllers
                 return BadRequest();
             }
         }
+
+
+        [HttpPost]
+        public async Task<int> GetBeaconCount(EntityDTO input)
+        {
+            try
+            {
+                var artifact = await _beaconService.GetBeaconCount(input);
+                return artifact;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

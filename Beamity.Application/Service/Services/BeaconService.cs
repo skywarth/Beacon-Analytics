@@ -87,5 +87,18 @@ namespace Beamity.Application.Service.Services
                 beacon.Artifact = await _artifactRepository.GetById(input.ArtifactId);
             await _beaconRepository.Update(input.Id, beacon);
         }
+
+
+        //locationId
+        public async Task<int> GetBeaconCount(EntityDTO input)
+        {
+            int count = await _beaconRepository.GetAll()
+
+                .Where(x => x.IsActive && x.Artifact.Room.Floor.Building.Location.Id == input.Id)
+                .CountAsync();
+
+            return count;
+        }
+
     }
 }

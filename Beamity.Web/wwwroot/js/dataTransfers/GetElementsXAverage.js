@@ -54,46 +54,51 @@ async function loadPayload() {
 
         $("#datatable")[0].innerHTML = stringPart1 + stringPart2 + stringPart3;
         /*CARDS*/
-        $("#visitorChange")[0].textContent = payload.visitorChange; 
+        $("#visitorChange")[0].textContent = payload.visitorChange;
         $("#durationChange")[0].textContent = payload.durationChange;
         /*CARDS*/
-       am4core.ready(function () {
-            
-           var data = [];
-           // Add data
-           for (var i = 0; i < payload.hourlyVisitorsMuseum1.length; i++) {
-               data.push({ date: payload.hourlyVisitorsMuseum1[i].hour, value:payload.hourlyVisitorsMuseum1[i].count });
-           }
+        am4core.ready(function () {
+
+            var data = [];
+            // Add data
+            for (var i = 0; i < payload.hourlyVisitorsMuseum1.length; i++) {
+                data.push({ date: payload.hourlyVisitorsMuseum1[i].hour, value: payload.hourlyVisitorsMuseum1[i].count });
+            }
 
 
-           chart.data = data;
+            chart.data = data;
 
 
-           temperatures = [];
-           var tempHourly = payload.roomsArtifactHourly;
-           //flower
-           for (var i = 0; i < tempHourly.length; i++) {
-               temperatures[tempHourly[i].roomName] = [];
-               for (var k = 0; k < tempHourly[i].artifacts.length; k++) {
-                   //temperatures[tempHourly[i].roomName][k] = [];
-                   var counts = [];
-                   counts[0] = tempHourly[i].artifacts[k].name;
-                   for (var m = 1; m < tempHourly[i].artifacts[k].times.length; m++) {
-                       counts[m]= tempHourly[i].artifacts[k].times[m].count;
-                      
-                   }
-                   temperatures[tempHourly[i].roomName][k] = counts;
-               }
-               
-           }
+            temperatures = [];
+            var tempHourly = payload.roomsArtifactHourly;
+            //flower
+            for (var i = 0; i < tempHourly.length; i++) {
+                temperatures[tempHourly[i].roomName] = [];
+                for (var k = 0; k < tempHourly[i].artifacts.length; k++) {
+                    //temperatures[tempHourly[i].roomName][k] = [];
+                    var counts = [];
+                    counts[0] = tempHourly[i].artifacts[k].name;
+                    for (var m = 1; m < tempHourly[i].artifacts[k].times.length; m++) {
+                        counts[m] = tempHourly[i].artifacts[k].times[m].count;
 
-       });
+                    }
+                    temperatures[tempHourly[i].roomName][k] = counts;
+                }
+
+            }
+
+        });
         var behaviourFlow = payload.behaviourFlow;
         chartDiv2Data = [];
+        var BFInformationTableData = "";
+        $("#BFInformationTable").innerHtml = "";
+        var a = $("#BFInformationTable")[0];
         for (var i = 0; i < behaviourFlow.length; i++) {
             chartDiv2Data[i] = { from: behaviourFlow[i].from, to: behaviourFlow[i].to, value: behaviourFlow[i].count };
+            //table fill
+            BFInformationTableData += "<tr><td>" + behaviourFlow[i].from + "</td><td>" + behaviourFlow[i].to + "</td><td>" + behaviourFlow[i].count + "</td></tr>";
         }
-
+        a.innerHTML=BFInformationTableData;
 
         payloadDefer.resolve('yay');
         
@@ -118,18 +123,20 @@ async function loadPayload() {
 
 var a;
 
-function GetArtifactCount() {
+async function GetArtifactCount() {
     var artifactCountDefer = $.Deferred();
     //swalload();
     artifactCountDefer = $.Deferred();
     var options = {};
-    options.url = "https://localhost:44327/api/Artifact/GetArtifactCount?id="+locationId;
+    options.url = "https://localhost:44327/api/Artifact/GetArtifactCount?id=" + locationId;
+    options.type = "GET";
         var obj = {};
-        obj.Id = locationId;
-        options.type = "GET";
+    obj.Id = locationId;
+    options.data = JSON.stringify(obj);
+   
         options.dataType = "json";
         options.contentType = "application/json";
-        options.data = JSON.stringify(obj);
+
     options.success = function (data) {
 
         artifactCountDefer.resolve('yay');
@@ -146,4 +153,33 @@ function GetArtifactCount() {
 function SetArtifactCount() {
     
 
+}
+
+
+async function GetBeaconCount() {
+    var beaconCountDefer = $.Deferred();
+    beaconCountDefer = $.Deferred();
+    var options = {};
+    options.url = "https://localhost:44327/api/Beacon/GetBeaconCount";
+    var obj = {};
+    obj.Id = locationId;
+    options.type = "POST";
+    
+    options.data = JSON.stringify(obj);
+    options.dataType = "html";
+    options.contentType = "application/json";
+    options.processData = false;
+    options.success = function (data) {
+
+        beaconCountDefer.resolve('yay');
+        $("#beaconCount")[0].textContent = data;
+    };
+    options.error = function (e,msg) {
+        beaconCountDefer.reject('boo');
+        alert(msg);
+    };
+    $.ajax(options);
+    return beaconCountDefer.promise();
+
+    
 }
