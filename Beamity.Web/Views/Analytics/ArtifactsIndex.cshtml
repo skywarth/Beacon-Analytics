@@ -3,51 +3,49 @@
 @{
     ViewData["Title"] = "ArtifactsIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    <!--Resources of Chart1--> <!--Bir eser için toplam kişi sayısı-->
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
-    <script src="~/js/ChartsJS/ArtifactsChart1.js"></script>
-
-
-    <!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
-
-    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-
-    <!--Chart3 Resources--><!--Most/Least Artifacts-->
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-    <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
-
-    <!--Chart4 Resources--><!--Total Visitors for one Artifact-->
-    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
-
-
-
-    <!--Chart5 Resources--><!--Average of All Artifacts by visitors and time-->
-    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-
-    <!--Chart7--><!--Bounce Rate-->
-    <script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
-
-    <script>
-        var el = document.getElementById("contain");
-        el.style.backgroundColor = "teal";
-    </script>
 }
+<!--Resources of Chart1--> <!--Bir eser için toplam kişi sayısı-->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
+<!--<script src="~/js/ChartsJS/ArtifactsChart1.js"></script>-->
+<!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
+
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+<!--Chart3 Resources--><!--Most/Least Artifacts-->
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+<script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
+
+<!--Chart4 Resources--><!--Total Visitors for one Artifact-->
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+
+
+
+<!--Chart5 Resources--><!--Average of All Artifacts by visitors and time-->
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+
+
+<!--Chart7--><!--Bounce Rate-->
+<script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
+
+
+
+
+<script>
+    var el = document.getElementById("contain");
+    el.style.backgroundColor = "teal";
+
+/**/</script>
+
 <div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -250,7 +248,7 @@
             <!--------------------------------------------------------------------------------------------------------------------------->
             <div class="col-md-8 pl-md-4" style="background-color:teal; color:#fff; border-radius:5px;">
 
-          
+
                 <!--Row 1.2--> <!--Average of Time for One Artifact-->
                 <div class="row " style=" max-height:50%; width:100%; ">
                     <div style="width:100%;  ">
@@ -267,15 +265,15 @@
                         </p>
 
                     </div>
-                    
-                        <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15" style="width:100%;">
 
-                            <div id="ac_style_DHd8fH15" style="display:none;"></div>
+                    <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15" style="width:100%;">
 
-                            <script src="~/js/ChartsJS/ArtifactsChart9.js"></script>
-                            <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:100%;height:100%;"></div>
+                        <div id="ac_style_DHd8fH15" style="display:none;"></div>
 
-                        </div>
+
+                        <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:100%;height:100%;"></div>
+
+                    </div>
 
                 </div>
 
@@ -435,7 +433,10 @@
         </div>
     </div>
 
-    
+
 
 </div>
 <!--Body Row-->
+<script src="~/js/dataTransfers/DataFormatHelpers.js"></script>
+<script src="~/js/ChartsJS/ArtifactsChart9.js"></script>
+<script src="~/js/dataTransfers/ArtifactAnalyticsAJAX.js"></script>

@@ -670,6 +670,43 @@ namespace Beamity.Application.Service.Services
             return result.Insert(1, "%"); ;
         }
 
+
+
+
+
+
+        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactVisitorCountAndDurationAverage(EntityDTO input)//artifact id
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+
+
+                //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Id==input.Id)
+                 .ToListAsync();
+
+            var sub = from t in beaconActivity
+                          group t by new { t.EnterTime.Date} into grouped
+                          select new ArtifactVisitorCountAndDurationAverageDTO
+                          {
+                              //Id = grouped.Key.Id,
+                              Date=grouped.Key.Date.ToString("yyyy-MM-dd"),
+                              Count = grouped.Count(),
+                              AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+
+                          };
+            var subList = sub.ToList();
+            /*double durationAverage = subList.First().watchTime / subList.First().Count;
+             durationAverage = Math.Round(durationAverage, 2);
+             int count = subList.First().Count;*/
+            return subList;
+        }
+
+
+
+
+
     }
     static class tempClass
     {
@@ -678,5 +715,8 @@ namespace Beamity.Application.Service.Services
             return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, 0, 0);
         }
     }
+
+
+
 }
 

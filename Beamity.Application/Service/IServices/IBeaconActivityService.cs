@@ -42,5 +42,9 @@ namespace Beamity.Application.Service.IServices
         Task<string> GetVisitorChange(EntityDTO input);
 
         Task<string> GetDurationChange(EntityDTO input);
+
+
+        //artifact
+        Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactVisitorCountAndDurationAverage(EntityDTO input);
     }
 }

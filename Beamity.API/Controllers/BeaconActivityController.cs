@@ -152,6 +152,7 @@ namespace Beamity.API.Controllers
         }
 
 
+
         public class DashboardPayload{
             private double ArtifactsVisitorAverage;
             private double RoomsVisitorAverage;
@@ -184,6 +185,23 @@ namespace Beamity.API.Controllers
             public List<BehaviourFlowListDTO> BehaviourFlow { get => behaviourFlow; set => behaviourFlow = value; }
             public string VisitorChange { get => visitorChange; set => visitorChange = value; }
             public string DurationChange { get => durationChange; set => durationChange = value; }
+        }
+
+
+        [HttpPost]
+        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactVisitorCountAndDurationAverage(EntityDTO input)
+        {
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetArtifactVisitorCountAndDurationAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
 
     }
