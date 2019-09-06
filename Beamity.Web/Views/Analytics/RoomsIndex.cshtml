@@ -44,10 +44,10 @@
 
 <!--Body div-->
 <div class="container-fluid">
-    <div class="pl-0 pb-4" border-radius:5px;">
+    <div class="row pl-3 pb-4" border-radius:5px;">
        
         <!--Row1-->
-        <div class="row pl-2">
+       
             <!--DropDown and Title-->
             <div class="row pl-4 pb-1" style="width:100%;">
                 <select class="p-2" style="float:left; border: double; border-radius:5px; width:100%; background-color:lavender; color:blue;">
@@ -59,56 +59,41 @@
                 </select>
             </div>
             <!--Chart1--><!--Total Visitors and Bounce Rate for one Room-->
-            <div class="col-md-6 pl-2 pr-3" style="text-align:center; border-radius:5px;  ">
-                <div style="background-color:white; width:100%; height:100%;">
-                    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Total Visitors and Bounce Rate for One Room</b></div>
+            <div class="col-md-6 pl-2 pr-2" style="text-align:center; border-radius:5px;  ">
+                <div class="pl-2 pr-2" style="background-color:white; width:100%; height:100%; border-radius:5px;">
+                    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%; "><b>Total Visitors and Bounce Rate for One Room</b></div>
+                    <div id="chart1" style="width:100%; height:90%; background-color:white; border-radius:5px;"></div>
 
-                    <div id="chart1"></div>
-
-                    <style>
-                        body {
-                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-                        }
-
-                        #chart1 {
-                            width: 100%;
-                            height: 100%;
-                            background-color: white;
-                            border-radius: 5px;
-                        }
-                    </style>
                     <script src="~/js/ChartsJS/RoomsChart1.js"></script>
                 </div>
             </div>
 
 
             <!--Chart2--><!--"Average of time" and "total time" for one Room-->
-            <div class="col-md-6">
-                <div id="anychart-embed-samples-stock-spline-05" class="pr-1 anychart-embed anychart-embed-samples-stock-spline-05">
+            <div class="col-md-6 pl-2 pr-2" style="position:relative;">
+                <div id="anychart-embed-samples-stock-spline-05" class="pl-2 pr-2 anychart-embed anychart-embed-samples-stock-spline-05" style="background-color:white; border-radius:5px; position:relative;">
                     <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
                     <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Time and Total Time for One Room</b></div>
 
-                    <div id="chart5" style="width:100%; height:100%; border:solid; border-color:white; border-radius:5px; "></div> <!--Chart div-->
+                    <div id="chart5" style="width:100%; height:90%; border-radius:5px; position:relative; "></div> <!--Chart div-->
                     <script src="~/js/ChartsJS/RoomChart2.js"></script>
 
                 </div>
             </div>
-
-        </div>
     </div>
 
 
     <!-- "Row2" , "Chart3" -->  <!--Average of visitors and time for all rooms-->
-    <div class="row p-3">
+    <div class="row pl-3 pr-3 pt-4 ">
         <div style="width:100%;">
-            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Visitors and Time for All Rooms</b></div>
-            <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15">
+            <div id="anychart-embed-DHd8fH15" class="pl-2 pr-2 anychart-embed anychart-embed-DHd8fH15" style="width:100%; background-color:white; border-radius:5px;">
+                <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Visitors and Time for All Rooms</b></div>
 
                 <div id="ac_style_DHd8fH15" style="display:none;">
                     <style>
                         html, body, #chart3 {
                             width: 100%;
-                            height: 100%;
+                            height: 91%;
                             margin: 0;
                             padding: 0;
                         }
@@ -116,7 +101,7 @@
                 </div>
 
                 <script src="~/js/ChartsJS/RoomsChart3.js"></script>
-                <div id="chart3" style="width:1235px; border:groove; border-radius:5px;  "></div>
+                <div id="chart3" style="width:1235px;  "></div>
             </div>
         </div>
     </div>
@@ -127,7 +112,7 @@
     <div class="pt-4">
 
 
-        <div class="row pl-3 pr-3 pt-1">
+        <div class="row pl-3 pr-3 pt-4">
             <!--Chart4--><!--Behaviour Flow-->
 
             <div class="col-md-8" style=" width:100%; background-color:white; border-radius:5px;">
@@ -149,22 +134,69 @@
                         <button onclick="">SHOW</button>
                     </div>
                 </div>
+
                 <script src="~/js/ChartsJS/RoomsBehaviourFlow.js"></script>
                 <div id="chartdiv" style="width: 100%;height: 500px;"></div>
+
             </div>
 
             <!--Behaviour Flow Bilgileri-->
-            <div class="col-md-4" style="background-color:white; border-radius:5px;">
+            <div class="col-md-4 pr-0" style="border-radius:5px;">
 
-                <div class="pt-3 pb-3">
-                    <h1 style="font-size:20px;">
-                        Informations of Behaviour Flow Relations
-                    </h1>
+                <div class="pl-3 pr-2" style="background-color:white; overflow:scroll; width:100%; height:100%; border:groove; border-radius:5px;">
+                    <table  cellpadding="10" cellspacing="4" class="pr-0 " style="width:100%;  background-color:white; color:black;">
+                        <tr style="background-color:lavender;">
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Eve</td>
+                            <td>Jackson</td>
+                            <td>94</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>80</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                    </table>
                 </div>
-                Room1 -> Room2 = 320 kişi <br />
-                Room2 -> Room1 = 410 kişi <br />
-                Room1 -> Room3 = 200 kişi <br />
-                Room3 -> Room2 = 130 kişi <br />
 
             </div>
         </div>
