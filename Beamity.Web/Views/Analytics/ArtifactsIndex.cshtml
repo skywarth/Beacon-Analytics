@@ -16,6 +16,9 @@
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 
+<link href="~/css/Ghost.css" rel="stylesheet" />
+<link href="~/css/placeholder-loading.min.css" rel="stylesheet" />
+
 <!--Chart3 Resources--><!--Most/Least Artifacts-->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -38,6 +41,11 @@
 <script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
 
 
+
+<script async src="~/js/dataTransfers/GhostController.js"></script>
+<script async src="~/js/dataTransfers/DataFormatHelpers.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsChart9.js"></script>
+<script async src="~/js/dataTransfers/ArtifactAnalyticsAJAX.js"></script>
 
 
 <script>
@@ -68,7 +76,7 @@
                     </p>
                 </div>
                 <div>
-                    <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%; max-height:100%; background-color:white; color:black; ">
+                    <table id="chart9Table" border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%; max-height:100%; background-color:white; color:black; ">
                         <tr>
                             <th style="background-color:lavender;">Artifact Name</th>
                             <th style="background-color:lavender;">Room ID</th>
@@ -76,14 +84,14 @@
                             <th style="background-color:lavender;">Visitors</th>
                             <th style="background-color:lavender;">Action</th>
                         </tr>
-                        <tr>
+                        <tr class="artifactSelectors" data-artifact="1FFA9259-A5F4-4EEC-8F97-08D73038950C">
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
                             <td>50</td>
                             <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
                         </tr>
-                        <tr>
+                        <tr class="artifactSelectors">
                             <td>Eve</td>
                             <td>Jackson</td>
                             <td>94</td>
@@ -91,7 +99,7 @@
                             <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
-                        <tr>
+                        <tr class="artifactSelectors">
                             <td>John</td>
                             <td>Doe</td>
                             <td>80</td>
@@ -99,7 +107,7 @@
                             <td><button style="background-color:lavender;" onclick="window.location.href='http://www.mozilla.org/'">SHOW</button></td>
 
                         </tr>
-                        <tr>
+                        <tr class="artifactSelectors">
                             <td>Jill</td>
                             <td>Smith</td>
                             <td>50</td>
@@ -246,11 +254,11 @@
             </div>
             <!--Table of Artifacts-->
             <!--------------------------------------------------------------------------------------------------------------------------->
-            <div class="col-md-8 pl-md-4" style="background-color:teal; color:#fff; border-radius:5px;">
+            <div class="col-md-8 pl-md-4" style="color:#fff; border-radius:5px;">
 
 
                 <!--Row 1.2--> <!--Average of Time for One Artifact-->
-                <div class="row " style=" max-height:50%; width:100%; ">
+                <div class="row h-100" style="width:100%;background-color:white">
                     <div style="width:100%;  ">
                         <p class="pt-2" style="text-align:center; border:groove; border-radius:5px; width:100%; background-color:lavender; color:black; margin-bottom:auto; ">
                             <b>Average of Time and Total Visitors for One Artifact</b>
@@ -266,7 +274,39 @@
 
                     </div>
 
-                    <div id="anychart-embed-DHd8fH15" class=" pt-1 anychart-embed anychart-embed-DHd8fH15" style="width:100%;">
+                    <div id="chart9Placeholder" class=" no-chart-data ph-item placeholders mb-0">
+                        <h2 class="title"></h2>
+                        <div class="y-axis"></div>
+                        <div class="x-axis"></div>
+                        <div class="bars">
+                            <div class="overlay"></div>
+                            <div class="bar bar-0"></div>
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="bar bar-4"></div>
+                            <div class="bar bar-5"></div>
+                            <div class="bar bar-6"></div>
+                            <div class="bar bar-7"></div>
+                            <div class="bar bar-8"></div>
+                            <div class="bar bar-9"></div>
+                            <div class="bar bar-10"></div>
+                            <div class="bar bar-11"></div>
+                            <div class="bar bar-12"></div>
+                            <div class="bar bar-13"></div>
+                            <div class="bar bar-14"></div>
+                            <div class="bar bar-15"></div>
+                            <div class="bar bar-16"></div>
+                            <div class="bar bar-17"></div>
+                            <div class="bar bar-18"></div>
+                            <div class="bar bar-19"></div>
+                            <div class="bar bar-20"></div>
+                            <div class="bar bar-21"></div>
+                            <div class="bar bar-22"></div>
+                            <div class="bar bar-23"></div>
+                        </div>
+                    </div>
+                    <div id="anychart-embed-DHd8fH15 " data-actuality="actual" class="pt-1 anychart-embed anychart-embed-DHd8fH15 actuals chart9Actual" style="width:100%;">
 
                         <div id="ac_style_DHd8fH15" style="display:none;"></div>
 
@@ -437,6 +477,3 @@
 
 </div>
 <!--Body Row-->
-<script src="~/js/dataTransfers/DataFormatHelpers.js"></script>
-<script src="~/js/ChartsJS/ArtifactsChart9.js"></script>
-<script src="~/js/dataTransfers/ArtifactAnalyticsAJAX.js"></script>

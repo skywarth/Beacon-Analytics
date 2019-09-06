@@ -65,17 +65,23 @@ function chart1Initiate(){
     chart.draw();
 
     function getData() {
-       
-        var preArray = $.makeArray($.parseJSON(placeholderChart1Data));
+        var preArray = $.makeArray($.parseJSON(actualChart1Data));
         var actualArray = [];
         for (var i = 0; i < preArray.length; i++) {
             actualArray.push([preArray[i].date, preArray[i].count, parseFloat(preArray[i].averageTime.toFixed(2))]);
         }
         return actualArray;
-        return
 
        
     }
+
+    
+
+
+
+
+
+
 
 
     
