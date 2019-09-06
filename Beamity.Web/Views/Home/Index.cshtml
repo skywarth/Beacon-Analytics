@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!-- DataTransfers -->
+    <script src="~/js/dataTransfers/DataFormatHelpers.js"></script>
 <script src="~/js/dataTransfers/GetElementsXAverage.js"></script>
 
 
@@ -474,7 +475,7 @@
     }
 
     //locationAnon().pipe(dataToChart);//.pipe(loadPayload).pipe(dataToChart);
-    dataToChart();
+    
     async function dataToChart() {
         loadDatatableChart();
         fillRadarChart();
@@ -486,5 +487,6 @@
             fillRadarChart();
         fillBehaviourChart();
 
-    } //FIXME counts check async
+    }
+    dataToChart();
 </script>
