@@ -43,7 +43,7 @@
 
 
 
-<div id="TitleDashboard" class="container-fluid">
+<div id="TitleDashboard" class="pb-5 container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -137,7 +137,7 @@
 </div>
 
 
-
+<!--
 <div class="col-md-12 mt-3 pl-3">
     <div class="row">
         <div class="col-md-6">
@@ -149,10 +149,9 @@
     </div>
 </div>
 
-
-
+-->
 <!--Chart1 and Chart2 Row-->
-<div class="row pr-3">
+<div class="row pr-3 pb-4">
     <div id="container" class="col-12 col-md-4"></div> <!--Chart1 Html-->
     <div id="chartdiv" class="col-12 col-md-8 "></div><!--Chart2 Html-->
 
@@ -191,11 +190,11 @@
 <div>
     <!--First Chart Script Codes-->
 
-    
+
 </div>
 <!--First Chart Finish-->
 <!--Average Cards-->
-<div>
+<div class="pb-5">
 
     <!--Row1-->
     <div class="row" style="margin-top:10px;">
@@ -278,7 +277,7 @@
     </div>
     <!--Row1-->
     <!--Row2-->
-    <div class="row" style="margin-top:10px;">
+    <div class="row pb-4" style="margin-top:10px;">
 
         <!--Card1--><!--Müze Bounce Rate-->
         <div class="col-md-3 col-sm-12 pl-3">
@@ -286,7 +285,7 @@
             <div id="Average5" class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                        <i class="material-icons"><b>Müze Bounce Rate</b></i>
+                        <i class="material-icons"><b>Museum Bounce Rate</b></i>
                     </div>
                     <p class="card-category"></p>
                     <h3 class="card-title"><span id="Average5-data">21</span> <i style="font-size:15px;">%</i></h3>
@@ -363,10 +362,11 @@
     </div>
     <!--Row2-->
     <!--Row3-->
-    <div class="row pt-3 pr-3">
+    <div class="row pt-3 pr-3 pb-4">
 
         <!--Chart1--><!--Behaviour Flow-->
-        <div class="col-md-8">
+        <div class="col-md-8 ">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
 
             <div id="chartdiv2"></div>
 
@@ -435,8 +435,9 @@
     </div>
     <!--Row3-->
     <!--Row4--> <!--Visitors for hours-->
-    <div id="VisitforHours" class="col-md-12 col-sm-12 pl-0 pr-0 pt-3">
-        <div id="chartdiv3"></div>
+    <div id="VisitforHours" class="col-md-12 col-sm-12 pl-0 pr-0 pt-3" style="color:black;">
+
+        <div class="pt-5" id="chartdiv3"></div>
 
     </div>
 
@@ -446,32 +447,32 @@
 <script>
     //$.when(locationAnon()).done(loadDatatableChart);
 
-    
+
     function loadDatatableChart() {
         Highcharts.chart('container', {
-        data: {
-            table: 'datatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'MOST / LEAST interested artifacts.'
-        },
-        yAxis: {
-            allowDecimals: false,
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: ''
+                text: 'MOST / LEAST interested artifacts.'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
             }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-    
+        });
+
     }
 
     //locationAnon().pipe(dataToChart);//.pipe(loadPayload).pipe(dataToChart);
@@ -483,8 +484,8 @@
         GetArtifactCount();
         GetBeaconCount();
         await loadPayload();
-             loadDatatableChart();
-            fillRadarChart();
+        loadDatatableChart();
+        fillRadarChart();
         fillBehaviourChart();
 
     }

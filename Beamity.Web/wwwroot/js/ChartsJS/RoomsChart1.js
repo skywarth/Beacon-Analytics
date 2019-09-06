@@ -14,57 +14,92 @@
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-// Create chart instance
 var chart = am4core.create("chart1", am4charts.XYChart);
 
-// Add data
-chart.data = generateChartData();
+var data = [];
+var price = 100;
+var quantity = 1000;
+for (var i = 0; i < 300; i++) {
+    price += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
+    quantity += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 1000);
+    data.push({ date: new Date(2000, 1, i), price: price, quantity: quantity });
+}
 
-// Create axes
+var interfaceColors = new am4core.InterfaceColorSet();
+
+chart.data = data;
+// the following line makes value axes to be arranged vertically.
+chart.leftAxesContainer.layout = "vertical";
+
+// uncomment this line if you want to change order of axes
+//chart.bottomAxesContainer.reverseOrder = true;
+
 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis.renderer.minGridDistance = 50;
+dateAxis.renderer.grid.template.location = 0;
+dateAxis.renderer.ticks.template.length = 8;
+dateAxis.renderer.ticks.template.strokeOpacity = 0.1;
+dateAxis.renderer.grid.template.disabled = true;
+dateAxis.renderer.ticks.template.disabled = false;
+dateAxis.renderer.ticks.template.strokeOpacity = 0.2;
+
+// these two lines makes the axis to be initially zoomed-in
+//dateAxis.start = 0.7;
+//dateAxis.keepSelection = true;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.zIndex = 1;
+valueAxis.renderer.baseGrid.disabled = true;
 
-// Create series
+// Set up axis
+valueAxis.renderer.inside = true;
+valueAxis.height = am4core.percent(60);
+valueAxis.renderer.labels.template.verticalCenter = "bottom";
+valueAxis.renderer.labels.template.padding(2, 2, 2, 2);
+//valueAxis.renderer.maxLabelPosition = 0.95;
+valueAxis.renderer.fontSize = "0.8em"
+
+// uncomment these lines to fill plot area of this axis with some color
+valueAxis.renderer.gridContainer.background.fill = interfaceColors.getFor("alternativeBackground");
+valueAxis.renderer.gridContainer.background.fillOpacity = 0.05;
+
+
 var series = chart.series.push(new am4charts.LineSeries());
-series.dataFields.valueY = "visits";
 series.dataFields.dateX = "date";
-series.strokeWidth = 2;
-series.minBulletDistance = 10;
-series.tooltipText = "{valueY}";
-series.tooltip.pointerOrientation = "vertical";
-series.tooltip.background.cornerRadius = 20;
-series.tooltip.background.fillOpacity = 0.5;
-series.tooltip.label.padding(12, 12, 12, 12)
+series.dataFields.valueY = "price";
+series.tooltipText = "{valueY.value}";
+series.name = "Series 1";
 
-// Add scrollbar
-chart.scrollbarX = new am4charts.XYChartScrollbar();
-chart.scrollbarX.series.push(series);
+var valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis2.tooltip.disabled = true;
 
-// Add cursor
+// this makes gap between panels
+valueAxis2.marginTop = 30;
+valueAxis2.renderer.baseGrid.disabled = true;
+valueAxis2.renderer.inside = true;
+valueAxis2.height = am4core.percent(40);
+valueAxis2.zIndex = 3
+valueAxis2.renderer.labels.template.verticalCenter = "bottom";
+valueAxis2.renderer.labels.template.padding(2, 2, 2, 2);
+//valueAxis2.renderer.maxLabelPosition = 0.95;
+valueAxis2.renderer.fontSize = "0.8em"
+
+// uncomment these lines to fill plot area of this axis with some color
+valueAxis2.renderer.gridContainer.background.fill = interfaceColors.getFor("alternativeBackground");
+valueAxis2.renderer.gridContainer.background.fillOpacity = 0.05;
+
+var series2 = chart.series.push(new am4charts.ColumnSeries());
+series2.columns.template.width = am4core.percent(50);
+series2.dataFields.dateX = "date";
+series2.dataFields.valueY = "quantity";
+series2.yAxis = valueAxis2;
+series2.tooltipText = "{valueY.value}";
+series2.name = "Series 2";
+
 chart.cursor = new am4charts.XYCursor();
 chart.cursor.xAxis = dateAxis;
-chart.cursor.snapToSeries = series;
 
-function generateChartData() {
-    var chartData = [];
-    var firstDate = new Date();
-    firstDate.setDate(firstDate.getDate() - 1000);
-    var visits = 1200;
-    for (var i = 0; i < 500; i++) {
-        // we create date objects here. In your data, you can have date strings
-        // and then set format of your dates using chart.dataDateFormat property,
-        // however when possible, use date objects, as this will speed up chart rendering.
-        var newDate = new Date(firstDate);
-        newDate.setDate(newDate.getDate() + i);
-
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-
-        chartData.push({
-            date: newDate,
-            visits: visits
-        });
-    }
-    return chartData;
-}
+var scrollbarX = new am4charts.XYChartScrollbar();
+scrollbarX.series.push(series);
+scrollbarX.marginBottom = 20;
+chart.scrollbarX = scrollbarX;
