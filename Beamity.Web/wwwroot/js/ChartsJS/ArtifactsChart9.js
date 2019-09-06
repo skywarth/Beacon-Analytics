@@ -24,9 +24,10 @@ anychart.onDocumentReady(function () {
 });
 
 
-function chart1Initiate(){
+function chart9Initiate(){
     var dataTable = anychart.data.table();
-    dataTable.addData(getData());
+    var data = getData();
+    dataTable.addData(data);
 
     var mapping = dataTable.mapAs({ 'value': 1 });
     var mapping2 = dataTable.mapAs({ 'value': 2 });
@@ -58,31 +59,34 @@ function chart1Initiate(){
 
     chart.scroller().line(mapping);
 
-    chart.selectRange('2019-08-29', '2019-09-05');
+
+    chart.selectRange(data[0].date, data[data.length-1].date);
 
     chart.container('chart9');
 
     chart.draw();
 
-    function getData() {
-        var preArray = $.makeArray($.parseJSON(actualChart1Data));
-        var actualArray = [];
-        for (var i = 0; i < preArray.length; i++) {
-            actualArray.push([preArray[i].date, preArray[i].count, parseFloat(preArray[i].averageTime.toFixed(2))]);
-        }
-        return actualArray;
 
-       
+    
+
+
+
+
+
+
+
+
+    
+}
+
+
+function getData() {
+    var preArray = $.makeArray($.parseJSON(actualChart9Data));
+    var actualArray = [];
+    for (var i = 0; i < preArray.length; i++) {
+        actualArray.push([preArray[i].date, preArray[i].count, parseFloat(preArray[i].averageTime.toFixed(2))]);
     }
-
-    
-
+    return actualArray;
 
 
-
-
-
-
-
-    
 }

@@ -696,7 +696,7 @@ namespace Beamity.Application.Service.Services
                               AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
 
                           };
-            var subList = sub.ToList();
+            var subList = sub.OrderBy(x=>x.Date).ToList();
             /*double durationAverage = subList.First().watchTime / subList.First().Count;
              durationAverage = Math.Round(durationAverage, 2);
              int count = subList.First().Count;*/

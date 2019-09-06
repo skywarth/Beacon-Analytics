@@ -1,8 +1,8 @@
-﻿var actualChart1Data;
+﻿var actualChart9Data;
 
-async function GetChart1(id) {
-    var chart1Defer = $.Deferred();
-    chart1Defer = $.Deferred();
+async function GetChart9(id) {
+    var chart9Defer = $.Deferred();
+    chart9Defer = $.Deferred();
     var options = {};
     options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactVisitorCountAndDurationAverage";
     var obj = {};
@@ -15,18 +15,18 @@ async function GetChart1(id) {
     options.contentType = "application/json";
     options.processData = false;
     options.success = function (data) {
-        actualChart1Data = data;
+        actualChart9Data = data;
         
-        chart1Defer.resolve('yay');
+        chart9Defer.resolve('yay');
         
        
     };
     options.error = function (e, msg) {
-        chart1Defer.reject('boo');
+        chart9Defer.reject('boo');
         alert(msg);
     };
     $.ajax(options);
-    return chart1Defer.promise();
+    return chart9Defer.promise();
 
 
 }
@@ -34,8 +34,8 @@ async function GetChart1(id) {
 
 
 async function GetArtifacts() {
-    var chart1Defer = $.Deferred();
-    chart1Defer = $.Deferred();
+    var chart9Defer = $.Deferred();
+    chart9Defer = $.Deferred();
     var options = {};
     options.url = "https://localhost:44327/api/Artifact/GetAllArtifacts";
     var obj = {};
@@ -48,35 +48,36 @@ async function GetArtifacts() {
     options.contentType = "application/json";
     options.processData = false;
     options.success = function (data) {
-        debugger
-        actualChart1Data = data;
-
-        chart1Defer.resolve('yay');
-
+        var result=JSON.parse(data);
+        chart9Defer.resolve('yay');
+        tableInitialize(result);
 
     };
     options.error = function (e, msg) {
-        debugger
-        chart1Defer.reject('boo');
+        chart9Defer.reject('boo');
         alert(msg);
     };
     $.ajax(options);
-    return chart1Defer.promise();
+    return chart9Defer.promise();
 
 
 }
 
 async function tableInitialize(data) {
-
+    var html = "";
+    for (var i = 0; i < data.length; i++) {
+        html += "<tr class='artifactSelectors' data-artifact='" + data[i].id + "' ><td><span>" + data[i].name + "</span></td><td><span>" + data[i].roomName + "</span></td><td><span>" + data[i].floorName +"</span></td></tr>";
+    }
+    $("#chart9Table").eq(0).html(html);
 }
 
 
 
 async function chart9Composition(id = "1E0B540E-03D3-4070-EAF7-08D726064EB2") {
-    //    chart1Initiate();
+    //    chart9Initiate();
     
-    await GetChart1(id);
-    chart1Initiate();
+    await GetChart9(id);
+    chart9Initiate();
     chartXLoaded($("#chart9Placeholder")[0], $(".chart9Actual")[0]);
 
 
@@ -92,7 +93,9 @@ async function chart9Selection(element) {
     chart9Composition(id);
 }
 
-$('.artifactSelectors').click(function () {
+
+
+$('#chart9Table').on('click span', 'tr', function () {
     chart9Selection($(this).data("artifact"));
 });
 
