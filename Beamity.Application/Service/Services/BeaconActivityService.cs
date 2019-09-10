@@ -629,12 +629,20 @@ namespace Beamity.Application.Service.Services
             var list = subList.ToList();
             //decimal calculation = ((Convert.ToDecimal(list[1].count) / Convert.ToDecimal(list[0].count)) * Convert.ToDecimal(100));
             decimal calculation = Convert.ToDecimal(list[1].count - list[0].count) / Convert.ToDecimal(list[0].count) * 100;
-
-            string result = Math.Round(calculation,2).ToString();
+            string result = Math.Round(calculation, 2).ToString();
+            string prefix;
+            if (calculation >= 0)
+            {
+                prefix = "+%";
+            }
+            else
+            {
+                result = result.Remove(0, 1);
+                prefix = "-%";
+            }
             
 
-
-            return result.Insert(1, "%"); ;
+            return result.Insert(0, prefix); ;
         }
 
 
@@ -662,15 +670,27 @@ namespace Beamity.Application.Service.Services
             var list = subList.ToList();
             //decimal calculation = ((Convert.ToDecimal(list[1].count) / Convert.ToDecimal(list[0].count)) * Convert.ToDecimal(100));
             decimal calculation = Convert.ToDecimal(list[1].watchTime - list[0].watchTime) / Convert.ToDecimal(list[0].watchTime) * 100;
-
+            
             string result = Math.Round(calculation, 2).ToString();
+            string prefix;
 
+            if (calculation >= 0)
+            {
+                prefix = "+%";
+            }
+            else
+            {
+                result = result.Remove(0, 1);
+                prefix = "-%";
+            }
+            
 
-
-            return result.Insert(1, "%"); ;
+            return result.Insert(0,prefix);
         }
 
 
+
+        //ARTIFACT PAGE
 
 
 
@@ -697,6 +717,65 @@ namespace Beamity.Application.Service.Services
 
                           };
             var subList = sub.OrderBy(x=>x.Date).ToList();
+            /*double durationAverage = subList.First().watchTime / subList.First().Count;
+             durationAverage = Math.Round(durationAverage, 2);
+             int count = subList.First().Count;*/
+            return subList;
+        }
+
+
+        public async Task<List<DateAndAverageDTO>> GetArtifactCountPerUser(EntityDTO input)//location id
+        {
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+
+
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id==input.Id)
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                          group t by new { t.EnterTime.Date, t.UserId } into grouped
+                          select new
+                          {
+                              Date = grouped.Key.Date,
+                              User=grouped.Key.UserId,
+                              Count = grouped.Count()
+
+                          };
+            var subList2 = from t in subList
+                           group t by t.Date into grouped
+                           select new DateAndAverageDTO
+                           {
+                               Date = grouped.Key.ToString("yyyy-MM-dd"),
+                               Average = Math.Round(grouped.Average(x => x.Count), 2)
+                           };
+
+
+            return subList2.OrderBy(x=>x.Date).ToList();
+        }
+
+        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactsVisitorCountAndDurationAverage(EntityDTO input)//locationId
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+
+
+                //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+                 .ToListAsync();
+
+            var sub = from t in beaconActivity
+                      group t by new { t.EnterTime.Date } into grouped
+                      select new ArtifactVisitorCountAndDurationAverageDTO
+                      {
+                          //Id = grouped.Key.Id,
+                          Date = grouped.Key.Date.ToString("yyyy-MM-dd"),
+                          Count = grouped.Count(),
+                          AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+
+                      };
+            var subList = sub.OrderBy(x => x.Date).ToList();
             /*double durationAverage = subList.First().watchTime / subList.First().Count;
              durationAverage = Math.Round(durationAverage, 2);
              int count = subList.First().Count;*/

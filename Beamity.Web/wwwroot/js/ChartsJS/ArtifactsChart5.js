@@ -22,8 +22,14 @@
 anychart.onDocumentReady(function () {
 
     // set the data
+    
+});
+
+
+function chart5Initiate() {
     table = anychart.data.table();
-    table.addData([
+    table.addData(getData5());
+    /*table.addData([
         ['2010-01-01', 1.0860, 73],
         ['2010-02-04', 1.0832, 72.7250],
         ['2010-02-05', 1.0780, 73.3850],
@@ -66,7 +72,7 @@ anychart.onDocumentReady(function () {
         ['2016-02-25', 1.1023, 75.3641],
         ['2016-02-26', 1.0934, 76.1883],
         ['2016-02-29', 1.0873, 75.1682]
-    ]);
+    ]);*/
 
     // map the data
     mapping_euro = table.mapAs();
@@ -82,7 +88,23 @@ anychart.onDocumentReady(function () {
     series_euro.name("Average of Visitors for All Artifacts");
 
     var series_rub = chart.plot(1).spline(mapping_rub);
-    series_rub.name("Average of time for All Artifacts");
+    series_rub.name("Average of duration for All Artifacts");
+
+    var tooltip = chart.tooltip();
+
+    // Set text formatter.
+    tooltip.format(function () {
+        if (this.seriesName == "Average of duration for All Artifacts") {
+            return this.seriesName + "=" + secondsToFinalTime(this.value);
+        } else {
+            return this.seriesName + "=" + this.value;
+        }
+
+        /*
+        var average = (this.value + this.value) / 2;
+        console.log(average);
+        return average + '\n' + this.seriesName + ': ' + this.value;*/
+    });
 
     // coloring
     series_euro.stroke("#ff0000");
@@ -91,4 +113,20 @@ anychart.onDocumentReady(function () {
 
     chart.container('chart5');
     chart.draw();
-});
+
+
+
+    
+}
+
+
+function getData5() {
+    var preArray = $.makeArray(chart5Data);
+    var actualArray = [];
+    for (var i = 0; i < preArray.length; i++) {
+        actualArray.push([preArray[i].date, preArray[i].count, preArray[i].averageTime]);
+    }
+    return actualArray;
+
+
+}

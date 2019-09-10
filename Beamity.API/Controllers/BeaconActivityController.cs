@@ -204,5 +204,39 @@ namespace Beamity.API.Controllers
 
         }
 
+
+        [HttpPost]
+        public async Task<List<DateAndAverageDTO>> GetArtifactCountPerUser(EntityDTO input)
+        {
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetArtifactCountPerUser(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        [HttpPost]
+        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactsVisitorCountAndDurationAverage(EntityDTO input)
+        {
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetArtifactsVisitorCountAndDurationAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }
