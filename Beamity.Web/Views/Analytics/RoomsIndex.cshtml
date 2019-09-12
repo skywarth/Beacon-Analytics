@@ -1,210 +1,436 @@
 ﻿
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "RoomsIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!--Resources of Chart1--> <!--Bir eser için toplam kişi sayısı-->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script async src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script async src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
+<!--<script src="~/js/ChartsJS/ArtifactsChart1.js"></script>-->
+<!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
 
-<!--Resources Chart1--><!--Total Visitors for one Room-->
+<script async src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script async src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 
-<!--Resources Chart2--><!--Average of time and total time for one room-->
+<link href="~/css/Ghost.css" rel="stylesheet" />
+<link href="~/css/placeholder-loading.min.css" rel="stylesheet" />
+
+
+
+
+
+<!--Chart5 Resources--><!--Average of All Artifacts by visitors and time-->
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-stock.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
 
-<!--Resources Chart3--><!--Average of Visitors and Time for All Rooms-->
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-stock.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
 
-<!--Resources Chart4--><!--Behaviour Flow-->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<!--Chart7--><!--Bounce Rate-->
+
+
+<script async src="~/js/dataTransfers/GhostController.js"></script>
+<script async src="~/js/dataTransfers/RoomAnalyticsAJAX.js"></script>
+<script async src="~/js/ChartsJS/BehaviourFlow.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsChart5.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsBehaviourFlow.js"></script>
+
+<script async src="~/js/dataTransfers/DataFormatHelpers.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsChart9.js"></script>
 
 
 
 <script>
-
     var el = document.getElementById("contain");
     el.style.backgroundColor = "teal";
-</script>
 
-<div class="container-fluid pb-4">
+    /**/</script>
+
+<div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a id="textofDashboard" href="#"><b style="font-size:20px; ">Rooms Analytics</b></a>
+            <a id="textofDashboard" href="#"><b style="font-size:20px; ">Room Analytics</b></a>
         </li>
     </ol>
 </div>
 
 
-
-
-<!--Body div-->
-<div class="container-fluid pr-0">
-    <div class="row pl-3 pb-4" border-radius:5px;">
-       
+<!--Body Row-->
+<div class="row pl-4 " style="position:relative; ">
+    <div style=" border-radius:5px; width:100%;">
         <!--Row1-->
-       
-            <!--DropDown and Title-->
-            <div class="row pl-4 pb-1" style="width:100%;">
-                <select class="p-2" style="float:left; border: double; border-radius:5px; width:100%; background-color:lavender; color:blue;">
-                    <option selected>Oda-1</option>
-                    <option>Oda-2</option>
-                    <option>Oda-3</option>
-                    <option>Oda-4</option>
-                    <option>Oda-5</option>
-                </select>
-            </div>
-            <!--Chart1--><!--Total Visitors and Bounce Rate for one Room-->
-            <div class="col-md-6 pl-2 pr-2" style="text-align:center; border-radius:5px;  ">
-                <div class="pl-2 pr-2" style="background-color:white; width:100%; height:100%; border-radius:5px; ">
-                    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%; "><b>Total Visitors and Bounce Rate for One Room</b></div>
-
-
-               
-
-                    <div id="chart1" style="width:100%; height:90%; background-color:white; border-radius:5px;"></div>
-                    <script src="~/js/ChartsJS/RoomsChart1.js"></script>
-                </div>
-            </div>
-
-
-            <!--Chart2--><!--"Average of time" and "total time" for one Room-->
-            <div class="col-md-6 pl-2 pr-2" style="position:relative;">
-                <div id="anychart-embed-samples-stock-spline-05" class="pl-2 pr-2 anychart-embed anychart-embed-samples-stock-spline-05" style="background-color:white; border-radius:5px; position:relative;">
-                    <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
-                    <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Time and Total Time for One Room</b></div>
-
-                    <div id="chart5" style="width:100%; height:90%; border-radius:5px; position:relative; "></div> <!--Chart div-->
-                    <script src="~/js/ChartsJS/RoomChart2.js"></script>
-
-                </div>
-            </div>
-    </div>
-
-
-    <!-- "Row2" , "Chart3" -->  <!--Average of visitors and time for all rooms-->
-    <div class="row pl-3 pr-3 pt-4 ">
-        <div style="width:100%;">
-            <div id="anychart-embed-DHd8fH15" class="pl-2 pr-2 anychart-embed anychart-embed-DHd8fH15" style="width:100%; background-color:white; border-radius:5px;">
-                <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;"><b>Average of Visitors and Time for All Rooms</b></div>
-
-                <div id="ac_style_DHd8fH15" style="display:none;">
-                    <style>
-                        html, body, #chart3 {
-                            width: 100%;
-                            height: 91%;
-                            margin: 0;
-                            padding: 0;
-                        }
-                    </style>
-                </div>
-
-                <script src="~/js/ChartsJS/RoomsChart3.js"></script>
-                <div id="chart3" style="width:1235px;  "></div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!--Row3-->
-    <div class="pt-4">
-
-
         <div class="row pl-3 pr-3 pt-4">
-            <!--Chart4--><!--Behaviour Flow-->
-
-            <div class="col-md-8" style=" width:100%; background-color:white; border-radius:5px;">
-                <div class="pl-3" style="text-align:center;">
-                    <div class="row pt-2 pb-0" style="text-align:center; background-color:lavender; border-radius:5px; width:100%;">
-                        <p>
-                            <b>Behaviour Flow</b>
-                        </p>
-                    </div>
+            <!--Table of Artifacts-->
+            <div class="col-md-4 pr-3" style="height: 488px; overflow: scroll; width: 100%; background-color:white; color:#fff; border:groove; border-radius:5px;">
+                <div class="pl-0">
+                    <p class="pt-md-3 pl-0" style="text-align:center; color:black; border:groove; border-radius:5px; background-color:lavender;">
+                        <b>Artifacts</b>
+                    </p>
                 </div>
+                <div>
+                    <div id="tablePlaceholder" class="ph-item p-0 placeholders" style="border:none;">
+                        <div class="ph-col-12">
+                            <div class="ph-row">
+                                <div class="ph-col-12" style="height:1.8rem;"></div>
+                            </div>
+                            <div class="ph-row">
 
-                <div class="row">
-                    @{var tarih = DateTime.Now;}
-                    <div class="col-md-5 pl-4" style="width:100%;">
-                        Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6" style="width:100%; background-color:white;">
-                        Bitiş Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
-                        <button onclick="">SHOW</button>
-                    </div>
-                </div>
-
-                <script src="~/js/ChartsJS/RoomsBehaviourFlow.js"></script>
-                <div id="chartdiv" style="width: 100%;height: 500px;"></div>
-
-            </div>
-
-            <!--Behaviour Flow Bilgileri-->
-            <div class="col-md-4 pr-0" style="border-radius:5px;">
-
-                <div class="pl-3 pr-2" style="background-color:white; overflow:scroll; width:100%; height:100%; border:groove; border-radius:5px;">
-                    <table  cellpadding="10" cellspacing="4" class="pr-0 " style="width:100%;  background-color:white; color:black;">
-                        <tr style="background-color:lavender;">
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Value</th>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Eve</td>
-                            <td>Jackson</td>
-                            <td>94</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>80</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
+                    <table border="0" class="tableActual pr-0" data-actuality="actual" cellpadding="4" cellspacing="4" style="width:100%; max-height:100%; background-color:white; color:black; ">
+                        <thead>
+                            <tr>
+                                <th style="background-color:lavender;">Artifact Name</th>
+                                <th style="background-color:lavender;">Room Name</th>
+                                <th style="background-color:lavender;">Floor Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="chart9Table"></tbody>
                     </table>
                 </div>
+            </div>
+            <!--Table of Artifacts-->
+            <!--------------------------------------------------------------------------------------------------------------------------->
+            <div class="col-md-8 pl-md-4" style="color:#fff; border-radius:5px;">
+
+
+                <!--Row 1.2--> <!--Average of Time for One Artifact-->
+                <div class="row h-100" style="width:100%;background-color:white">
+                    <div style="width:100%;  ">
+                        <p class="pt-2" style="text-align:center; border:groove; border-radius:5px; width:100%; background-color:lavender; color:black; margin-bottom:auto; ">
+                            <b>Average of Time and Total Visitors for One Artifact</b>
+                            <select style="float:right; border:dashed;">
+
+                                <option selected>2018-2019</option>
+                                <option>2017-2018</option>
+                                <option>2016-2017</option>
+                                <option>2015-2016</option>
+                                <option>2014-2015 </option>
+                            </select>
+                        </p>
+
+                    </div>
+
+                    <div id="chart9Placeholder" class=" no-chart-data ph-item placeholders mb-0">
+                        <h2 class="title"></h2>
+                        <div class="y-axis"></div>
+                        <div class="x-axis"></div>
+                        <div class="bars">
+                            <div class="overlay"></div>
+                            <div class="bar bar-0"></div>
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="bar bar-4"></div>
+                            <div class="bar bar-5"></div>
+                            <div class="bar bar-6"></div>
+                            <div class="bar bar-7"></div>
+                            <div class="bar bar-8"></div>
+                            <div class="bar bar-9"></div>
+                            <div class="bar bar-10"></div>
+                            <div class="bar bar-11"></div>
+                            <div class="bar bar-12"></div>
+                            <div class="bar bar-13"></div>
+                            <div class="bar bar-14"></div>
+                            <div class="bar bar-15"></div>
+                            <div class="bar bar-16"></div>
+                            <div class="bar bar-17"></div>
+                            <div class="bar bar-18"></div>
+                            <div class="bar bar-19"></div>
+                            <div class="bar bar-20"></div>
+                            <div class="bar bar-21"></div>
+                            <div class="bar bar-22"></div>
+                            <div class="bar bar-23"></div>
+                        </div>
+                    </div>
+                    <div id="anychart-embed-DHd8fH15 " data-actuality="actual" class="pt-1 anychart-embed anychart-embed-DHd8fH15 actuals chart9Actual" style="width:100%;">
+
+                        <div id="ac_style_DHd8fH15" style="display:none;"></div>
+
+
+                        <div class="pb-0" id="chart9" style="border:groove; border-radius:5px; width:100%;height:100%;"></div>
+
+                    </div>
+
+                </div>
 
             </div>
         </div>
 
     </div>
 
-</div>
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Average of Artifact for one Visitor --> <!--Bir esere  ortalama kaç kişi düşüyorun hesaplanması-->
+    <div class="row pl-3 pr-3 pt-5 pb-0" style="width:100%;">
 
+        <div class="col-12" style="border:groove; border-radius:5px; background-color:white;">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Average of Artifact for one Visitor  </b></div>
+
+            <script src="~/js/ChartsJS/ArtifacstChart4.js"></script>
+            <div id="chart4Placeholder" class="placeholders mt-4 mb-4 ph-item">
+
+
+                <svg class="chart lineChartSvg">
+                    <!--TRANSFORM SCALE AND VIEWPORT SIZE -->
+
+                    <polyline class="lineChartPlaceholder align-self-center" fill="none"
+                              stroke="#ced4da"
+                              stroke-width="2"
+                              points="
+       00,120
+       20,60
+       40,80
+       60,20
+       80,80
+       100,80
+       120,60
+       140,100
+       160,90
+       180,80
+       200, 110
+       220, 10
+       240, 70
+       260, 100
+       280, 100
+       300, 40
+       320, 0
+       340, 100
+       360, 100
+       380, 120
+       400, 60
+       420, 70
+       440, 80
+     " />
+
+                </svg>
+
+
+            </div>
+            <div id="chart4" data-actuality="actual" class="chart4Actual" style="height: 400px; width:100%; "></div>
+
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Most/Least Artifacts-->
+    <!-- CANCELED FOR NOW <div class="row pl-3 pr-3 pt-5 " style=" width:100%; color:white; height:100%;">
+         <div class="col-md-12 p-0" style=" border:groove 5px; border-radius:5px;  width:100%; background-color:white; height:100%; ">
+             <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; color:black; width:100%; border-radius:5px;"><b>Most/Least Artifacts</b></div>
+
+             <div id="chart3" style="height: 100%; width:100%;"></div>
+             <script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
+         </div>
+     </div>
+        -->
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Average of All Artifacts by visitors and time--> <!--Eserlerin Zamana göre ve ziyaretçi sayısına göre ortalması -->
+    <div class="row pl-3 pr-3 pt-5" style="width:100%;">
+        <div class="col-md-12 pl-2" style=" border:groove; border-radius:5px;  width:100%; background-color:white; ">
+            <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; width:100%; border-radius:5px;"><b>Average of All Artifacts by visitors and time</b></div>
+            <div id="chart5Placeholder" class="placeholders mt-4 mb-4 ph-item">
+
+
+                <svg class="chart lineChartSvg">
+                    <!--TRANSFORM SCALE AND VIEWPORT SIZE -->
+
+                    <polyline class="lineChartPlaceholder align-self-center" fill="none"
+                              stroke="#ced4da"
+                              stroke-width="2"
+                              points="
+       00,120
+       20,60
+       40,80
+       60,20
+       80,80
+       100,80
+       120,60
+       140,100
+       160,90
+       180,80
+       200, 110
+       220, 10
+       240, 70
+       260, 100
+       280, 100
+       300, 40
+       320, 0
+       340, 100
+       360, 100
+       380, 120
+       400, 60
+       420, 70
+       440, 80
+     " />
+
+                </svg>
+
+
+            </div>
+            <div data-actuality="actual" id="anychart-embed-samples-stock-spline-05" class="chart5Actual anychart-embed anychart-embed-samples-stock-spline-05" style="width:100%;">
+                <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
+
+                <div id="chart5" style="width:100%; height:100%;  border-radius:5px; "></div> <!--Chart div-->
+                <!--Chart script-->
+
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Behaviour Flow-->
+    <div class="row pl-3 pt-5 pr-0 pb-3" style=" width:100%;">
+
+        <div class="col-md-8 pr-3 pt-1" style="background-color:white; border-radius:5px;">
+            <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Behaviour Flow</b></div>
+
+            <div class="row" style="width:100%;">
+                @{var tarih = DateTime.Now;}
+                <div class="col-md-5 pl-4" style="width:100%;">
+                    Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                </div>
+                <div class="col-md-6" style="width:100%; background-color:white;">
+                    Bitiş Tarihi:<input class="p-1" type="date" id="end" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                    <button id="behaviourClick">SHOW</button>
+                </div>
+            </div>
+
+
+            <div id="chart10" style="width:100%;height: 500px;"></div>
+
+        </div>
+
+        <!--Behaviour Flow Bilgileri-->
+        <div class="col-md-4 pl-3 pt-1" style=" border-radius:5px; width:100%;">
+            <div class="pt-0" style="background-color:white; overflow:scroll; width:100%; height:100%; border:groove; border-radius:5px;">
+                <table id="BFInformationTable" border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
+                    <tr style="background-color:lavender;">
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--------------------------------------------------------------------------------------------------------------------------->
+    <!--Bounce Rate-->
+
+    <div class="row pl-3 pr-3 pt-5" style="width:100%;">
+        <div id="anychart-embed-samples-stock-grouping-01" class=" anychart-embed anychart-embed-samples-stock-grouping-01" style="width:100%; background-color:white;border:groove; border-radius:5px;  height:100%;">
+            <div class=" row pl-4" style="text-align:center;border-radius:5px; width:100%; ">
+                <p class="pt-2 pb-2" style="text-align:center; width:inherit; background-color:lavender; border-radius:5px;">
+                    <b style="text-align:center;">Bounce Rate for All Artifacts</b>
+                </p>
+            </div>
+
+            <div id="ac_style_samples-stock-grouping-01" style="display:none;">
+
+                <style>
+                    html, body, #chart7 {
+                        width: 100%;
+                        height: 400px;
+                        margin: 0;
+                        padding: 0;
+                        border-radius: 5px;
+                    }
+                </style>
+            </div>
+
+            <script src="~/js/ChartsJS/ArtifactsChart7.js"></script>
+            <div class="row" id="chart7" style="width:100%; border-radius:5px;"></div>
+        </div>
+    </div>
+
+
+
+</div>
+<!--Body Row-->

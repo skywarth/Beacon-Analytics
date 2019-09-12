@@ -532,15 +532,18 @@ namespace Beamity.Application.Service.Services
             return final;
         }
 
-        public async Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(EntityDTO input)
+        public async Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(BehaviourFlowRangeDTO input)
         {
             //var beaconActivity = await _beaconActivityRepository.GetAll()
             var beaconActivity = await publicSet
                 .Include(x => x.Beacon)
                 .ThenInclude(x => x.Artifact.Room)
 
-                .Where(x => x.EnterTime.Date == DateTime.Now.Date)
+
+                .Where(x => x.EnterTime.Date >=input.Start.Date && x.EnterTime.Date<=input.End.Date)
                 .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+                 /*.Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                 .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)*/
 
                  .ToListAsync();
 
@@ -759,14 +762,14 @@ namespace Beamity.Application.Service.Services
             //var beaconActivity = await _beaconActivityRepository.GetAll()
             var beaconActivity = await publicSet
                 .Include(x => x.Beacon)
-
+                .ThenInclude(x=>x.Artifact)
 
                 //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
                 .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
                  .ToListAsync();
 
             var sub = from t in beaconActivity
-                      group t by new { t.EnterTime.Date } into grouped
+                      group t by new { t.EnterTime.Date,t.Beacon.Artifact.Id } into grouped
                       select new ArtifactVisitorCountAndDurationAverageDTO
                       {
                           //Id = grouped.Key.Id,
@@ -781,6 +784,163 @@ namespace Beamity.Application.Service.Services
              int count = subList.First().Count;*/
             return subList;
         }
+
+        public async Task<List<BounceRatesDTO>> GetAllBounceRates(EntityDTO input)
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x => x.Artifact.Room)
+
+                //.Where(x=>(x.ExitTime - x.EnterTime).TotalSeconds <=10000)
+                //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+
+                 .ToListAsync();
+
+            var bounceList = from t in beaconActivity
+                             where (t.ExitTime - t.EnterTime).TotalSeconds <= 30
+                             //group t by t.Beacon.Artifact.Id into grouped
+                             group t by t.EnterTime.Date into grouped
+                             select new
+                             {
+                                 date = grouped.Key.Date,
+                                 bounceCount = grouped.Count()
+
+
+
+
+                             };
+
+            var nonBounceList = from t in beaconActivity
+                             where !((t.ExitTime - t.EnterTime).TotalSeconds <= 30)
+                                //group t by t.Beacon.Artifact.Id into grouped
+                                group t by t.EnterTime.Date into grouped
+                             select new
+                             {
+                                 date = grouped.Key.Date,
+                                 nonBounceCount = grouped.Count()
+
+
+
+
+                             };
+
+            var joinner = from t in bounceList
+                          join x in nonBounceList on t.date equals x.date
+                          select new
+                          {
+                              Date=t.date,
+                              bounce=t.bounceCount,
+                              nonBounce=x.nonBounceCount
+                          };
+
+            var resultList = from t in joinner
+                             select new BounceRatesDTO
+                             {
+                                 Date = t.Date.ToString("yyyy-MM-dd"),
+                                 Value = Math.Round((double)((double)t.bounce / (double)(t.nonBounce + t.bounce)) * 100, 2)
+                                 //Value = Math.Round(Convert.ToDouble(grouped. / (grouped.Sum(x=>x.bounceCount)) * 100),2)
+                            };
+            /*double bounceSum = bounceList.Sum(x => x.bounceCount);
+            double rate = bounceSum / (beaconActivity.Count) * 100;
+            rate = Math.Round(rate, 2);*/
+                return resultList.ToList();
+        }
+
+
+        public async Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomVisitorCountAndDurationAverage(EntityDTO input)//room id
+        {
+            //var beaconActivity = await _beaconActivityRepository.GetAll()
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x=>x.Artifact.Room)
+
+                //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
+                .Where(x => x.Beacon.Artifact.Room.Id == input.Id)
+                 .ToListAsync();
+
+            var sub = from t in beaconActivity
+                      group t by new { t.EnterTime.Date } into grouped
+                      select new RoomVisitorCountAndDurationAverageDTO
+                      {
+                          //Id = grouped.Key.Id,
+                          Date = grouped.Key.Date.ToString("yyyy-MM-dd"),
+                          Count = grouped.Count(),
+                          AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+
+                      };
+            var subList = sub.OrderBy(x => x.Date).ToList();
+            /*double durationAverage = subList.First().watchTime / subList.First().Count;
+             durationAverage = Math.Round(durationAverage, 2);
+             int count = subList.First().Count;*/
+            return subList;
+        }
+
+        public async Task<List<DateAndAverageDTO>> GetRoomCountPerUser(EntityDTO input)//location id
+        {
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x=>x.Artifact)
+                .ThenInclude(x=>x.Room)
+
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+                 .ToListAsync();
+
+            var subList = from t in beaconActivity
+                          group t by new { t.EnterTime.Date, t.UserId,t.Beacon.Artifact.Room.Id } into grouped
+                          select new
+                          {
+                              Date = grouped.Key.Date,
+                              User = grouped.Key.UserId,
+                              Count = grouped.Count()
+            
+                          };
+            
+
+            var subList2 = from t in subList
+                           group t by t.Date into grouped
+                           select new DateAndAverageDTO
+                           {
+                               Date = grouped.Key.ToString("yyyy-MM-dd"),
+                               Average = Math.Round(grouped.Average(x => x.Count), 2)
+                           };
+
+
+            return subList2.OrderBy(x => x.Date).ToList();
+        }
+
+        public async Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomsVisitorCountAndDurationAverage(EntityDTO input)//locationId
+        {
+            
+            var beaconActivity = await publicSet
+                .Include(x => x.Beacon)
+                .ThenInclude(x=>x.Artifact)
+                .ThenInclude(x=>x.Room)
+
+                    
+                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id == input.Id)
+                 .ToListAsync();
+
+            var sub = from t in beaconActivity
+                      group t by new { t.EnterTime.Date,t.Beacon.Artifact.Room.Id } into grouped
+                      select new RoomVisitorCountAndDurationAverageDTO
+                      {
+                          //Id = grouped.Key.Id,
+                          Date = grouped.Key.Date.ToString("yyyy-MM-dd"),
+                          Count = grouped.Count(),
+                          AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
+
+                      };
+            var subList = sub.OrderBy(x => x.Date).ToList();
+            /*double durationAverage = subList.First().watchTime / subList.First().Count;
+             durationAverage = Math.Round(durationAverage, 2);
+             int count = subList.First().Count;*/
+            return subList;
+        }
+
+
+
 
 
 

@@ -24,7 +24,9 @@ anychart.onDocumentReady(function () {
 });
 
 
-function chart9Initiate(){
+function chart9Initiate() {
+    var chart9Defer = $.Deferred();
+    chart9Defer = $.Deferred(); 
     var dataTable = anychart.data.table();
     var data = getData();
     dataTable.addData(data);
@@ -65,7 +67,8 @@ function chart9Initiate(){
     chart.container('chart9');
 
     chart.draw();
-
+    chart9Defer.resolve('yay');
+    return chart9Defer.promise();
 
     
 

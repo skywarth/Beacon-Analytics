@@ -1,4 +1,9 @@
-﻿body {
+﻿.ghostColor {
+    background-color: #ced4da;
+}
+
+
+body {
     background: #f5f5f5;
 }
 

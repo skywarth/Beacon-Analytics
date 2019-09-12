@@ -37,7 +37,7 @@ namespace Beamity.Application.Service.IServices
 
         //Task<List<RoomsArtifactHourly>> GetHourlyVisitorsArtifact(EntityDTO input);
 
-        Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(EntityDTO input);
+        Task<List<BehaviourFlowListDTO>> GetBehaviourFlow(BehaviourFlowRangeDTO input);
 
         Task<string> GetVisitorChange(EntityDTO input);
 
@@ -50,5 +50,15 @@ namespace Beamity.Application.Service.IServices
         Task<List<DateAndAverageDTO>> GetArtifactCountPerUser(EntityDTO input);
 
         Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetArtifactsVisitorCountAndDurationAverage(EntityDTO input);
+
+        Task<List<BounceRatesDTO>> GetAllBounceRates(EntityDTO input);
+
+        //ROOM
+        Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomVisitorCountAndDurationAverage(EntityDTO input);
+
+        Task<List<DateAndAverageDTO>> GetRoomCountPerUser(EntityDTO input);
+
+        Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomsVisitorCountAndDurationAverage(EntityDTO input);
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿async function chartXLoaded(placeholder, actual) {
     $(actual).removeClass('d-none');
-    $(placeholder).addClass('d-none');
-
+    //$(placeholder).addClass('d-none');
+    $(placeholder).remove();
 
 
     //$(placeholder).addClass('successfully-saved');

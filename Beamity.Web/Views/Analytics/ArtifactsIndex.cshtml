@@ -6,27 +6,20 @@
 }
 <!--Resources of Chart1--> <!--Bir eser için toplam kişi sayısı-->
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script  async src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script async src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <link href="~/css/AnalyticsCSS.css" rel="stylesheet" />
 <!--<script src="~/js/ChartsJS/ArtifactsChart1.js"></script>-->
 <!-- Chart2 Resources --><!--Bir eser için ortalama izlenme süresi-->
 
-<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script async src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+<script async src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 
 <link href="~/css/Ghost.css" rel="stylesheet" />
 <link href="~/css/placeholder-loading.min.css" rel="stylesheet" />
 
-<!--Chart3 Resources--><!--Most/Least Artifacts-->
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-<script src="~/js/ChartsJS/ArtifactsChart3.js"></script>
 
-<!--Chart4 Resources--><!--Total Visitors for one Artifact-->
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
 
 
 
@@ -38,14 +31,17 @@
 
 
 <!--Chart7--><!--Bounce Rate-->
-<script src="https://cdn.anychart.com/csv-data/dji-daily-short.js"></script>
-
 
 
 <script async src="~/js/dataTransfers/GhostController.js"></script>
+<script async src="~/js/dataTransfers/ArtifactAnalyticsAJAX.js"></script>
+<script async src="~/js/ChartsJS/BehaviourFlow.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsChart5.js"></script>
+<script async src="~/js/ChartsJS/ArtifactsBehaviourFlow.js"></script>
+
 <script async src="~/js/dataTransfers/DataFormatHelpers.js"></script>
 <script async src="~/js/ChartsJS/ArtifactsChart9.js"></script>
-<script async src="~/js/dataTransfers/ArtifactAnalyticsAJAX.js"></script>
+
 
 
 <script>
@@ -76,7 +72,55 @@
                     </p>
                 </div>
                 <div>
-                    <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%; max-height:100%; background-color:white; color:black; ">
+                    <div id="tablePlaceholder" class="ph-item p-0 placeholders" style="border:none;">
+                        <div class="ph-col-12">
+                            <div class="ph-row">
+                                <div class="ph-col-12" style="height:1.8rem;"></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                            <div class="ph-row">
+
+                                <div class="ph-col-4"></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                                <div class="ph-col-2 empty"></div>
+                                <div class="ph-col-2 "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <table border="0" class="tableActual pr-0" data-actuality="actual" cellpadding="4" cellspacing="4" style="width:100%; max-height:100%; background-color:white; color:black; ">
                         <thead>
                             <tr>
                                 <th style="background-color:lavender;">Artifact Name</th>
@@ -166,7 +210,46 @@
             <div class="pt-2 pb-2" style="text-align:center; background-color:lavender; border-radius:5px;"><b>Average of Artifact for one Visitor  </b></div>
 
             <script src="~/js/ChartsJS/ArtifacstChart4.js"></script>
-            <div id="chart4" style="height: 400px; width:100%; "></div>
+            <div id="chart4Placeholder" class="placeholders mt-4 mb-4 ph-item">
+
+
+                <svg class="chart lineChartSvg">
+                    <!--TRANSFORM SCALE AND VIEWPORT SIZE -->
+
+                    <polyline class ="lineChartPlaceholder align-self-center" fill="none"
+                              stroke="#ced4da"
+                              stroke-width="2"
+                              points="
+       00,120
+       20,60
+       40,80
+       60,20
+       80,80
+       100,80
+       120,60
+       140,100
+       160,90
+       180,80
+       200, 110
+       220, 10
+       240, 70
+       260, 100
+       280, 100
+       300, 40
+       320, 0
+       340, 100
+       360, 100
+       380, 120
+       400, 60
+       420, 70
+       440, 80
+     " />
+
+                </svg>
+
+
+            </div>
+            <div id="chart4" data-actuality="actual" class="chart4Actual" style="height: 400px; width:100%; "></div>
 
         </div>
     </div>
@@ -186,12 +269,50 @@
     <div class="row pl-3 pr-3 pt-5" style="width:100%;">
         <div class="col-md-12 pl-2" style=" border:groove; border-radius:5px;  width:100%; background-color:white; ">
             <div class="pt-2 pb-2" style="text-align:center; background-color: lavender; width:100%; border-radius:5px;"><b>Average of All Artifacts by visitors and time</b></div>
+            <div id="chart5Placeholder" class="placeholders mt-4 mb-4 ph-item">
 
-            <div id="anychart-embed-samples-stock-spline-05" class="anychart-embed anychart-embed-samples-stock-spline-05" style="width:100%;">
+
+                <svg class="chart lineChartSvg">
+                    <!--TRANSFORM SCALE AND VIEWPORT SIZE -->
+
+                    <polyline class="lineChartPlaceholder align-self-center" fill="none"
+                              stroke="#ced4da"
+                              stroke-width="2"
+                              points="
+       00,120
+       20,60
+       40,80
+       60,20
+       80,80
+       100,80
+       120,60
+       140,100
+       160,90
+       180,80
+       200, 110
+       220, 10
+       240, 70
+       260, 100
+       280, 100
+       300, 40
+       320, 0
+       340, 100
+       360, 100
+       380, 120
+       400, 60
+       420, 70
+       440, 80
+     " />
+
+                </svg>
+
+
+            </div>
+            <div data-actuality="actual" id="anychart-embed-samples-stock-spline-05" class="chart5Actual anychart-embed anychart-embed-samples-stock-spline-05" style="width:100%;">
                 <div id="ac_style_samples-stock-spline-05" style="display:none;"></div>
 
-                <div id="chart5" style="width:100%; height:100%;  border-radius:5px; "></div> <!--Chart div-->
-                <script src="~/js/ChartsJS/ArtifactsChart5.js"></script><!--Chart script-->
+                <div id="chart5"  style="width:100%; height:100%;  border-radius:5px; "></div> <!--Chart div-->
+                <!--Chart script-->
 
             </div>
         </div>
@@ -210,12 +331,12 @@
                     Başlangıç Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
                 </div>
                 <div class="col-md-6" style="width:100%; background-color:white;">
-                    Bitiş Tarihi:<input class="p-1" type="date" id="start" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
-                    <button onclick="">SHOW</button>
+                    Bitiş Tarihi:<input class="p-1" type="date" id="end" name="trip-start" min="2010-01-01" max=@tarih style="background-color: aliceblue; margin:5px;">
+                    <button id="behaviourClick">SHOW</button>
                 </div>
             </div>
 
-            <script src="~/js/ChartsJS/ArtifactsBehaviourFlow.js"></script>
+
             <div id="chart10" style="width:100%;height: 500px;"></div>
 
         </div>
@@ -223,7 +344,7 @@
         <!--Behaviour Flow Bilgileri-->
         <div class="col-md-4 pl-3 pt-1" style=" border-radius:5px; width:100%;">
             <div class="pt-0" style="background-color:white; overflow:scroll; width:100%; height:100%; border:groove; border-radius:5px;">
-                <table border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
+                <table id="BFInformationTable" border="0" cellpadding="4" cellspacing="4" class="pr-0" style="width:100%;  background-color:white; color:black; ">
                     <tr style="background-color:lavender;">
                         <th>From</th>
                         <th>To</th>
@@ -313,3 +434,4 @@
 
 </div>
 <!--Body Row-->
+

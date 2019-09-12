@@ -88,3 +88,20 @@
     -o-transition: opacity 3s ease-in-out;
     opacity: 0;
 }
+
+
+
+
+.lineChartSvg {
+    height: 20rem;
+    width: 100%;
+    padding-left: 8%;
+    padding-top: 5%;
+    border: 20px #acb2b7 solid;
+    border-right: none;
+    border-top: none;
+}
+
+.lineChartPlaceholder {
+    transform: scale(2);
+}

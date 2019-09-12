@@ -1,7 +1,7 @@
 ﻿
 //Artifacts Analytics View Behaviour Flow
 
-
+/*
 
 am4core.ready(function () {
 
@@ -14,17 +14,7 @@ am4core.ready(function () {
     var chart = am4core.create("chart10", am4charts.ChordDiagram);
 
 
-    chart.data = [
-        { from: "A", to: "D", value: 10 },
-        { from: "B", to: "D", value: 8 },
-        { from: "B", to: "E", value: 4 },
-        { from: "B", to: "C", value: 2 },
-        { from: "C", to: "E", value: 14 },
-        { from: "E", to: "D", value: 8 },
-        { from: "C", to: "A", value: 4 },
-        { from: "G", to: "A", value: 7 },
-        { from: "D", to: "B", value: 1 }
-    ];
+    chart.data = chart10Data;
 
     chart.dataFields.fromName = "from";
     chart.dataFields.toName = "to";
@@ -60,3 +50,21 @@ am4core.ready(function () {
     }
 
 }); // end am4core.ready()
+
+*/
+
+function chart10Initiate() {
+    var behaviourFlow = chart10Data;
+        var actualData = [];
+        var BFInformationTableData = "";
+        $("#BFInformationTable").innerHtml = "";
+        var a = $("#BFInformationTable")[0];
+    for (var i = 0; i < behaviourFlow.length; i++) {
+        actualData[i] = { from: behaviourFlow[i].from, to: behaviourFlow[i].to, value: behaviourFlow[i].count };
+            //table fill
+            BFInformationTableData += "<tr><td>" + behaviourFlow[i].from + "</td><td>" + behaviourFlow[i].to + "</td><td>" + behaviourFlow[i].count + "</td></tr>";
+    } a.innerHTML = BFInformationTableData;
+
+
+    fillBehaviourChart("chart10", actualData);
+}

@@ -19,10 +19,10 @@
     ac_add_style(".anychart-embed-samples-stock-grouping-01{width:600px;height:450px;}");
 })();
 
-anychart.onDocumentReady(function () {
+async function chart7Initiate() {
     var dataTable = anychart.data.table();
     // data comes from the function in https://cdn.anychart.com/csv-data/dji-daily-short.js
-    dataTable.addData(get_dji_daily_short_data());
+    dataTable.addData(getData7());
 
     var mapping = dataTable.mapAs({ value: 1 });
 
@@ -38,4 +38,16 @@ anychart.onDocumentReady(function () {
     chart.title(" ");
     chart.container("chart7");
     chart.draw();
-});
+}
+
+
+function getData7() {
+    var preArray = $.makeArray(chart7Data);
+    var actualArray = [];
+    for (var i = 0; i < preArray.length; i++) {
+        actualArray.push([preArray[i].date, preArray[i].value]);
+    }
+    return actualArray;
+
+
+}

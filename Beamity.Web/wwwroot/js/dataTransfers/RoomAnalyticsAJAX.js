@@ -9,7 +9,7 @@ async function GetChart9(id) {
     var chart9Defer = $.Deferred();
     chart9Defer = $.Deferred();
     var options = {};
-    options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactVisitorCountAndDurationAverage";
+    options.url = "https://localhost:44327/api/BeaconActivity/GetRoomVisitorCountAndDurationAverage";
     var obj = {};
     var TEMPArtifactId = id;
     obj.Id = TEMPArtifactId;
@@ -21,10 +21,10 @@ async function GetChart9(id) {
     options.processData = false;
     options.success = function (data) {
         actualChart9Data = data;
-        
+
         chart9Defer.resolve('yay');
-        
-       
+
+
     };
     options.error = function (e, msg) {
         chart9Defer.reject('boo');
@@ -41,7 +41,7 @@ async function GetChart4() {
     var chart4Defer = $.Deferred();
     chart4Defer = $.Deferred();
     var options = {};
-    options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactCountPerUser";
+    options.url = "https://localhost:44327/api/BeaconActivity/GetRoomCountPerUser";
     var obj = {};
     obj.Id = locationId;
     options.type = "POST";
@@ -71,7 +71,7 @@ async function GetChart5() {
     var chart5Defer = $.Deferred();
     chart5Defer = $.Deferred();
     var options = {};
-    options.url = "https://localhost:44327/api/BeaconActivity/GetArtifactsVisitorCountAndDurationAverage";
+    options.url = "https://localhost:44327/api/BeaconActivity/GetRoomsVisitorCountAndDurationAverage";
     var obj = {};
     obj.Id = locationId;
     options.type = "POST";
@@ -110,7 +110,7 @@ async function GetChart10() {
         obj.Start = $('#start').val();
         obj.End = $('#end').val();
     }
-    
+
     options.type = "POST";
 
     options.data = JSON.stringify(obj);
@@ -177,11 +177,11 @@ async function GetChart7() {
 
 
 
-async function GetArtifacts() {
+async function GetRooms() {
     var chart9Defer = $.Deferred();
     chart9Defer = $.Deferred();
     var options = {};
-    options.url = "https://localhost:44327/api/Artifact/GetAllArtifacts";
+    options.url = "https://localhost:44327/api/Room/GetAllRooms";
     var obj = {};
     var TEMPArtifactId = locationId;
     obj.Id = TEMPArtifactId;
@@ -195,7 +195,7 @@ async function GetArtifacts() {
         var result = JSON.parse(data);
         tableData = result;
         chart9Defer.resolve('yay');
-        
+
     };
     options.error = function (e, msg) {
         chart9Defer.reject('boo');
@@ -207,19 +207,19 @@ async function GetArtifacts() {
 
 }
 
-async function tableInitialize(data) {
+async function roomTableInitialize(data) {
     var html = "";
     for (var i = 0; i < data.length; i++) {
-        html += "<tr class='artifactSelectors' data-artifact='" + data[i].id + "' ><td><span>" + data[i].name + "</span></td><td><span>" + data[i].roomName + "</span></td><td><span>" + data[i].floorName +"</span></td></tr>";
+        html += "<tr class='roomSelectors' data-artifact='" + data[i].id + "' ><td><span>" + data[i].name + "</span></td><td><span>" + data[i].floorName + "</span></td></tr>";
     }
     $("#chart9Table").eq(0).html(html);
 }
 
 
 
-async function chart9Composition(id = "1E0B540E-03D3-4070-EAF7-08D726064EB2") {
+async function chart9Composition(id = "87B620BE-3F67-404B-F8F2-08D7256A6F33") {
     //    chart9Initiate();
-    
+
     await GetChart9(id);
     await chart9Initiate();
     chartXLoaded($("#chart9Placeholder")[0], $(".chart9Actual")[0]);
@@ -251,9 +251,9 @@ async function chart5Composition() {
 
 }
 
-async function tableComposition() {
-    await GetArtifacts();
-    tableInitialize(tableData);
+async function roomTableComposition() {
+    await GetRooms();
+    roomTableInitialize(tableData);
     chartXLoaded($("#tablePlaceholder")[0], $(".tableActual")[0]);
 }
 
@@ -305,16 +305,20 @@ $("#behaviourClick").click(function () {
 });
 
 
-async function ArtifactAnalyticsController() {
+async function roomAnalyticsController() {
     await locationAnon();
-    tableComposition();
     chart9Composition();
+    roomTableComposition();
     chart4Composition();
     chart5Composition();
+    /*
+    chart9Composition();
+    
+    
     chart10Composition();
-    chart7Composition();
+    chart7Composition();*/
 }
 
-ArtifactAnalyticsController();
+roomAnalyticsController();
 
 //TRY REMOVE

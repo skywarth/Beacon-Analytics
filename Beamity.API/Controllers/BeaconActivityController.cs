@@ -136,7 +136,7 @@ namespace Beamity.API.Controllers
                 data.MaxMinVisitorArtifact1 = await _beaconActivityService.GetMaxVisitorArtifact(input);
                 data.HourlyVisitorsMuseum1=await _beaconActivityService.GetHourlyVisitorsMuseum(input);
                 data.RoomsArtifactHourly=await _beaconActivityService.GetHourlyVisitorsArtifact(input);
-                data.BehaviourFlow= await _beaconActivityService.GetBehaviourFlow(input);
+                data.BehaviourFlow= await _beaconActivityService.GetBehaviourFlow(new BehaviourFlowRangeDTO(input.Id));
 
                 data.VisitorChange = await _beaconActivityService.GetVisitorChange(input);
                 data.DurationChange = await _beaconActivityService.GetDurationChange(input);
@@ -237,6 +237,100 @@ namespace Beamity.API.Controllers
             }
 
         }
+        /*public static string Erkan(this string s)
+        {
+            return s + "   ";
+        }*/
+
+        [HttpPost]
+        public async Task<List<BehaviourFlowListDTO>> GetBehaviourFlowByRange(BehaviourFlowRangeDTO input)
+        {
+            
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetBehaviourFlow(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        [HttpPost]
+        public async Task<List<BounceRatesDTO>> GetAllBounceRates(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetAllBounceRates(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomVisitorCountAndDurationAverage(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetRoomVisitorCountAndDurationAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<List<RoomVisitorCountAndDurationAverageDTO>> GetRoomsVisitorCountAndDurationAverage(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetRoomsVisitorCountAndDurationAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<List<DateAndAverageDTO>> GetRoomCountPerUser(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetRoomCountPerUser(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
+
 
     }
 }

@@ -86,7 +86,7 @@ async function loadPayload() {
         $("#BFInformationTable").innerHtml = "";
         var a = $("#BFInformationTable")[0];
         for (var i = 0; i < behaviourFlow.length; i++) {
-            chartDiv2Data[i] = { from: behaviourFlow[i].from, to: behaviourFlow[i].to, value: behaviourFlow[i].count };
+            chartDiv2Data[i] = { from: behaviourFlow[i].from, to: behaviourFlow[i].to, value: behaviourFlow[i].count };//FIXME might be the solution
             //table fill
             BFInformationTableData += "<tr><td>" + behaviourFlow[i].from + "</td><td>" + behaviourFlow[i].to + "</td><td>" + behaviourFlow[i].count + "</td></tr>";
         }
