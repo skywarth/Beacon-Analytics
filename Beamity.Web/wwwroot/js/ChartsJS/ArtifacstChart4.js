@@ -8,30 +8,18 @@
 
 
 
-function chart4Initiate() {
+async function chart4Initiate() {
+    var chart4Defer = $.Deferred();
+    chart4Defer = $.Deferred();
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
 
     // Create chart instance
-    var chart = am4core.create("chart4", am4charts.XYChart);
+    var chart = await am4core.create("chart4", am4charts.XYChart);
 
     // Add data
-    var a = chart4Data;
-    chart.data = [{
-        "date": "2012-07-27",
-        "value": 13
-    }, {
-        "date": "2012-07-28",
-        "value": 11
-    }, {
-        "date": "2012-07-29",
-        "value": 15
-    }, {
-        "date": "2012-07-30",
-        "value": 16
-        }];
-    chart.data = a;
+    chart.data = chart4Data;
     // Set input format for the dates
     chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
 
@@ -82,7 +70,9 @@ function chart4Initiate() {
     chart.scrollbarX.parent = chart.bottomAxesContainer;
 
     chart.events.on("ready", function () {
-        //dateAxis.zoom({ start: 0.79, end: 1 });
+        chart4Defer.resolve('yay');
+        dateAxis.zoom({ start: 0.79, end: 1 });
+        return chart4Defer.promise();
     });
 
 }

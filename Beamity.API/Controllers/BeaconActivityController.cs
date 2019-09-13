@@ -329,6 +329,58 @@ namespace Beamity.API.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<List<BounceRatesDTO>> GetMuseumBounceRate(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetMuseumBounceRate(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCount(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetMuseumVisitorCount(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        [HttpPost]
+        public async Task<List<MuseumVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCountAndDurationAverage(EntityDTO input)
+        {
+
+            try
+            {
+                var beaconActivity = await _beaconActivityService.GetMuseumVisitorCountAndDurationAverage(input);
+                return beaconActivity;
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
 
 

@@ -97,81 +97,6 @@ async function GetChart5() {
 
 }
 
-async function GetChart10() {
-
-    var chart10Defer = $.Deferred();
-    chart10Defer = $.Deferred();
-    var options = {};
-    options.url = "https://localhost:44327/api/BeaconActivity/GetBehaviourFlowByRange";
-    var obj = {};
-    obj.Id = locationId;
-
-    if ($('#start').val() && $('#end').val()) {
-        obj.Start = $('#start').val();
-        obj.End = $('#end').val();
-    }
-
-    options.type = "POST";
-
-    options.data = JSON.stringify(obj);
-    options.dataType = "html";
-    options.contentType = "application/json";
-    options.processData = false;
-    options.success = function (data) {
-        //actualChart9Data = data;
-        chart10Data = JSON.parse(data);
-        chart10Defer.resolve('yay');
-
-
-    };
-    options.error = function (e, msg) {
-        chart10Defer.reject('boo');
-        alert(msg);
-    };
-    $.ajax(options);
-    return chart10Defer.promise();
-
-
-}
-
-
-
-async function GetChart7() {
-
-    var chart7Defer = $.Deferred();
-    chart7Defer = $.Deferred();
-    var options = {};
-    options.url = "https://localhost:44327/api/BeaconActivity/GetAllBounceRates";
-    var obj = {};
-    obj.Id = locationId;
-
-    if ($('#start').val() && $('#end').val()) {
-        obj.Start = $('#start').val();
-        obj.End = $('#end').val();
-    }
-
-    options.type = "POST";
-
-    options.data = JSON.stringify(obj);
-    options.dataType = "html";
-    options.contentType = "application/json";
-    options.processData = false;
-    options.success = function (data) {
-        //actualChart9Data = data;
-        chart7Data = JSON.parse(data);
-        chart7Defer.resolve('yay');
-
-
-    };
-    options.error = function (e, msg) {
-        chart7Defer.reject('boo');
-        alert(msg);
-    };
-    $.ajax(options);
-    return chart7Defer.promise();
-
-
-}
 
 
 
@@ -234,7 +159,7 @@ async function chart4Composition() {
     //    chart9Initiate();
 
     await GetChart4();
-    chart4Initiate();
+    await chart4Initiate();
     chartXLoaded($("#chart4Placeholder")[0], $(".chart4Actual")[0]);
 
 
@@ -258,26 +183,6 @@ async function roomTableComposition() {
 }
 
 
-async function chart10Composition() {
-    //    chart9Initiate();
-
-    await GetChart10();
-    chart10Initiate();
-    //chartXLoaded($("#chart9Placeholder")[0], $(".chart9Actual")[0]);
-
-
-}
-
-
-async function chart7Composition() {
-    //    chart9Initiate();
-
-    await GetChart7();
-    chart7Initiate();
-    //chartXLoaded($("#chart9Placeholder")[0], $(".chart9Actual")[0]);
-
-
-}
 
 //chart3Composition();
 
@@ -300,14 +205,10 @@ $('#chart9Table').on('click span', 'tr', function () {
 
 
 
-$("#behaviourClick").click(function () {
-    chart10Composition();
-});
-
 
 async function roomAnalyticsController() {
     await locationAnon();
-    chart9Composition();
+    //chart9Composition();
     roomTableComposition();
     chart4Composition();
     chart5Composition();
