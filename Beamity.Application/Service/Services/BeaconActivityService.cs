@@ -1012,35 +1012,6 @@ namespace Beamity.Application.Service.Services
                 return resultList.OrderBy(x=>x.Date).ToList();
         }
 
-
-        public async Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCount(EntityDTO input)//artifact id
-        {
-            //var beaconActivity = await _beaconActivityRepository.GetAll()
-            var beaconActivity = await publicSet
-                .Include(x => x.Beacon)
-
-
-                //.Where(x => x.EnterTime.Date == DateTime.Now.Date)
-                .Where(x => x.Beacon.Artifact.Room.Floor.Building.Location.Id==input.Id)
-                 .ToListAsync();
-
-            var sub = from t in beaconActivity
-                      group t by new { t.EnterTime.Date } into grouped
-                      select new ArtifactVisitorCountAndDurationAverageDTO
-                      {
-                          //Id = grouped.Key.Id,
-                          Date = grouped.Key.Date.ToString("yyyy-MM-dd"),
-                          Count = grouped.Count(),
-                          AverageTime = grouped.Average(t => (t.ExitTime - t.EnterTime).TotalSeconds)
-
-                      };
-            var subList = sub.OrderBy(x => x.Date).ToList();
-            /*double durationAverage = subList.First().watchTime / subList.First().Count;
-             durationAverage = Math.Round(durationAverage, 2);
-             int count = subList.First().Count;*/
-            return subList;
-        }
-
         public async Task<List<MuseumVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCountAndDurationAverage(EntityDTO input)//location id
         {
             //var beaconActivity = await _beaconActivityRepository.GetAll()

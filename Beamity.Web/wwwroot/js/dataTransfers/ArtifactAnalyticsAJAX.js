@@ -308,7 +308,7 @@ $("#behaviourClick").click(function () {
 async function ArtifactAnalyticsController() {
     await locationAnon();
     tableComposition();
-    chart9Composition();
+    //chart9Composition();
     chart4Composition();
     chart5Composition();
     chart10Composition();

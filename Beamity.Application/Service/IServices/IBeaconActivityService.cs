@@ -63,7 +63,7 @@ namespace Beamity.Application.Service.IServices
         //MUSEUM
         Task<List<BounceRatesDTO>> GetMuseumBounceRate(EntityDTO input);
 
-        Task<List<ArtifactVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCount(EntityDTO input);
+        
 
         Task<List<MuseumVisitorCountAndDurationAverageDTO>> GetMuseumVisitorCountAndDurationAverage(EntityDTO input);
 
